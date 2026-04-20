@@ -660,10 +660,38 @@ button{font-family:inherit}
 .q-explanation p strong, .q-explanation p b{color:#0E5552;font-weight:700}
 .q-explanation .amelie-sig{display:flex;align-items:center;gap:10px;margin-bottom:0;cursor:pointer;user-select:none}
 .q-explanation.open .amelie-sig{margin-bottom:14px}
-.q-explanation .amelie-sig-chevron{margin-left:auto;width:20px;height:20px;color:#527A70;transition:transform .25s ease;flex-shrink:0}
+.q-explanation .amelie-sig-preview{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13px;color:#527A70;font-weight:400;margin-left:6px}
+.q-explanation .amelie-sig-preview strong{color:#19342D;font-weight:600;margin-right:4px}
+.q-explanation.open .amelie-sig-preview{display:none}
+.q-explanation .amelie-sig-chevron{width:20px;height:20px;color:#527A70;transition:transform .25s ease;flex-shrink:0}
 .q-explanation.open .amelie-sig-chevron{transform:rotate(180deg)}
 .q-explanation-body{display:none}
 .q-explanation.open .q-explanation-body{display:block;animation:fIn .25s ease}
+
+/* "Demander à Amélie" premium CTA inside explanation */
+.ask-amelie-btn{margin-top:14px;display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:100px;border:1.5px solid #D4A84A;background:linear-gradient(135deg,#FFF8E8 0%,#FDEBC4 100%);color:#6B4A1A;font-family:inherit;font-size:13.5px;font-weight:700;cursor:pointer;transition:all .15s ease;box-shadow:0 2px 6px rgba(212,168,74,.18)}
+.ask-amelie-btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(212,168,74,.30);background:linear-gradient(135deg,#FDEBC4 0%,#F8D98A 100%)}
+.ask-amelie-btn .crown{width:18px;height:18px;color:#C58F2E;flex-shrink:0}
+.ask-amelie-btn .label{flex:1;text-align:left}
+.ask-amelie-btn .chev{width:16px;height:16px;flex-shrink:0;opacity:.7}
+
+/* Ask-Amélie premium popup */
+.ask-gate{position:fixed;inset:0;background:rgba(25,52,45,.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:10900;display:none;align-items:center;justify-content:center;padding:20px;animation:egFade .25s}
+.ask-gate.show{display:flex}
+.ask-gate-box{background:#FAF9F6;border:1px solid #E3DFD8;border-radius:22px;max-width:480px;width:100%;padding:32px 28px 26px;position:relative;box-shadow:0 24px 60px rgba(25,52,45,.32);text-align:center}
+.ask-gate-close{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;background:#EDEBE7;color:#527A70;border:none;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;padding:0}
+.ask-gate-close:hover{background:#E3DFD8}
+.ask-gate-crown{width:64px;height:64px;border-radius:18px;background:linear-gradient(135deg,#F8D98A 0%,#D4A84A 100%);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;box-shadow:0 10px 24px rgba(212,168,74,.35)}
+.ask-gate-crown svg{width:32px;height:32px;color:#fff}
+.ask-gate h3{font-family:'Libre Baskerville',Georgia,serif;font-size:22px;font-weight:700;color:#19342D;margin:0 0 8px;line-height:1.3}
+.ask-gate .ask-gate-tag{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:100px;background:#FFF8E8;border:1px solid #F1DFAF;color:#8A5A14;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:14px}
+.ask-gate p{font-size:14.5px;color:#19342D;line-height:1.65;margin:0 0 12px;font-weight:400}
+.ask-gate p.muted{color:#527A70;font-size:13.5px;margin-bottom:22px}
+.ask-gate .ask-gate-stat{display:inline-block;background:#EAF0EA;border:1px solid #C4D3C5;color:#0E5552;padding:4px 10px;border-radius:8px;font-weight:700;font-size:13px}
+.ask-gate-cta{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:14px 20px;border-radius:100px;border:none;background:#0E5552;color:#fff;font-family:inherit;font-size:14.5px;font-weight:700;cursor:pointer;transition:all .15s ease;margin-top:6px}
+.ask-gate-cta:hover{background:#08403E;transform:translateY(-1px);box-shadow:0 6px 16px rgba(14,85,82,.32)}
+.ask-gate-ghost{display:block;width:100%;background:none;border:none;color:#527A70;font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;margin-top:10px;padding:8px;text-decoration:underline;text-underline-offset:3px}
+.ask-gate-ghost:hover{color:#19342D}
 .q-explanation .amelie-sig .avatar{width:34px;height:34px;border-radius:50%;background:#0E5552;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Libre Baskerville',Georgia,serif;font-size:15px;font-weight:700}
 .q-explanation .amelie-sig .name{font-weight:700;color:#19342D;font-size:14px}
 .q-explanation .amelie-sig .role{display:inline-flex;align-items:center;gap:6px;margin-left:10px;padding:3px 10px;background:#FAF9F6;border:1px solid #C4D3C5;border-radius:100px;font-size:11px;font-weight:500;color:#527A70}
@@ -1149,6 +1177,25 @@ body{background:#F7F5F2}
 </div>
 
 <!-- ── Paywall modal ── -->
+<!-- Ask Amélie premium gate -->
+<div class="ask-gate" id="askGate" onclick="if(event.target===this)closeAskGate()">
+  <div class="ask-gate-box" role="dialog" aria-labelledby="askGateTitle">
+    <button class="ask-gate-close" onclick="closeAskGate()" aria-label="Fermer">×</button>
+    <div class="ask-gate-crown">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 17h18l-1.5-9L15 12 12 5 9 12 4.5 8 3 17zm0 2h18v2H3v-2z"/></svg>
+    </div>
+    <div class="ask-gate-tag">Réservé Premium</div>
+    <h3 id="askGateTitle">Amélie IA, ton assistante médicale</h3>
+    <p>Accède à une assistante IA avec <span class="ask-gate-stat">+ de 10 millions de connaissances médicales</span> à portée de question.</p>
+    <p class="muted">Avec Premium, ton parcours devient ultra-personnalisé : Amélie repère tes faiblesses, adapte tes prochains dossiers et répond à toutes tes questions pour te faire progresser jour après jour.</p>
+    <button type="button" class="ask-gate-cta" onclick="goPremium('ask-gate')">
+      Passer Premium
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+    <button type="button" class="ask-gate-ghost" onclick="closeAskGate()">Plus tard</button>
+  </div>
+</div>
+
 <div class="paywall" id="paywall">
   <div class="paywall-box">
     <div class="paywall-ico">🔒</div>
@@ -2477,9 +2524,15 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
       fb.innerHTML = '<div class="q-explanation ' + (isOk ? 'ok' : 'ko') + '">' +
         '<div class="amelie-sig" onclick="toggleExpl(this.parentNode)">' +
           '<span class="avatar">A</span><span class="name">Amélie</span>' +
+          '<span class="amelie-sig-preview"><strong>' + verdict2 + '</strong> ' + esc(q.explanation || '') + '</span>' +
           '<svg class="amelie-sig-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>' +
         '</div>' +
         '<div class="q-explanation-body"><p><strong>' + verdict2 + '</strong> ' + esc(q.explanation || '') + '</p></div>' +
+        '<button type="button" class="ask-amelie-btn" onclick="openAskGate()">' +
+          '<svg class="crown" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 17h18l-1.5-9L15 12 12 5 9 12 4.5 8 3 17zm0 2h18v2H3v-2z"/></svg>' +
+          '<span class="label">Demander à Amélie</span>' +
+          '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>' +
+        '</button>' +
         '</div>';
     }
     var btn = document.getElementById('vqBtn' + qIdx);
@@ -2487,6 +2540,8 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
   };
 
   window.toggleExpl = function(el){ if(el) el.classList.toggle('open'); };
+  window.openAskGate = function(){ var g=document.getElementById('askGate'); if(g) g.classList.add('show'); };
+  window.closeAskGate = function(){ var g=document.getElementById('askGate'); if(g) g.classList.remove('show'); };
 
   window.openReader = function(src, type) {
     // Pour les PDFs : iOS Safari et beaucoup de navigateurs mobiles ne savent
@@ -2658,9 +2713,15 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
       '<div class="amelie-sig" onclick="toggleExpl(this.parentNode)">' +
         '<span class="avatar">A</span>' +
         '<span class="name">Amélie</span>' +
+        '<span class="amelie-sig-preview"><strong>' + verdict + '</strong> ' + (q.explanation ? esc(q.explanation) : '') + '</span>' +
         '<svg class="amelie-sig-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>' +
       '</div>' +
       '<div class="q-explanation-body"><p><strong>' + verdict + '</strong> ' + (q.explanation ? esc(q.explanation) : '') + '</p></div>' +
+      '<button type="button" class="ask-amelie-btn" onclick="openAskGate()">' +
+        '<svg class="crown" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 17h18l-1.5-9L15 12 12 5 9 12 4.5 8 3 17zm0 2h18v2H3v-2z"/></svg>' +
+        '<span class="label">Demander à Amélie</span>' +
+        '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>' +
+      '</button>' +
       '</div>';
     document.getElementById('qFeedback').innerHTML = fb;
     var btn = document.getElementById('qBtn');
