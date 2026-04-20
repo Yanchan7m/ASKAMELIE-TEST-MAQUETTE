@@ -658,7 +658,12 @@ button{font-family:inherit}
 .q-explanation-title{display:none}  /* Hidden — replaced by the Amélie signature block inserted by JS */
 .q-explanation p{color:#19342D;font-size:14.5px;line-height:1.7;font-weight:400}
 .q-explanation p strong, .q-explanation p b{color:#0E5552;font-weight:700}
-.q-explanation .amelie-sig{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.q-explanation .amelie-sig{display:flex;align-items:center;gap:10px;margin-bottom:0;cursor:pointer;user-select:none}
+.q-explanation.open .amelie-sig{margin-bottom:14px}
+.q-explanation .amelie-sig-chevron{margin-left:auto;width:20px;height:20px;color:#527A70;transition:transform .25s ease;flex-shrink:0}
+.q-explanation.open .amelie-sig-chevron{transform:rotate(180deg)}
+.q-explanation-body{display:none}
+.q-explanation.open .q-explanation-body{display:block;animation:fIn .25s ease}
 .q-explanation .amelie-sig .avatar{width:34px;height:34px;border-radius:50%;background:#0E5552;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Libre Baskerville',Georgia,serif;font-size:15px;font-weight:700}
 .q-explanation .amelie-sig .name{font-weight:700;color:#19342D;font-size:14px}
 .q-explanation .amelie-sig .role{display:inline-flex;align-items:center;gap:6px;margin-left:10px;padding:3px 10px;background:#FAF9F6;border:1px solid #C4D3C5;border-radius:100px;font-size:11px;font-weight:500;color:#527A70}
@@ -2470,13 +2475,18 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
     if (fb) {
       var verdict2 = isOk ? 'Bonne réponse.' : 'Mauvaise réponse.';
       fb.innerHTML = '<div class="q-explanation ' + (isOk ? 'ok' : 'ko') + '">' +
-        '<div class="amelie-sig"><span class="avatar">A</span><span class="name">Amélie</span></div>' +
-        '<p><strong>' + verdict2 + '</strong> ' + esc(q.explanation || '') + '</p>' +
+        '<div class="amelie-sig" onclick="toggleExpl(this.parentNode)">' +
+          '<span class="avatar">A</span><span class="name">Amélie</span>' +
+          '<svg class="amelie-sig-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>' +
+        '</div>' +
+        '<div class="q-explanation-body"><p><strong>' + verdict2 + '</strong> ' + esc(q.explanation || '') + '</p></div>' +
         '</div>';
     }
     var btn = document.getElementById('vqBtn' + qIdx);
     if (btn) { btn.disabled = true; btn.style.display = 'none'; }
   };
+
+  window.toggleExpl = function(el){ if(el) el.classList.toggle('open'); };
 
   window.openReader = function(src, type) {
     // Pour les PDFs : iOS Safari et beaucoup de navigateurs mobiles ne savent
@@ -2645,11 +2655,12 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
     });
     var verdict = isCorrect ? 'Bonne réponse.' : 'Mauvaise réponse.';
     var fb = '<div class="q-explanation ' + (isCorrect ? 'ok' : 'ko') + '">' +
-      '<div class="amelie-sig">' +
+      '<div class="amelie-sig" onclick="toggleExpl(this.parentNode)">' +
         '<span class="avatar">A</span>' +
         '<span class="name">Amélie</span>' +
+        '<svg class="amelie-sig-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>' +
       '</div>' +
-      '<p><strong>' + verdict + '</strong> ' + (q.explanation ? esc(q.explanation) : '') + '</p>' +
+      '<div class="q-explanation-body"><p><strong>' + verdict + '</strong> ' + (q.explanation ? esc(q.explanation) : '') + '</p></div>' +
       '</div>';
     document.getElementById('qFeedback').innerHTML = fb;
     var btn = document.getElementById('qBtn');
