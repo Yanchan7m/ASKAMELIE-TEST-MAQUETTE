@@ -692,6 +692,27 @@ button{font-family:inherit}
 .ask-gate-cta:hover{background:#08403E;transform:translateY(-1px);box-shadow:0 6px 16px rgba(14,85,82,.32)}
 .ask-gate-ghost{display:block;width:100%;background:none;border:none;color:#527A70;font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;margin-top:10px;padding:8px;text-decoration:underline;text-underline-offset:3px}
 .ask-gate-ghost:hover{color:#19342D}
+
+/* Chat preview inside the gate */
+.ask-gate-chat{background:#F7F5F2;border:1px solid #E3DFD8;border-radius:16px;padding:14px;margin:16px 0 18px;text-align:left;display:flex;flex-direction:column;gap:10px;position:relative;overflow:hidden}
+.ask-gate-chat-row{display:flex;gap:8px;align-items:flex-end;max-width:100%}
+.ask-gate-chat-row.user{flex-direction:row-reverse}
+.ask-gate-chat-ava{width:28px;height:28px;border-radius:50%;flex-shrink:0;background:#0E5552;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Libre Baskerville',Georgia,serif;font-size:13px;font-weight:700;overflow:hidden}
+.ask-gate-chat-ava.user{background:#F97316;font-family:inherit;font-size:12px}
+.ask-gate-chat-ava img{width:100%;height:100%;object-fit:cover}
+.ask-gate-chat-msg{padding:9px 13px;border-radius:14px;font-size:13px;line-height:1.5;max-width:78%}
+.ask-gate-chat-row.bot .ask-gate-chat-msg{background:#fff;border:1px solid #E3DFD8;color:#19342D;border-bottom-left-radius:4px}
+.ask-gate-chat-row.user .ask-gate-chat-msg{background:#F97316;color:#fff;border-bottom-right-radius:4px}
+.ask-gate-chat-msg strong{color:#0E5552;font-weight:700}
+.ask-gate-chat-row.user .ask-gate-chat-msg strong{color:#fff}
+.ask-gate-chat-typing{display:inline-flex;align-items:center;gap:4px;padding:10px 14px;background:#fff;border:1px solid #E3DFD8;border-radius:14px;border-bottom-left-radius:4px}
+.ask-gate-chat-typing span{width:6px;height:6px;border-radius:50%;background:#C4D3C5;animation:askDot 1.2s infinite ease-in-out}
+.ask-gate-chat-typing span:nth-child(2){animation-delay:.2s}
+.ask-gate-chat-typing span:nth-child(3){animation-delay:.4s}
+@keyframes askDot{0%,60%,100%{opacity:.35;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
+.ask-gate-chat-fade{position:absolute;left:0;right:0;bottom:0;height:52px;background:linear-gradient(to bottom,rgba(247,245,242,0) 0%,#F7F5F2 85%);pointer-events:none}
+.ask-gate-chat-lock{position:absolute;right:12px;bottom:14px;display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:100px;background:#FFF8E8;border:1px solid #F1DFAF;color:#8A5A14;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px}
+.ask-gate-chat-lock svg{width:11px;height:11px}
 .q-explanation .amelie-sig .avatar{width:34px;height:34px;border-radius:50%;background:#0E5552;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Libre Baskerville',Georgia,serif;font-size:15px;font-weight:700}
 .q-explanation .amelie-sig .name{font-weight:700;color:#19342D;font-size:14px}
 .q-explanation .amelie-sig .role{display:inline-flex;align-items:center;gap:6px;margin-left:10px;padding:3px 10px;background:#FAF9F6;border:1px solid #C4D3C5;border-radius:100px;font-size:11px;font-weight:500;color:#527A70}
@@ -1188,6 +1209,27 @@ body{background:#F7F5F2}
     <h3 id="askGateTitle">Amélie IA, ton assistante médicale</h3>
     <p>Accède à une assistante IA avec <span class="ask-gate-stat">+ de 10 millions de connaissances médicales</span> à portée de question.</p>
     <p class="muted">Avec Premium, ton parcours devient ultra-personnalisé : Amélie repère tes faiblesses, adapte tes prochains dossiers et répond à toutes tes questions pour te faire progresser jour après jour.</p>
+
+    <div class="ask-gate-chat" aria-hidden="true">
+      <div class="ask-gate-chat-row user">
+        <div class="ask-gate-chat-ava user">Toi</div>
+        <div class="ask-gate-chat-msg">Pourquoi la réponse B est un piège ici ?</div>
+      </div>
+      <div class="ask-gate-chat-row bot">
+        <div class="ask-gate-chat-ava"><img src="amelie-256.jpg" alt="Amélie"></div>
+        <div class="ask-gate-chat-msg"><strong>Amélie</strong> · Classique du dossier cardio : la B oriente vers une ischémie alors que le contexte pointe vers une péricardite aiguë. Le raisonnement tient à 2 signes que tu as probablement zappés…</div>
+      </div>
+      <div class="ask-gate-chat-row bot">
+        <div class="ask-gate-chat-ava"><img src="amelie-256.jpg" alt="Amélie"></div>
+        <div class="ask-gate-chat-typing" aria-label="Amélie écrit"><span></span><span></span><span></span></div>
+      </div>
+      <div class="ask-gate-chat-fade"></div>
+      <div class="ask-gate-chat-lock">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5zm-3 8V7a3 3 0 1 1 6 0v3H9z"/></svg>
+        Premium
+      </div>
+    </div>
+
     <button type="button" class="ask-gate-cta" onclick="goPremium('ask-gate')">
       Passer Premium
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
