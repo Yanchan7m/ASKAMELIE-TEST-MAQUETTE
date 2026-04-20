@@ -716,6 +716,36 @@ button{font-family:inherit}
 .ask-gate-chat-fade{position:absolute;left:0;right:0;bottom:0;height:52px;background:linear-gradient(to bottom,rgba(250,247,255,0) 0%,#faf7ff 90%);pointer-events:none}
 .ask-gate-chat-lock{position:absolute;right:12px;bottom:14px;display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:100px;background:linear-gradient(135deg,#A855F7,#7c3aed);border:1px solid rgba(168,85,247,.3);color:#fff;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;box-shadow:0 4px 12px rgba(168,85,247,.28)}
 .ask-gate-chat-lock svg{width:11px;height:11px}
+
+/* Ask-gate — responsive mobile tweaks */
+@media(max-width:520px){
+  .ask-gate{padding:12px;align-items:flex-end}
+  .ask-gate-box{padding:26px 20px 20px;border-radius:20px 20px 16px 16px;max-height:calc(100vh - 24px);overflow-y:auto;-webkit-overflow-scrolling:touch}
+  .ask-gate-close{top:10px;right:10px;width:32px;height:32px;font-size:18px}
+  .ask-gate-crown{width:52px;height:52px;border-radius:14px;margin-bottom:14px}
+  .ask-gate-crown svg{width:26px;height:26px}
+  .ask-gate h3{font-size:18px;line-height:1.25}
+  .ask-gate .ask-gate-tag{font-size:10px;padding:3px 9px;margin-bottom:12px;letter-spacing:1px}
+  .ask-gate p{font-size:13.5px;line-height:1.55}
+  .ask-gate p.muted{font-size:12.5px;margin-bottom:16px}
+  .ask-gate .ask-gate-stat{font-size:12px;padding:3px 8px}
+  .ask-gate-cta{padding:13px 18px;font-size:14px}
+  .ask-gate-ghost{font-size:12.5px}
+  .ask-gate-chat{padding:12px;margin:12px 0 14px;border-radius:14px;gap:8px}
+  .ask-gate-chat-head{font-size:10px;letter-spacing:1px}
+  .ask-gate-chat-ava{width:26px;height:26px}
+  .ask-gate-chat-ava.user{font-size:10px}
+  .ask-gate-chat-msg{font-size:12.5px;padding:8px 11px;max-width:82%;line-height:1.5}
+  .ask-gate-chat-typing{padding:8px 12px}
+  .ask-gate-chat-typing span{width:5px;height:5px}
+  .ask-gate-chat-lock{right:10px;bottom:10px;font-size:10px;padding:4px 8px}
+  .ask-gate-chat-lock svg{width:10px;height:10px}
+}
+@media(max-width:380px){
+  .ask-gate-box{padding:22px 16px 18px}
+  .ask-gate h3{font-size:17px}
+  .ask-gate-chat-msg{font-size:12px;max-width:85%}
+}
 .q-explanation .amelie-sig .avatar{width:34px;height:34px;border-radius:50%;background:#0E5552;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Libre Baskerville',Georgia,serif;font-size:15px;font-weight:700}
 .q-explanation .amelie-sig .name{font-weight:700;color:#19342D;font-size:14px}
 .q-explanation .amelie-sig .role{display:inline-flex;align-items:center;gap:6px;margin-left:10px;padding:3px 10px;background:#FAF9F6;border:1px solid #C4D3C5;border-radius:100px;font-size:11px;font-weight:500;color:#527A70}
