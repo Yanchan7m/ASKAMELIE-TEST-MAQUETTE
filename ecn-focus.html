@@ -23,7 +23,7 @@
     if (q.get('auto') === '1' || q.get('dash') === '1') {
       var s = document.createElement('style');
       s.id = '_earlyHideLegacy';
-      s.textContent = 'body>*:not(#examOverlay):not(#readerOverlay):not(.reader-overlay):not(#emailGate):not(#firstQGate):not(#authSuccessBanner):not(.paywall-bg):not(.q-image-zoom):not(.ami-panel):not(script){display:none!important}body{background:#F7F5F2!important}';
+      s.textContent = 'body>*:not(#examOverlay):not(#readerOverlay):not(.reader-overlay):not(#emailGate):not(#firstQGate):not(#askGate):not(#authSuccessBanner):not(.paywall-bg):not(.q-image-zoom):not(.ami-panel):not(script){display:none!important}body{background:#F7F5F2!important}';
       (document.head || document.documentElement).appendChild(s);
     }
   } catch(e){}
@@ -660,8 +660,8 @@ button{font-family:inherit}
 .q-explanation p strong, .q-explanation p b{color:#0E5552;font-weight:700}
 .q-explanation .amelie-sig{display:flex;align-items:center;gap:10px;margin-bottom:0;cursor:pointer;user-select:none}
 .q-explanation.open .amelie-sig{margin-bottom:14px}
-.q-explanation .amelie-sig-preview{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13px;color:#527A70;font-weight:400;margin-left:6px}
-.q-explanation .amelie-sig-preview strong{color:#19342D;font-weight:600;margin-right:4px}
+.q-explanation .amelie-sig-preview{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14.5px;color:#527A70;font-weight:400;margin-left:8px;line-height:1.45}
+.q-explanation .amelie-sig-preview strong{color:#19342D;font-weight:700;margin-right:5px;font-size:15px}
 .q-explanation.open .amelie-sig-preview{display:none}
 .q-explanation .amelie-sig-chevron{width:20px;height:20px;color:#527A70;transition:transform .25s ease;flex-shrink:0}
 .q-explanation.open .amelie-sig-chevron{transform:rotate(180deg)}
@@ -1707,7 +1707,7 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
     var _yParam = parseInt(_q.get('year') || '', 10);
     var _hideLegacy = function(){
       var _style = document.createElement('style');
-      _style.textContent = 'body>*:not(#examOverlay):not(#readerOverlay):not(.reader-overlay):not(#emailGate):not(#firstQGate):not(#authSuccessBanner):not(.paywall-bg):not(.q-image-zoom):not(.ami-panel):not(script){display:none!important}body{background:#F7F5F2!important}';
+      _style.textContent = 'body>*:not(#examOverlay):not(#readerOverlay):not(.reader-overlay):not(#emailGate):not(#firstQGate):not(#askGate):not(#authSuccessBanner):not(.paywall-bg):not(.q-image-zoom):not(.ami-panel):not(script){display:none!important}body{background:#F7F5F2!important}';
       document.head.appendChild(_style);
     };
     if (_q.get('auto') === '1' && Number.isFinite(_yParam)) {
@@ -3636,6 +3636,38 @@ selectDur(30);
     }
   });
 })(); */
+</script>
+<script>
+/* ===== Mockup demo mode =====
+   Désactive les gates auth/email/paywall bloquants quand la page est
+   servie en local (localhost / 127.0.0.1 / file://) ou si l'URL contient
+   ?demo=1. Prod reste intact. */
+(function(){
+  var h = location.hostname;
+  var params = new URLSearchParams(location.search);
+  var isDemo = h === 'localhost' || h === '127.0.0.1' || location.protocol === 'file:' || params.has('demo');
+  if (!isDemo) return;
+  var noop = function(){};
+  window.showFirstQuestionGate = noop;
+  window.showEmailGate = noop;
+  window.openPaywall = noop;
+  // Ferme un gate déjà monté dans le DOM
+  ['emailGate','firstQGate','paywall'].forEach(function(id){
+    var g = document.getElementById(id);
+    if (g){ g.classList.remove('open','show'); g.style.display='none'; }
+  });
+  // Observe le DOM : si un gate est ajouté dynamiquement, on le ferme aussitôt
+  new MutationObserver(function(muts){
+    muts.forEach(function(m){
+      m.addedNodes.forEach(function(n){
+        if (n.nodeType===1 && (n.id==='emailGate' || n.id==='firstQGate')){
+          n.classList.remove('open'); n.style.display='none';
+        }
+      });
+    });
+  }).observe(document.body, { childList:true });
+  console.info('[mockup] demo mode actif — gates désactivés');
+})();
 </script>
 </body>
 </html>
