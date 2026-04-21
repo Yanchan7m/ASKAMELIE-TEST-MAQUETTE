@@ -961,7 +961,8 @@ button{font-family:inherit}
    and from the exam list so the student can jump between years without
    going back to the home. Locked years show a lock icon. */
 .year-switcher{margin:28px 0 12px}
-.year-switcher-title{font-size:12px;font-weight:600;color:#527A70;text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px;text-align:center}
+.year-switcher-title{font-family:'Libre Baskerville',Georgia,serif;font-size:clamp(17px,2.4vw,20px);font-weight:700;color:#19342D;letter-spacing:-.01em;margin-bottom:6px;text-align:center;line-height:1.3}
+.year-switcher-sub{font-size:13px;color:#527A70;text-align:center;margin-bottom:18px;font-weight:500;line-height:1.5}
 .year-switcher-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
 @media(max-width:500px){.year-switcher-grid{grid-template-columns:repeat(5,1fr);gap:6px}}
 .ys-card{background:#FAF9F6;border:1.5px solid #E3DFD8;border-radius:16px;padding:22px 10px 14px;text-align:center;cursor:pointer;transition:all .2s;position:relative;display:flex;flex-direction:column;align-items:center;gap:4px;min-height:96px;justify-content:center;overflow:hidden}
@@ -2087,7 +2088,8 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
              '</div>';
     }).join('');
     return '<div class="year-switcher">' +
-             '<div class="year-switcher-title">Toutes les années</div>' +
+             '<div class="year-switcher-title">Explore les 10 ans d\'annales à ta disposition</div>' +
+             '<div class="year-switcher-sub">💡 Certaines questions ressortent régulièrement dans les examens actuels.</div>' +
              '<div class="year-switcher-grid">' + cards + '</div>' +
            '</div>';
   }
