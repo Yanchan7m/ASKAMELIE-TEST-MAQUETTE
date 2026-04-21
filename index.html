@@ -48,9 +48,14 @@ a{color:inherit;text-decoration:none}
 button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
 
 /* ── Welcome bar ── */
-.welcome-bar{background:var(--primary-darkest);color:#fff;padding:10px 24px;text-align:center;font-size:13px;font-weight:500;letter-spacing:-.005em;position:relative}
+.welcome-bar{background:var(--primary-darkest);color:#fff;padding:10px 24px;text-align:center;font-size:13px;font-weight:500;letter-spacing:-.005em;position:relative;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .welcome-bar strong{font-weight:700}
-@media(max-width:600px){.welcome-bar{font-size:12px;padding:9px 14px;line-height:1.4}}
+.welcome-bar .wb-mobile{display:none}
+@media(max-width:720px){
+  .welcome-bar .wb-full{display:none}
+  .welcome-bar .wb-mobile{display:inline}
+  .welcome-bar{font-size:12px;padding:9px 14px}
+}
 
 /* ── Nav ── */
 .nav{position:sticky;top:0;z-index:100;background:rgba(247,245,242,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
@@ -151,10 +156,10 @@ body.authed .nav-user{display:inline-flex}
 .hero-proof{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:28px;flex-wrap:wrap;color:var(--fg-soft);font-size:13px;font-weight:500}
 .proof-avatars{display:flex;align-items:center}
 .proof-avatars span{width:28px;height:28px;border-radius:50%;border:2px solid var(--bg);display:inline-block;background:var(--sage);margin-left:-8px;background-size:cover;background-position:center}
-.proof-avatars span:first-child{margin-left:0;background:#D78050}
-.proof-avatars span:nth-child(2){background:#8DA8A1}
-.proof-avatars span:nth-child(3){background:#C4D3C5}
-.proof-avatars span:nth-child(4){background:#E89C6E}
+.proof-avatars span:first-child{margin-left:0;background-image:url('img/avatars/face1.jpg')}
+.proof-avatars span:nth-child(2){background-image:url('img/avatars/face2.jpg')}
+.proof-avatars span:nth-child(3){background-image:url('img/avatars/face3.jpg')}
+.proof-avatars span:nth-child(4){background-image:url('img/avatars/face4.jpg')}
 .proof-sep{color:var(--border)}
 
 @media(max-width:600px){
@@ -374,35 +379,51 @@ body.authed .already-subscribed{display:none}
   .sticky-cta .sticky-btn{width:100%;text-align:center;padding:14px;font-size:14px}
 }
 
-/* ── Paywall modal ── */
-.paywall-bg{position:fixed;inset:0;background:rgba(25,52,45,.65);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);z-index:200;display:none;align-items:center;justify-content:center;padding:20px;animation:fadeIn .2s}
+/* ── Paywall modal (gold / teal Illimité style) ── */
+.paywall-bg{position:fixed;inset:0;background:rgba(15,23,42,.78);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);z-index:200;display:none;align-items:center;justify-content:center;padding:24px;animation:fadeIn .2s}
 .paywall-bg.open{display:flex}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-.paywall{background:var(--card);border-radius:18px;max-width:500px;width:100%;padding:36px 32px;box-shadow:0 30px 80px rgba(14,85,82,.3);position:relative;max-height:90vh;overflow-y:auto}
-.paywall-close{position:absolute;top:10px;right:10px;width:34px;height:34px;border-radius:50%;background:var(--muted);color:var(--fg-soft);font-size:18px;display:flex;align-items:center;justify-content:center;transition:all .15s;border:1.5px solid var(--border);z-index:20;cursor:pointer}
-.paywall-close:hover{background:var(--border);color:var(--fg)}
-.paywall h3{font-family:var(--font-serif);font-size:26px;font-weight:700;letter-spacing:-.015em;color:var(--fg);margin-bottom:10px;text-align:center}
-.paywall .sub{font-size:14px;color:var(--fg-soft);text-align:center;margin-bottom:24px;line-height:1.6}
-.pw-premium{background:var(--primary);color:#fff;border-radius:14px;padding:24px 22px;margin-bottom:10px;position:relative;overflow:hidden}
-.pw-premium::before{content:'';position:absolute;top:-30%;right:-20%;width:260px;height:260px;background:radial-gradient(circle,rgba(232,156,110,.2) 0%,transparent 60%);pointer-events:none}
-.pw-premium .tag{display:inline-block;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;background:rgba(255,255,255,.15);padding:4px 10px;border-radius:100px;margin-bottom:10px;position:relative}
-.pw-premium h4{font-family:var(--font-serif);font-size:22px;font-weight:700;margin-bottom:6px;position:relative}
-.pw-premium .price{font-size:15px;opacity:.85;margin-bottom:14px;position:relative}
-.pw-premium .price strong{font-size:22px;font-weight:700;font-family:var(--font-serif)}
-.pw-premium ul{list-style:none;padding:0;margin:0 0 18px;position:relative}
-.pw-premium li{font-size:13px;padding:6px 0 6px 22px;position:relative;opacity:.95}
-.pw-premium li::before{content:'✓';position:absolute;left:0;color:var(--accent);font-weight:700}
-.pw-btn{display:block;width:100%;padding:14px;background:var(--accent);color:var(--fg);border-radius:10px;font-size:14px;font-weight:600;text-align:center;transition:all .15s;position:relative}
-.pw-btn:hover{background:#f0b08a;transform:translateY(-1px)}
-.pw-trust{margin-top:10px;font-size:11px;color:var(--fg-soft);text-align:center;opacity:.85}
-@media(max-width:480px){.paywall{padding:30px 22px}}
+.paywall{background:transparent;border-radius:28px;max-width:460px;width:100%;padding:0;box-shadow:none;position:relative;max-height:94vh;overflow-y:auto;display:flex;flex-direction:column;align-items:center}
+.paywall-close{position:absolute;top:14px;right:16px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.18);color:#fff;font-size:20px;font-weight:700;display:flex;align-items:center;justify-content:center;transition:all .15s;border:none;z-index:20;cursor:pointer;line-height:1}
+.paywall-close:hover{background:rgba(255,255,255,.32);color:#fff}
+/* Top banner */
+.pw-banner{position:relative;width:100%;padding:58px 24px 70px;border-radius:28px 28px 0 0;background:linear-gradient(135deg,#0E5552 0%,#1B6E68 35%,#D4A017 100%);overflow:hidden}
+.pw-banner::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(245,197,66,.35) 0%,transparent 55%);pointer-events:none}
+.pw-lock-wrap{position:relative;width:88px;height:88px;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;z-index:1;filter:drop-shadow(0 0 24px rgba(245,197,66,.85)) drop-shadow(0 6px 12px rgba(0,0,0,.25))}
+.pw-lock-wrap svg{width:88px;height:88px;color:#F5C542}
+.pw-banner-title{position:relative;z-index:1;font-family:var(--font-serif);font-size:34px;font-weight:700;color:#F5C542;letter-spacing:-.01em;text-align:center;text-shadow:0 2px 8px rgba(0,0,0,.25)}
+/* Card body */
+.pw-card{position:relative;margin-top:-38px;width:calc(100% - 24px);background:#FDF9EF;border-radius:22px;padding:28px 26px 22px;box-shadow:0 20px 50px rgba(0,0,0,.28);z-index:2;text-align:center}
+.pw-card h3{font-family:var(--font-serif);font-size:22px;font-weight:900;color:#0f172a;margin-bottom:10px;letter-spacing:-.01em}
+.pw-card .sub{font-size:14.5px;color:#334155;margin-bottom:18px;line-height:1.55;font-weight:500}
+.pw-card .pw-intro{font-size:14px;color:#475569;margin-bottom:14px;font-weight:600}
+.pw-feats{list-style:none;padding:0;margin:0 0 22px;text-align:left}
+.pw-feats li{font-size:14.5px;color:#1f2937;padding:7px 0;display:flex;align-items:center;gap:11px;font-weight:500}
+.pw-feats li::before{content:'✓';width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#F5C542,#D4A017);color:#fff;font-weight:900;font-size:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 6px rgba(212,160,23,.4)}
+.pw-cta-gold{display:block;padding:16px 22px;border-radius:100px;background:linear-gradient(135deg,#F5C542 0%,#E8B84D 50%,#D4A017 100%);color:#5B3F00;font-size:14px;font-weight:900;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;text-align:center;box-shadow:0 10px 28px rgba(212,160,23,.45),inset 0 1px 0 rgba(255,255,255,.5);border:none;cursor:pointer;font-family:inherit;transition:all .15s;margin-bottom:10px;width:100%}
+.pw-cta-gold:hover{transform:translateY(-1px);box-shadow:0 14px 32px rgba(212,160,23,.55),inset 0 1px 0 rgba(255,255,255,.5);text-decoration:none}
+.pw-trust{margin-top:8px;font-size:12px;color:#64748b;text-align:center}
+.pw-already{margin-top:14px;font-size:13px;color:#64748b;text-align:center}
+.pw-already .asub-link{background:none;border:none;color:#D4A017;font-weight:700;cursor:pointer;text-decoration:underline;font-family:inherit;font-size:13px;padding:0}
+.pw-already .asub-link:hover{color:#A67B00}
+@media(max-width:480px){
+  .paywall-bg{padding:14px}
+  .pw-banner{padding:48px 20px 62px}
+  .pw-lock-wrap,.pw-lock-wrap svg{width:74px;height:74px}
+  .pw-banner-title{font-size:28px}
+  .pw-card{padding:24px 20px 20px;margin-top:-34px}
+  .pw-card h3{font-size:19px}
+  .pw-feats li{font-size:13.5px}
+  .pw-cta-gold{font-size:13px;padding:15px 18px}
+}
 </style>
 </head>
 <body>
 
 <!-- Welcome bar -->
 <div class="welcome-bar">
-  🎓 Tu es en <strong>accès gratuit</strong> · Teste ton premier dossier progressif gratuitement · Passe Premium pour tout débloquer
+  <span class="wb-full">⚡ 10 ans d'annales corrigées par des médecins · <strong>Dossier 2016 offert</strong> · Rejoins-les avant ton prochain ECN</span>
+  <span class="wb-mobile">⚡ <strong>Dossier 2016 offert</strong> · Corrigé par des médecins</span>
 </div>
 
 <!-- Nav -->
@@ -414,7 +435,7 @@ body.authed .already-subscribed{display:none}
     </a>
     <div class="nav-links">
       <a href="#annales" class="nav-link">Annales</a>
-      <a href="#compare" class="nav-link">Gratuit vs Premium</a>
+      <a href="#compare" class="nav-link">Gratuit vs Illimité</a>
     </div>
     <div class="nav-user" id="navUser" onclick="toggleUserMenu(event)">
       <div class="nav-user-avatar" id="navUserAvatar">A</div>
@@ -512,7 +533,6 @@ body.authed .already-subscribed{display:none}
 
 <!-- Hero -->
 <section class="hero">
-  <div class="eyebrow">Plateforme n°1 EDN · Par des médecins, pour les externes</div>
   <h1>Teste un dossier <em>gratuitement</em>.<br>Vois la différence.</h1>
   <p>Toutes les annales EDN/ECN depuis 2016 en conditions réelles. Raisonnement clinique détaillé par des médecins spécialistes — pas juste la bonne lettre.</p>
   <a href="ecn-focus.html?year=2016&auto=1" class="hero-cta">
@@ -553,7 +573,7 @@ body.authed .already-subscribed{display:none}
     <div class="step-card">
       <div class="step-num">3</div>
       <h3>Débloque les 10 années</h3>
-      <p>Passe Premium et accède à 850+ dossiers corrigés par des spécialistes sur 10 ans d'annales.</p>
+      <p>Passe en Illimité et accède à 850+ dossiers corrigés par des spécialistes sur 10 ans d'annales.</p>
     </div>
   </div>
 </section>
@@ -562,14 +582,14 @@ body.authed .already-subscribed{display:none}
 <section class="years-section" id="annales">
   <div class="years-header">
     <h2>Choisis ton année</h2>
-    <p>Ton dossier gratuit t'attend sur 2016. Les autres années se débloquent en Premium.</p>
+    <p>Ton dossier gratuit t'attend sur 2016. Les autres années se débloquent en Illimité.</p>
   </div>
   <div class="year-grid" id="yearGrid"></div>
   <div class="free-hint">
     ✨ Ton premier dossier, <strong>100% gratuit</strong>. Avec la correction complète d'un médecin spécialiste.
   </div>
   <div class="already-subscribed" id="alreadySub">
-    <span>Tu as déjà souscrit Premium sur un autre appareil&nbsp;?</span>
+    <span>Tu as déjà souscrit l'Illimité sur un autre appareil&nbsp;?</span>
     <button type="button" class="asub-link" onclick="openLoginModal()">Connecte-toi pour retrouver ton accès →</button>
   </div>
 </section>
@@ -591,7 +611,7 @@ body.authed .already-subscribed{display:none}
       <div>
         <div class="dash-preview-name">Camille · D4 Lyon</div>
         <div class="dash-preview-badge">
-          <span class="dash-preview-dot"></span> Premium actif · 143 questions traitées
+          <span class="dash-preview-dot"></span> Illimité actif · 143 questions traitées
         </div>
       </div>
     </div>
@@ -697,7 +717,7 @@ body.authed .already-subscribed{display:none}
     </div>
     <div class="pricing-actions">
       <button type="button" class="primary" onclick="goPremium('pricing')" style="border:none;cursor:pointer;font-family:inherit">
-        Démarrer Premium
+        Démarrer l'Illimité
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </button>
       <a href="ecn-focus.html?year=2016&auto=1" class="secondary">Tester le dossier gratuit</a>
@@ -762,7 +782,7 @@ body.authed .already-subscribed{display:none}
   <h3>Tu viens de voir la qualité sur <em>1 année</em>.<br>Imagine sur <em>10</em>.</h3>
   <p>850 dossiers corrigés par des médecins spécialistes. Raisonnement clinique complet. Tout ce qu'il te faut pour décrocher ta spé.</p>
   <button type="button" class="premium-cta-btn" onclick="goPremium('footer')" style="border:none;cursor:pointer;font-family:inherit">
-    Devenir Premium — 29,90 € / mois
+    Passer au plan Illimité — 29,90 € / mois
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
   </button>
   <div class="trust-line">Satisfait ou remboursé 14 jours · Sans engagement · Moins d'1 € / jour</div>
@@ -785,31 +805,36 @@ body.authed .already-subscribed{display:none}
 <!-- Sticky CTA -->
 <div class="sticky-cta" id="stickyCta">
   <span class="sticky-label">🎓 Version gratuite</span>
-  <button type="button" class="sticky-btn" onclick="goPremium('sticky')" style="border:none;cursor:pointer;font-family:inherit">Passer Premium — 29,90 € / mois →</button>
+  <button type="button" class="sticky-btn" onclick="goPremium('sticky')" style="border:none;cursor:pointer;font-family:inherit">Passer au plan Illimité — 29,90 € / mois →</button>
 </div>
 
 <!-- Paywall modal (kept for back-compat, used when clicking a locked year) -->
 <div class="paywall-bg" id="paywall" onclick="if(event.target.id==='paywall')closePaywall()">
   <div class="paywall">
-    <button class="paywall-close" onclick="closePaywall()" aria-label="Fermer">×</button>
-    <h3>Passer Premium</h3>
-    <p class="sub">Accède à 10 ans d'annales EDN/ECN corrigées par des médecins spécialistes. Raisonnement clinique complet.</p>
-    <div class="pw-premium">
-      <span class="tag">Tout débloqué</span>
-      <h4>Premium mensuel</h4>
-      <div class="price"><strong>29,90 €</strong> / mois · sans engagement</div>
-      <ul>
-        <li>10 années d'annales EDN/ECN (2016 → 2025)</li>
-        <li>850+ dossiers progressifs corrigés</li>
-        <li>DCP, QI et LCA en conditions réelles</li>
-        <li>Corrections par des médecins spécialistes</li>
-        <li>Satisfait ou remboursé 14 jours</li>
-      </ul>
-      <button type="button" class="pw-btn" onclick="goPremium('paywall')" style="border:none;cursor:pointer;font-family:inherit">Démarrer Premium →</button>
-      <div class="pw-trust">Sans engagement · Moins d'1 € / jour</div>
+    <!-- Top banner: teal → gold gradient with glowing open padlock -->
+    <div class="pw-banner">
+      <button class="paywall-close" onclick="closePaywall()" aria-label="Fermer">×</button>
+      <div class="pw-lock-wrap">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5-2.28 0-4.2 1.53-4.8 3.62l1.92.54C9.46 4.01 10.63 3 12 3c1.66 0 3 1.34 3 3v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm0 12H6V10h12v10zm-6-3c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"/></svg>
+      </div>
+      <div class="pw-banner-title">Illimité</div>
     </div>
-    <div class="pw-already">
-      Tu as déjà souscrit&nbsp;? <button type="button" class="asub-link" onclick="closePaywall();openLoginModal()">Se connecter →</button>
+    <!-- Card body -->
+    <div class="pw-card">
+      <h3>🔒 ACCÈS LIMITÉ 🔒</h3>
+      <p class="sub">Débloque tout le contenu ECN et EDN pour toutes les années.</p>
+      <p class="pw-intro">Passe à la version Illimité pour accéder à :</p>
+      <ul class="pw-feats">
+        <li>Toutes les années (2016 — 2025)</li>
+        <li>Toutes les corrections détaillées</li>
+        <li>Suivi de progression complet</li>
+        <li>Mode d'entraînement avancé</li>
+      </ul>
+      <button type="button" class="pw-cta-gold" onclick="goPremium('paywall')">Devenir Illimité maintenant</button>
+      <div class="pw-trust">Sans engagement · Moins d'1 € / jour</div>
+      <div class="pw-already">
+        Tu as déjà souscrit&nbsp;? <button type="button" class="asub-link" onclick="closePaywall();openLoginModal()">Se connecter →</button>
+      </div>
     </div>
   </div>
 </div>
@@ -885,11 +910,11 @@ function applyAuthedUI(){
   var nudEmail = document.getElementById('nudEmail');
   if (nudEmail) nudEmail.textContent = AUTH_USER.email;
   var nudStatus = document.getElementById('nudStatus');
-  if (nudStatus) nudStatus.textContent = IS_PREMIUM ? 'Premium actif · toutes les années débloquées' : 'Compte actif · version gratuite';
+  if (nudStatus) nudStatus.textContent = IS_PREMIUM ? 'Illimité actif · toutes les années débloquées' : 'Compte actif · version gratuite';
   if (IS_PREMIUM) {
-    setNavCta('✓ Premium actif', 'check', 'Premium actif', true);
+    setNavCta('✓ Illimité actif', 'check', 'Illimité actif', true);
   } else {
-    setNavCta('Devenir Premium', 'crown', 'Devenir Premium', false);
+    setNavCta('Passer au plan Illimité', 'crown', 'Passer au plan Illimité', false);
   }
 }
 
@@ -1156,12 +1181,12 @@ function renderGrid(){
     var card = document.createElement('div');
     card.className = 'year-card ' + (unlocked ? (isFree ? 'free' : 'premium-unlocked') : 'locked');
     var inner =
-      '<span class="badge">' + (isFree ? '✅ Gratuit — Commence ici' : (unlocked ? 'Accès libre' : 'Premium')) + '</span>' +
+      '<span class="badge">' + (isFree ? '✅ Gratuit — Commence ici' : (unlocked ? 'Accès libre' : 'Illimité')) + '</span>' +
       '<div class="year-icon">' + (unlocked ? iconOpen : iconLock) + '</div>' +
       '<div class="year-num">' + y.y + '</div>' +
       '<div class="year-label">' + y.label + ' ' + y.y + '</div>' +
       '<div class="year-meta"><strong>DCP · QI · LCA</strong></div>';
-    if (!unlocked) inner += '<div class="tip"><strong>Disponible en Premium</strong>29,90 € / mois · Tout débloqué</div>';
+    if (!unlocked) inner += '<div class="tip"><strong>Disponible en Illimité</strong>29,90 € / mois · Tout débloqué</div>';
     card.innerHTML = inner;
     card.onclick = function(){
       if (unlocked) window.location.assign('/ecn-focus.html?year=' + y.y + '&auto=1');
@@ -1402,7 +1427,7 @@ function maybeShowWelcome(){
   var cs = p.get('cs') || p.get('session_id') || '';
   var toast = document.createElement('div');
   toast.style.cssText = 'position:fixed;top:24px;left:50%;transform:translateX(-50%);z-index:500;background:var(--primary);color:#fff;padding:16px 26px;border-radius:12px;box-shadow:var(--shadow-lg);font-size:14px;font-weight:500;max-width:90vw;display:flex;align-items:center;gap:12px';
-  toast.innerHTML = '<span style="font-size:20px">✓</span><span>Paiement reçu. On active ton Premium…</span>';
+  toast.innerHTML = '<span style="font-size:20px">✓</span><span>Paiement reçu. On active ton accès Illimité…</span>';
   document.body.appendChild(toast);
   // Strip query params BEFORE reload so the welcome handler ne re-fire pas.
   try { history.replaceState({}, '', '/'); } catch(e){}
