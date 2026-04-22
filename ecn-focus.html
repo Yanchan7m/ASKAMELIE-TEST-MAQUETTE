@@ -714,7 +714,7 @@ button{font-family:inherit}
 .q-voir-plus-wrap{display:flex;justify-content:flex-end;margin-top:6px;position:relative;z-index:3}
 .q-voir-plus{display:inline-flex;align-items:center;gap:5px;padding:6px 4px;background:none;border:none;color:#00B85E;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:color .15s;text-decoration:underline;text-underline-offset:2px;position:relative;z-index:3}
 .q-voir-plus:hover{color:#00A050}
-.q-voir-plus::before{content:'🔒';font-size:11px;text-decoration:none;display:inline-block}
+.q-voir-plus::before{content:'♛';font-size:13px;text-decoration:none;display:inline-block;line-height:1}
 .q-opt-text{color:#19342D;font-size:15px;font-weight:400;padding-top:0}
 
 /* Letter badge : circle, not rounded square */
@@ -807,8 +807,8 @@ button{font-family:inherit}
   .ask-gate{padding:10px;align-items:flex-end}
   .ask-gate-box{padding:22px 18px 18px;border-radius:18px 18px 14px 14px;max-height:calc(100vh - 20px);overflow-y:auto;-webkit-overflow-scrolling:touch}
   .ask-gate-close{top:8px;right:8px;width:36px;height:36px;font-size:22px;background:#fff;border:1px solid #E3DFD8;box-shadow:0 2px 6px rgba(25,52,45,.08);z-index:2}
-  .ask-gate-crown{width:62px;height:62px;margin-bottom:10px}
-  .ask-gate-crown svg{width:62px;height:62px}
+  .ask-gate-crown{width:52px;height:52px;margin-bottom:10px}
+  .ask-gate-crown svg{width:26px;height:26px}
   .ask-gate h3{font-size:16px;line-height:1.25;margin-bottom:6px}
   .ask-gate .ask-gate-tag{font-size:9.5px;padding:2px 8px;margin-bottom:10px;letter-spacing:1px}
   .ask-gate p{font-size:12.5px;line-height:1.5;margin-bottom:8px}
@@ -1384,10 +1384,10 @@ body{background:#F7F5F2}
   <div class="paywall-box">
     <button class="pw-close" onclick="closePaywall()" aria-label="Fermer">×</button>
     <div class="pw-lock">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 17h18l-1.5-9L15 12 12 5 9 12 4.5 8 3 17zm0 2h18v2H3v-2z"/></svg>
     </div>
     <div class="pw-card">
-      <h3 id="pwTitle">🔒 Accès limité</h3>
+      <h3 id="pwTitle">Accès limité</h3>
       <p class="pw-sub" id="pwSub">Débloque tout le contenu ECN et EDN pour toutes les années.</p>
       <ul class="pw-feats">
         <li><span><strong>Toutes les années</strong> d'annales (2016-2025)</span></li>
@@ -1790,13 +1790,13 @@ window.openPaywall = function(context) {
     pwTitle.innerHTML = '🎉 Bienvenue chez Ask Amélie';
     pwSub.innerHTML = 'Ton compte est créé. Maintenant, pour <strong>vraiment t\'entraîner</strong> sur 850+ dossiers, débloquer les 10 ans d\'annales et <strong>gagner des places</strong> au classement, passe au plan Focus Illimité.';
   } else if (context === 'explanation-locked') {
-    pwTitle.innerHTML = '🔒 Correction complète réservée';
+    pwTitle.innerHTML = 'Correction complète réservée';
     pwSub.innerHTML = 'L\'accès <strong>en entier</strong> aux corrections détaillées d\'Amélie est exclusif au <strong>plan Focus Illimité</strong>. C\'est ce qui te permet de comprendre vraiment chaque question et de gagner des places au classement.';
   } else if (context === 'bilan-locked') {
-    pwTitle.innerHTML = '🔒 Ton bilan personnalisé';
+    pwTitle.innerHTML = 'Ton bilan personnalisé';
     pwSub.innerHTML = 'Le bilan détaillé d\'Amélie (thèmes faibles, plan de travail ciblé, corrigés complets) est exclusif au <strong>plan Focus Illimité</strong>. Débloque aussi toutes les années d\'annales et gagne des places au classement.';
   } else if (context === 'exam-locked' || context === 'qi-locked') {
-    pwTitle.innerHTML = '🔒 Cette épreuve est réservée';
+    pwTitle.innerHTML = 'Cette épreuve est réservée';
     pwSub.innerHTML = 'On t\'a sélectionné un seul exercice gratuit. Pour t\'entraîner sur <strong>toutes les épreuves</strong> (DCP, QI, LCA) et progresser à fond, passe au plan Focus Illimité.';
   } else if (context === 'year' || (typeof context === 'string' && /^year-\d{4}$/.test(context))) {
     var yMatch = typeof context === 'string' ? context.match(/^year-(\d{4})$/) : null;
@@ -1810,7 +1810,7 @@ window.openPaywall = function(context) {
       pwSub.innerHTML = 'Accessible uniquement via <strong>Focus Illimité</strong>.';
     }
   } else {
-    pwTitle.innerHTML = '🔒 Accès Focus Illimité';
+    pwTitle.innerHTML = 'Accès Focus Illimité';
     pwSub.innerHTML = 'Débloque <strong>toutes les années</strong> d\'annales, tes corrigés complets et ton bilan personnalisé.';
   }
   box.classList.add('open');
@@ -2512,7 +2512,7 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
         var badge = status ? '<span class="dossier-status ' + status.cls + '">' + status.label + '</span>' : '';
         var locked = anonLocked && String(freeDid) !== String(d.id);
         var lockCls = locked ? ' locked' : '';
-        var lockBadge = locked ? '<span style="font-size:14px;color:#00B85E">🔒</span>' : '';
+        var lockBadge = locked ? '<span style="font-size:15px;color:#00B85E;line-height:1">♛</span>' : '';
         h += '<div class="dossier-card' + (status ? ' done-' + status.cls : '') + lockCls + '" onclick="startQuiz('+i+')" style="' + (locked ? 'opacity:.55;' : '') + '">' +
           '<div class="dossier-icon dcp" style="font-size:11px">'+(i+1)+'</div>' +
           '<div style="flex:1;min-width:0"><div class="dossier-name">'+esc(d.name)+'</div>' +
