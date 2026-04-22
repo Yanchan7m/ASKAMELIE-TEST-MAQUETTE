@@ -1378,10 +1378,10 @@ window.openPaywall = function(ctx){
   if (yearMatch && title && sub) {
     var y = parseInt(yearMatch[1], 10);
     var fmt = y >= 2023 ? 'EDN' : 'ECN';
-    title.textContent = '🔒 ' + fmt + ' ' + y + ' est réservée';
-    sub.innerHTML = 'Seule <strong>ECN 2016</strong> est ouverte en accès gratuit. Passe à Focus Illimité pour t\'entraîner sur les <strong>10 ans d\'annales</strong>.';
+    title.textContent = fmt + ' ' + y;
+    sub.innerHTML = 'Accessible uniquement via <strong>Focus Illimité</strong>.';
   } else if (title && sub) {
-    title.textContent = '🔒 Accès Focus Illimité';
+    title.textContent = 'Accès Focus Illimité';
     sub.innerHTML = 'Débloque <strong>toutes les années</strong> d\'annales, tes corrigés complets et ton bilan personnalisé.';
   }
   document.getElementById('paywall').classList.add('open');
