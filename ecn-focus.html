@@ -485,12 +485,20 @@ button{font-family:inherit}
 /* Zone floutée : tout ce qui suit "À retravailler en priorité :" */
 .report-content-hidden{position:relative;max-height:calc(1.65em * 2);overflow:hidden;filter:blur(4px);user-select:none;pointer-events:none;margin-top:-4px;mask-image:linear-gradient(to bottom,#000 0%,#000 60%,transparent 100%);-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 60%,transparent 100%)}
 .report-content-hidden p{color:#19342D!important}
-.report-unlock{margin-top:-10px;padding:18px 0 4px;text-align:center;position:relative;z-index:2}
-.report-unlock-text{font-size:14px;color:#19342D;font-weight:600;margin-bottom:14px;line-height:1.5}
-.report-unlock-text .muted{font-size:12.5px;color:#527A70;font-weight:500;display:inline-block;margin-top:4px}
-.report-unlock-btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border:none;border-radius:100px;background:linear-gradient(135deg,#0E5552 0%,#1B6E68 100%);color:#fff;font-family:inherit;font-size:14px;font-weight:800;cursor:pointer;box-shadow:0 8px 22px rgba(14,85,82,.32);transition:all .15s;letter-spacing:.01em}
-.report-unlock-btn:hover{transform:translateY(-1px);box-shadow:0 12px 28px rgba(14,85,82,.42)}
-.report-unlock-hint{margin-top:10px;font-size:11.5px;color:#94A29C;font-weight:500;letter-spacing:.01em}
+.report-unlock{margin-top:14px;padding:22px 22px 18px;text-align:center;position:relative;z-index:2;background:#fff;border-radius:16px;border:1px solid #EDE4FA;box-shadow:0 10px 32px rgba(168,85,247,.12)}
+.report-unlock-kicker{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;background:linear-gradient(135deg,rgba(168,85,247,.1) 0%,rgba(124,58,237,.08) 100%);border:1px solid rgba(168,85,247,.22);border-radius:100px;font-size:10.5px;font-weight:800;color:#7c3aed;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}
+.report-unlock-kicker::before{content:'∞';font-size:13px;font-weight:900;line-height:1}
+.report-unlock-title{font-family:'Libre Baskerville',Georgia,serif;font-size:19px;font-weight:700;color:#19342D;line-height:1.3;margin-bottom:6px;letter-spacing:-.01em}
+.report-unlock-title .accent{background:linear-gradient(135deg,#A855F7 0%,#7c3aed 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.report-unlock-text{font-size:13.5px;color:#527A70;font-weight:500;margin:0 auto 16px;line-height:1.5;max-width:340px}
+.report-unlock-text .muted{display:none}
+.report-unlock-feats{list-style:none;padding:0;margin:0 0 18px;display:grid;gap:7px;text-align:left}
+.report-unlock-feats li{display:flex;align-items:flex-start;gap:10px;padding:10px 13px;background:#FBF7FE;border:1px solid #EDE4FA;border-radius:11px;font-size:13px;color:#19342D;font-weight:500;line-height:1.45}
+.report-unlock-feats li::before{content:'✓';flex-shrink:0;width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,#A855F7 0%,#7c3aed 100%);color:#fff;font-size:11px;font-weight:900;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(168,85,247,.35);margin-top:1px}
+.report-unlock-feats li strong{color:#7c3aed;font-weight:700}
+.report-unlock-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:15px 22px;border:none;border-radius:14px;background:linear-gradient(135deg,#A855F7 0%,#7c3aed 100%);color:#fff;font-family:inherit;font-size:14.5px;font-weight:800;cursor:pointer;box-shadow:0 10px 28px rgba(168,85,247,.42);transition:all .18s;letter-spacing:.005em}
+.report-unlock-btn:hover{transform:translateY(-1px);box-shadow:0 14px 34px rgba(168,85,247,.55)}
+.report-unlock-hint{margin-top:12px;font-size:11.5px;color:#94A29C;font-weight:500;letter-spacing:.01em}
 .amelie-thinking::before{content:'';position:absolute;top:-40%;right:-20%;width:340px;height:340px;background:radial-gradient(circle,rgba(168,85,247,.12) 0%,transparent 60%);pointer-events:none}
 .amelie-thinking-head{display:flex;align-items:center;gap:12px;margin-bottom:20px;position:relative}
 .amelie-thinking-ava{width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid #fff;box-shadow:0 0 0 3px rgba(168,85,247,.45),0 0 28px rgba(168,85,247,.5);animation:thinkPulse 2s ease-in-out infinite}
@@ -3322,9 +3330,17 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
             '<div class="meta">À l\'instant</div></div></div>' +
             '<div class="report-content">' + analysis + '</div>' +
             '<div class="report-unlock">' +
-              '<div class="report-unlock-text">Tu n\'as accès qu\'à un aperçu du bilan d\'Amélie.<br><span class="muted">Débloque ton bilan personnalisé complet et tes corrigés détaillés.</span></div>' +
-              '<button type="button" class="report-unlock-btn" onclick="openPaywall(\'bilan-locked\')">Passer à Focus Illimité pour voir ton bilan personnalisé →</button>' +
-              '<div class="report-unlock-hint">∞ Accès illimité à toutes les années + corrigés détaillés</div>' +
+              '<div class="report-unlock-kicker">Focus Illimité</div>' +
+              '<div class="report-unlock-title">Ton bilan personnalisé <span class="accent">t\'attend</span></div>' +
+              '<div class="report-unlock-text">Tu viens de découvrir la méthode Amélie. Passe à l\'étape suivante : le plan de travail qui va vraiment te faire gagner des places.</div>' +
+              '<ul class="report-unlock-feats">' +
+                '<li><strong>Ton bilan détaillé</strong> — thèmes faibles, plan de travail ciblé sur <em>tes</em> lacunes</li>' +
+                '<li><strong>Tes corrigés complets</strong> — Amélie t\'explique chaque question, en entier</li>' +
+                '<li><strong>Toutes les années</strong> — 10 ans d\'annales, 850+ dossiers pour t\'entraîner</li>' +
+                '<li><strong>+300 places en moyenne</strong> au classement pour nos élèves</li>' +
+              '</ul>' +
+              '<button type="button" class="report-unlock-btn" onclick="openPaywall(\'bilan-locked\')">Passer à Focus Illimité →</button>' +
+              '<div class="report-unlock-hint">Ton internat se joue maintenant · sans engagement</div>' +
             '</div>' +
           '</div>';
         }, wait);
