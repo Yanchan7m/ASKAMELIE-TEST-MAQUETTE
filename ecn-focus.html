@@ -2541,7 +2541,7 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
     if (!AUTH_USER && st.year === FREE_YEAR) {
       var freeDid = getAnonFreeDossier();
       if (freeDid && String(freeDid) !== String(d.id)) {
-        showFirstQuestionGate(false);
+        openPaywall('exam-locked');
         return;
       }
       if (!freeDid) setAnonFreeDossier(d.id);
