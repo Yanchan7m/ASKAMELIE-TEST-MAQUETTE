@@ -1797,12 +1797,19 @@ window.openPaywall = function(context) {
   } else if (context === 'exam-locked' || context === 'qi-locked') {
     pwTitle.innerHTML = '🔒 Cette épreuve est réservée';
     pwSub.innerHTML = 'On t\'a sélectionné un seul exercice gratuit. Pour t\'entraîner sur <strong>toutes les épreuves</strong> (DCP, QI, LCA) et progresser à fond, passe au plan Focus Illimité.';
-  } else if (context === 'year') {
-    pwTitle.innerHTML = '🔒 Cette année est réservée';
-    pwSub.innerHTML = 'Seule 2016 est ouverte en accès gratuit. Pour <strong>t\'entraîner sur les 10 ans d\'annales</strong> et gagner des places au classement, passe au plan Focus Illimité.';
+  } else if (context === 'year' || (typeof context === 'string' && /^year-\d{4}$/.test(context))) {
+    var yMatch = typeof context === 'string' ? context.match(/^year-(\d{4})$/) : null;
+    if (yMatch) {
+      var yy = parseInt(yMatch[1], 10);
+      var ff = yy >= 2023 ? 'EDN' : 'ECN';
+      pwTitle.innerHTML = '🔒 ' + ff + ' ' + yy + ' est réservée';
+    } else {
+      pwTitle.innerHTML = '🔒 Cette année est réservée';
+    }
+    pwSub.innerHTML = 'Seule <strong>ECN 2016</strong> est ouverte en accès gratuit. Passe à Focus Illimité pour t\'entraîner sur les <strong>10 ans d\'annales</strong> et gagner des places au classement.';
   } else {
-    pwTitle.innerHTML = '🔒 ACCÈS LIMITÉ 🔒';
-    pwSub.innerHTML = 'Débloque tout le contenu ECN et EDN pour toutes les années.';
+    pwTitle.innerHTML = '🔒 Accès Focus Illimité';
+    pwSub.innerHTML = 'Débloque <strong>toutes les années</strong> d\'annales, tes corrigés complets et ton bilan personnalisé.';
   }
   box.classList.add('open');
 };
@@ -2098,7 +2105,7 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
     var cards = WD_YEARS.map(function(y){
       var free = isYearFree(y.y);
       var cls = 'ys-card' + (y.y === activeYear ? ' active' : '') + (free ? (y.y === FREE_YEAR ? ' free' : '') : ' locked');
-      var action = free ? 'wdashJumpYear(' + y.y + ')' : "goPremium('year')";
+      var action = free ? 'wdashJumpYear(' + y.y + ')' : "openPaywall('year-" + y.y + "')";
       var prog = YEAR_PROGRESS[y.y];
       var rateHtml = '';
       var progBar = '<div class="ys-prog"><div class="ys-prog-bar" style="width:0%"></div></div>';
