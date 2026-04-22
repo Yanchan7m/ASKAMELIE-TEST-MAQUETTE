@@ -3959,5 +3959,48 @@ selectDur(30);
   console.info('[mockup] demo mode actif — paywall + signup gardés pour test');
 })();
 </script>
+<script>
+/* ===== Shortcut : ?endquiz=1 → atterrit directement sur l'écran de bilan =====
+   Injecte des résultats fictifs (3/10, Cardiologie faible) et déclenche
+   renderScore() pour tester le funnel de fin de quiz sans faire tout le quiz. */
+(function(){
+  var params = new URLSearchParams(location.search);
+  if (!params.has('endquiz')) return;
+  function boot(){
+    var st = window.__ecnSt;
+    if (!st || typeof window.renderScore !== 'function') { setTimeout(boot, 100); return; }
+    var fakeQuestions = [
+      { id:'q1', theme_id:'t-cardio', themes:{ name:'Cardiologie' }, explanation:'', options:[] },
+      { id:'q2', theme_id:'t-cardio', themes:{ name:'Cardiologie' }, explanation:'', options:[] },
+      { id:'q3', theme_id:'t-cardio', themes:{ name:'Cardiologie' }, explanation:'', options:[] },
+      { id:'q4', theme_id:'t-cardio', themes:{ name:'Cardiologie' }, explanation:'', options:[] },
+      { id:'q5', theme_id:'t-pneumo', themes:{ name:'Pneumologie' }, explanation:'', options:[] },
+      { id:'q6', theme_id:'t-pneumo', themes:{ name:'Pneumologie' }, explanation:'', options:[] },
+      { id:'q7', theme_id:'t-neuro', themes:{ name:'Neurologie' }, explanation:'', options:[] },
+      { id:'q8', theme_id:'t-neuro', themes:{ name:'Neurologie' }, explanation:'', options:[] },
+      { id:'q9', theme_id:'t-endo', themes:{ name:'Endocrinologie' }, explanation:'', options:[] },
+      { id:'q10', theme_id:'t-endo', themes:{ name:'Endocrinologie' }, explanation:'', options:[] }
+    ];
+    var fakeResults = [
+      { correct:false }, { correct:false }, { correct:false }, { correct:false },
+      { correct:true }, { correct:false },
+      { correct:true }, { correct:true },
+      { correct:false }, { correct:true }
+    ];
+    st.questions = fakeQuestions;
+    st.results = fakeResults;
+    st.currentDossier = { id:'demo-dossier', name:'Dossier démo cardio' };
+    st.currentExam = { id:'demo-exam', name:'DCP', exam_type:'dcp' };
+    st.year = 2016;
+    st.timerStart = Date.now() - 12 * 60 * 1000; // 12 min
+    var ov = document.getElementById('examOverlay');
+    if (ov) ov.classList.add('open');
+    try { window.renderScore(); } catch(e) { console.error('[endquiz] renderScore failed', e); }
+    console.info('[endquiz] bilan injecté avec 4/10 bonnes réponses');
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else setTimeout(boot, 200);
+})();
+</script>
 </body>
 </html>
