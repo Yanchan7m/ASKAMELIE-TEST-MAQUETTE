@@ -23,7 +23,7 @@
     if (q.get('auto') === '1' || q.get('dash') === '1') {
       var s = document.createElement('style');
       s.id = '_earlyHideLegacy';
-      s.textContent = 'body>*:not(#examOverlay):not(#readerOverlay):not(.reader-overlay):not(#emailGate):not(#firstQGate):not(#askGate):not(#authSuccessBanner):not(.paywall-bg):not(.q-image-zoom):not(.ami-panel):not(script){display:none!important}body{background:#F7F5F2!important}';
+      s.textContent = 'body>*:not(#examOverlay):not(#readerOverlay):not(.reader-overlay):not(#emailGate):not(#firstQGate):not(#askGate):not(#authSuccessBanner):not(.paywall-bg):not(#paywall):not(.paywall):not(.q-image-zoom):not(.ami-panel):not(script){display:none!important}body{background:#F7F5F2!important}';
       (document.head || document.documentElement).appendChild(s);
     }
   } catch(e){}
@@ -1917,7 +1917,7 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
     var _yParam = parseInt(_q.get('year') || '', 10);
     var _hideLegacy = function(){
       var _style = document.createElement('style');
-      _style.textContent = 'body>*:not(#examOverlay):not(#readerOverlay):not(.reader-overlay):not(#emailGate):not(#firstQGate):not(#askGate):not(#authSuccessBanner):not(.paywall-bg):not(.q-image-zoom):not(.ami-panel):not(script){display:none!important}body{background:#F7F5F2!important}';
+      _style.textContent = 'body>*:not(#examOverlay):not(#readerOverlay):not(.reader-overlay):not(#emailGate):not(#firstQGate):not(#askGate):not(#authSuccessBanner):not(.paywall-bg):not(#paywall):not(.paywall):not(.q-image-zoom):not(.ami-panel):not(script){display:none!important}body{background:#F7F5F2!important}';
       document.head.appendChild(_style);
     };
     if (_q.get('auto') === '1' && Number.isFinite(_yParam)) {
