@@ -3197,10 +3197,6 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
         '<div class="amelie-thinking-progress"><div class="amelie-thinking-progress-bar"></div></div>' +
       '</div></div>';
 
-      h += '<div class="score-cta-flat">' +
-        '<p class="score-cta-text">Crée ton compte pour continuer les autres dossiers.</p>' +
-        '<button type="button" class="score-cta-btn" onclick="showFirstQuestionGate(false)">Créer mon compte →</button>' +
-      '</div>';
     } else {
       // Signed in : full dashboard + premium upsell if not premium
       h += '<div id="dashBlock" class="dash-block">' +
@@ -3337,7 +3333,7 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
                 '<li><span><strong>Toutes les années</strong> : 10 ans d\'annales, 850+ dossiers pour t\'entraîner</span></li>' +
                 '<li><span><strong>+300 places en moyenne</strong> au classement pour nos élèves</span></li>' +
               '</ul>' +
-              '<button type="button" class="report-unlock-btn" onclick="openPaywall(\'bilan-locked\')">Passer à Focus Illimité →</button>' +
+              '<button type="button" class="report-unlock-btn" onclick="showFirstQuestionGate(false)">Passer à Focus Illimité →</button>' +
               '<div class="report-unlock-hint">Ton internat se joue maintenant · sans engagement</div>' +
             '</div>' +
           '</div>';
