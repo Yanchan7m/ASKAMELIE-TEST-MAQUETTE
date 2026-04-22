@@ -48,14 +48,9 @@ a{color:inherit;text-decoration:none}
 button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
 
 /* ── Welcome bar ── */
-.welcome-bar{background:var(--primary-darkest);color:#fff;padding:10px 24px;text-align:center;font-size:13px;font-weight:500;letter-spacing:-.005em;position:relative;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.welcome-bar{background:var(--primary-darkest);color:#fff;padding:10px 24px;text-align:center;font-size:13px;font-weight:500;letter-spacing:-.005em;position:relative}
 .welcome-bar strong{font-weight:700}
-.welcome-bar .wb-mobile{display:none}
-@media(max-width:720px){
-  .welcome-bar .wb-full{display:none}
-  .welcome-bar .wb-mobile{display:inline}
-  .welcome-bar{font-size:12px;padding:9px 14px}
-}
+@media(max-width:600px){.welcome-bar{font-size:12px;padding:9px 14px;line-height:1.4}}
 
 /* ── Nav ── */
 .nav{position:sticky;top:0;z-index:100;background:rgba(247,245,242,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
@@ -91,7 +86,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   .nav-cta .nav-cta-label{display:none}
   .nav-cta .nav-cta-icon{display:inline-flex}
 }
-/* On small screens, 'Premium actif' overflow causes horizontal scroll.
+/* On small screens, 'Focus Illimité actif' overflow causes horizontal scroll.
    Hide it entirely : status is still visible in the user badge + dropdown. */
 @media(max-width:600px){.nav-cta.premium-active{display:none}}
 
@@ -156,10 +151,10 @@ body.authed .nav-user{display:inline-flex}
 .hero-proof{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:28px;flex-wrap:wrap;color:var(--fg-soft);font-size:13px;font-weight:500}
 .proof-avatars{display:flex;align-items:center}
 .proof-avatars span{width:28px;height:28px;border-radius:50%;border:2px solid var(--bg);display:inline-block;background:var(--sage);margin-left:-8px;background-size:cover;background-position:center}
-.proof-avatars span:first-child{margin-left:0;background-image:url('img/avatars/face1.jpg')}
-.proof-avatars span:nth-child(2){background-image:url('img/avatars/face2.jpg')}
-.proof-avatars span:nth-child(3){background-image:url('img/avatars/face3.jpg')}
-.proof-avatars span:nth-child(4){background-image:url('img/avatars/face4.jpg')}
+.proof-avatars span:first-child{margin-left:0;background:#D78050}
+.proof-avatars span:nth-child(2){background:#8DA8A1}
+.proof-avatars span:nth-child(3){background:#C4D3C5}
+.proof-avatars span:nth-child(4){background:#E89C6E}
 .proof-sep{color:var(--border)}
 
 @media(max-width:600px){
@@ -302,7 +297,7 @@ body.authed .already-subscribed{display:none}
 @media(max-width:1000px){.testi-grid{grid-template-columns:repeat(2,1fr);gap:16px}.testi-card{min-height:auto}}
 @media(max-width:600px){.testi-grid{grid-template-columns:1fr;gap:14px}.testi-card{padding:22px}}
 
-/* ── Premium CTA footer ── */
+/* ── Focus Illimité CTA footer ── */
 .premium-cta{max-width:860px;margin:48px 24px 0;padding:56px 36px;background:var(--primary);border-radius:18px;text-align:center;color:#fff;position:relative;overflow:hidden}
 @media(min-width:908px){.premium-cta{margin:48px auto 0}}
 .premium-cta::before{content:'';position:absolute;top:-40%;right:-10%;width:500px;height:500px;background:radial-gradient(circle,rgba(232,156,110,.16) 0%,transparent 60%);pointer-events:none}
@@ -379,21 +374,19 @@ body.authed .already-subscribed{display:none}
   .sticky-cta .sticky-btn{width:100%;text-align:center;padding:14px;font-size:14px}
 }
 
-/* ── Paywall modal (gold / teal Focus Illimité style) ── */
+/* ── Paywall modal ── */
 .paywall-bg{position:fixed;inset:0;background:rgba(15,23,42,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);z-index:200;display:none;align-items:center;justify-content:center;padding:24px;animation:fadeIn .2s}
 .paywall-bg.open{display:flex}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-.paywall{background:#fff;border-radius:22px;max-width:460px;width:100%;padding:32px 26px 22px;box-shadow:0 30px 80px rgba(14,85,82,.3);position:relative;max-height:94vh;overflow-y:auto;text-align:center;animation:egRise .35s cubic-bezier(.16,1,.3,1)}
-@keyframes egRise{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+.paywall{background:#fff;border-radius:22px;max-width:460px;width:100%;padding:32px 26px 22px;box-shadow:0 30px 80px rgba(14,85,82,.3);position:relative;max-height:94vh;overflow-y:auto;text-align:center;animation:pwRise .35s cubic-bezier(.16,1,.3,1)}
+@keyframes pwRise{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
 .paywall-close{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;background:#EDEBE7;color:#527A70;font-size:20px;font-weight:500;display:flex;align-items:center;justify-content:center;transition:all .15s;border:none;z-index:20;cursor:pointer;line-height:1}
 .paywall-close:hover{background:#E3DFD8;color:#19342D}
-.pw-banner,.pw-banner::after,.pw-banner-title{display:none!important}
-.pw-lock-wrap{position:relative;width:56px;height:56px;margin:4px auto 14px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#EAF0EA;border:1px solid #C4D3C5;filter:none}
+.pw-lock-wrap{position:relative;width:56px;height:56px;margin:4px auto 14px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#EAF0EA;border:1px solid #C4D3C5}
 .pw-lock-wrap svg{width:28px;height:28px;color:#0E5552}
 .pw-card{position:relative;margin:0;padding:0;background:transparent;box-shadow:none;width:100%;text-align:center}
-.pw-card h3{font-family:var(--font-serif);font-size:19px;font-weight:700;color:#19342D;line-height:1.3;margin-bottom:8px;letter-spacing:-.01em}
-.pw-card .sub{font-size:13.5px;color:#527A70;margin:0 auto 18px;line-height:1.5;font-weight:500;max-width:380px}
-.pw-card .pw-intro{display:none}
+.pw-card h3{font-family:var(--font-serif);font-size:19px;font-weight:700;color:#19342D;line-height:1.3;margin-bottom:8px;letter-spacing:-.01em;text-align:center}
+.pw-card .sub{font-size:13.5px;color:#527A70;margin:0 auto 18px;line-height:1.5;font-weight:500;max-width:380px;text-align:center}
 .pw-feats{list-style:none;padding:0;margin:0 0 18px;display:grid;gap:7px;text-align:left}
 .pw-feats li{list-style:none;display:flex;align-items:flex-start;gap:10px;padding:10px 13px;background:#EAF0EA;border:1px solid #C4D3C5;border-radius:11px;font-size:13px;color:#19342D;font-weight:500;line-height:1.45}
 .pw-feats li::before{content:'✓';flex-shrink:0;width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,#A855F7 0%,#7c3aed 100%);color:#fff;font-weight:900;font-size:11px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(168,85,247,.35);margin-top:1px}
@@ -420,8 +413,7 @@ body.authed .already-subscribed{display:none}
 
 <!-- Welcome bar -->
 <div class="welcome-bar">
-  <span class="wb-full">⚡ 10 ans d'annales corrigées par des médecins · <strong>Dossier 2016 offert</strong> · Rejoins-les avant ton prochain ECN</span>
-  <span class="wb-mobile">⚡ <strong>Dossier 2016 offert</strong> · Corrigé par des médecins</span>
+  🎓 Tu es en <strong>accès gratuit</strong> · Teste ton premier dossier progressif gratuitement · Passe Focus Illimité pour tout débloquer
 </div>
 
 <!-- Nav -->
@@ -531,6 +523,7 @@ body.authed .already-subscribed{display:none}
 
 <!-- Hero -->
 <section class="hero">
+  <div class="eyebrow">Plateforme n°1 EDN · Par des médecins, pour les externes</div>
   <h1>Teste un dossier <em>gratuitement</em>.<br>Vois la différence.</h1>
   <p>Toutes les annales EDN/ECN depuis 2016 en conditions réelles. Raisonnement clinique détaillé par des médecins spécialistes : pas juste la bonne lettre.</p>
   <a href="ecn-focus.html?year=2016&auto=1" class="hero-cta">
@@ -571,7 +564,7 @@ body.authed .already-subscribed{display:none}
     <div class="step-card">
       <div class="step-num">3</div>
       <h3>Débloque les 10 années</h3>
-      <p>Passe en Focus Illimité et accède à 850+ dossiers corrigés par des spécialistes sur 10 ans d'annales.</p>
+      <p>Passe Focus Illimité et accède à 850+ dossiers corrigés par des spécialistes sur 10 ans d'annales.</p>
     </div>
   </div>
 </section>
@@ -587,7 +580,7 @@ body.authed .already-subscribed{display:none}
     ✨ Ton premier dossier, <strong>100% gratuit</strong>. Avec la correction complète d'un médecin spécialiste.
   </div>
   <div class="already-subscribed" id="alreadySub">
-    <span>Tu as déjà souscrit le Focus Illimité sur un autre appareil&nbsp;?</span>
+    <span>Tu as déjà souscrit Focus Illimité sur un autre appareil&nbsp;?</span>
     <button type="button" class="asub-link" onclick="openLoginModal()">Connecte-toi pour retrouver ton accès →</button>
   </div>
 </section>
@@ -715,7 +708,7 @@ body.authed .already-subscribed{display:none}
     </div>
     <div class="pricing-actions">
       <button type="button" class="primary" onclick="goPremium('pricing')" style="border:none;cursor:pointer;font-family:inherit">
-        Démarrer le Focus Illimité
+        Démarrer Focus Illimité
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </button>
       <a href="ecn-focus.html?year=2016&auto=1" class="secondary">Tester le dossier gratuit</a>
@@ -775,12 +768,12 @@ body.authed .already-subscribed{display:none}
   </div>
 </section>
 
-<!-- Premium CTA footer -->
+<!-- Focus Illimité CTA footer -->
 <section class="premium-cta">
   <h3>Tu viens de voir la qualité sur <em>1 année</em>.<br>Imagine sur <em>10</em>.</h3>
   <p>850 dossiers corrigés par des médecins spécialistes. Raisonnement clinique complet. Tout ce qu'il te faut pour décrocher ta spé.</p>
   <button type="button" class="premium-cta-btn" onclick="goPremium('footer')" style="border:none;cursor:pointer;font-family:inherit">
-    Passer au plan Focus Illimité : 29,90 € / mois
+    Devenir Focus Illimité : 29,90 € / mois
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
   </button>
   <div class="trust-line">Satisfait ou remboursé 14 jours · Sans engagement · Moins d'1 € / jour</div>
@@ -803,7 +796,7 @@ body.authed .already-subscribed{display:none}
 <!-- Sticky CTA -->
 <div class="sticky-cta" id="stickyCta">
   <span class="sticky-label">🎓 Version gratuite</span>
-  <button type="button" class="sticky-btn" onclick="goPremium('sticky')" style="border:none;cursor:pointer;font-family:inherit">Passer au plan Focus Illimité : 29,90 € / mois →</button>
+  <button type="button" class="sticky-btn" onclick="goPremium('sticky')" style="border:none;cursor:pointer;font-family:inherit">Passer Focus Illimité : 29,90 € / mois →</button>
 </div>
 
 <!-- Paywall modal (kept for back-compat, used when clicking a locked year) -->
@@ -814,8 +807,8 @@ body.authed .already-subscribed{display:none}
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
     </div>
     <div class="pw-card">
-      <h3 id="pwTitle">🔒 Cette année est réservée</h3>
-      <p class="sub" id="pwSub">Seule 2016 est ouverte en accès gratuit. Passe à Focus Illimité pour t'entraîner sur les 10 ans d'annales.</p>
+      <h3 id="pwTitle">Accès Focus Illimité</h3>
+      <p class="sub" id="pwSub">Débloque <strong>toutes les années</strong> d'annales, tes corrigés complets et ton bilan personnalisé.</p>
       <ul class="pw-feats">
         <li><span><strong>Toutes les années</strong> d'annales (2016-2025)</span></li>
         <li><span><strong>Tes corrigés complets</strong> : Amélie t'explique chaque question</span></li>
@@ -906,7 +899,7 @@ function applyAuthedUI(){
   if (IS_PREMIUM) {
     setNavCta('✓ Focus Illimité actif', 'check', 'Focus Illimité actif', true);
   } else {
-    setNavCta('Passer au plan Focus Illimité', 'crown', 'Passer au plan Focus Illimité', false);
+    setNavCta('Devenir Focus Illimité', 'crown', 'Devenir Focus Illimité', false);
   }
 }
 
@@ -1094,7 +1087,7 @@ window.signInWithGoogle = function(nextAction) {
   });
 };
 
-// Build Stripe Premium URL with client_reference_id = supabase user id
+// Build Stripe Focus Illimité URL with client_reference_id = supabase user id
 // so the webhook writes the canonical account identity and we can
 // retrieve the subscription on any device.
 // On crée désormais la Checkout Session côté serveur (/api/create-checkout)
@@ -1123,7 +1116,7 @@ function goToStripeCheckout() {
 // fetch fait la redirection lui-même.
 function buildStripeUrl() { goToStripeCheckout(); return 'javascript:void(0)'; }
 
-// Smart Premium CTA : MUST authenticate before going to Stripe so
+// Smart Focus Illimité CTA : MUST authenticate before going to Stripe so
 // the paid_sessions row is tied to a Supabase user id and survives
 // any device / browser change. If the user is anonymous, we open the
 // login modal with a "next_action=premium" flag so that after the
@@ -1188,7 +1181,7 @@ function renderGrid(){
   });
 }
 
-// ─── Premium gating ─────────────────────────────────────────
+// ─── Focus Illimité gating ─────────────────────────────────────────
 function getStudentId(){
   var sid = localStorage.getItem('ame_sid');
   if (!sid) {
@@ -1431,7 +1424,7 @@ function maybeShowWelcome(){
   var cs = p.get('cs') || p.get('session_id') || '';
   var toast = document.createElement('div');
   toast.style.cssText = 'position:fixed;top:24px;left:50%;transform:translateX(-50%);z-index:500;background:var(--primary);color:#fff;padding:16px 26px;border-radius:12px;box-shadow:var(--shadow-lg);font-size:14px;font-weight:500;max-width:90vw;display:flex;align-items:center;gap:12px';
-  toast.innerHTML = '<span style="font-size:20px">✓</span><span>Paiement reçu. On active ton accès Focus Illimité…</span>';
+  toast.innerHTML = '<span style="font-size:20px">✓</span><span>Paiement reçu. On active ton Focus Illimité…</span>';
   document.body.appendChild(toast);
   // Strip query params BEFORE reload so the welcome handler ne re-fire pas.
   try { history.replaceState({}, '', '/'); } catch(e){}
@@ -1514,7 +1507,7 @@ hydrateAuth().then(function(user){
 
       if (justAuthed) {
         try { history.replaceState({}, '', '/'); } catch(e){}
-        // If the user came through "Devenir Premium" → login → callback,
+        // If the user came through "Devenir Focus Illimité" → login → callback,
         // auto-redirect to Stripe with their canonical user.id so the
         // webhook ties the paid subscription to the Supabase account.
         if (nextAction === 'premium') {
