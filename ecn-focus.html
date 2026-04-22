@@ -477,8 +477,17 @@ button{font-family:inherit}
 .report-loading .txt{font-size:12px;color:#64748b;font-weight:700}
 
 /* ── Amélie "thinking" animation (anon bilan, style dashboard) ── */
-#anonReportSlot{margin-top:28px}
+#anonReportSlot{margin-top:28px;max-width:460px;margin-left:auto;margin-right:auto}
 .amelie-thinking{background:linear-gradient(180deg,#FAF9F6 0%,#F5F2EC 100%);border:1px solid #E3DFD8;border-radius:20px;padding:32px 28px;max-width:460px;margin:0 auto;box-shadow:0 8px 28px rgba(14,85,82,.08);position:relative;overflow:hidden}
+/* Bilan Amélie verrouillé (anon) : on voit ~50% puis CTA pour créer un compte */
+.report-card.report-locked{position:relative;overflow:hidden}
+.report-content-clamped{max-height:120px;overflow:hidden;position:relative;mask-image:linear-gradient(to bottom,#000 0%,#000 60%,transparent 100%);-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 60%,transparent 100%)}
+.report-unlock{margin-top:-10px;padding:18px 0 4px;text-align:center;position:relative;z-index:2}
+.report-unlock-text{font-size:14px;color:#19342D;font-weight:600;margin-bottom:14px;line-height:1.5}
+.report-unlock-text .muted{font-size:12.5px;color:#527A70;font-weight:500;display:inline-block;margin-top:4px}
+.report-unlock-btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border:none;border-radius:100px;background:linear-gradient(135deg,#0E5552 0%,#1B6E68 100%);color:#fff;font-family:inherit;font-size:14px;font-weight:800;cursor:pointer;box-shadow:0 8px 22px rgba(14,85,82,.32);transition:all .15s;letter-spacing:.01em}
+.report-unlock-btn:hover{transform:translateY(-1px);box-shadow:0 12px 28px rgba(14,85,82,.42)}
+.report-unlock-hint{margin-top:10px;font-size:11.5px;color:#94A29C;font-weight:500;letter-spacing:.01em}
 .amelie-thinking::before{content:'';position:absolute;top:-40%;right:-20%;width:340px;height:340px;background:radial-gradient(circle,rgba(245,197,66,.12) 0%,transparent 60%);pointer-events:none}
 .amelie-thinking-head{display:flex;align-items:center;gap:12px;margin-bottom:20px;position:relative}
 .amelie-thinking-ava{width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid #fff;box-shadow:0 0 0 3px rgba(245,197,66,.45),0 0 28px rgba(245,197,66,.5);animation:thinkPulse 2s ease-in-out infinite}
@@ -693,7 +702,7 @@ button{font-family:inherit}
 .q-explanation.ok .q-verdict{color:#0E5552}
 .q-explanation.ko .q-verdict{color:#B94A3F}
 /* Body clampé à 2 lignes + fade quand verrouillé (non-Illimité) */
-.q-explanation.locked .q-explanation-body{position:relative;max-height:calc(1.7em * 2);overflow:hidden}
+.q-explanation.locked .q-explanation-body{position:relative;max-height:calc(1.7em * 2);overflow:hidden;cursor:pointer}
 .q-explanation.locked .q-explanation-body::after{content:'';position:absolute;bottom:0;left:0;right:0;height:38px;background:linear-gradient(to bottom,transparent,#EAF0EA);pointer-events:none}
 .q-explanation.ko.locked .q-explanation-body::after{background:linear-gradient(to bottom,transparent,#F5E8E6)}
 /* Lien "voir plus" discret en bas à droite du bloc clampé */
@@ -949,6 +958,8 @@ button{font-family:inherit}
 #firstQGate .fqg-btn{padding:15px 22px;background:#0E5552;color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s;box-shadow:0 2px 10px rgba(14,85,82,.2)}
 #firstQGate .fqg-btn:hover:not(:disabled){background:#08403E;transform:translateY(-1px)}
 #firstQGate .fqg-btn:disabled{opacity:.6;cursor:not-allowed}
+#firstQGate .fqg-later{display:block;width:100%;background:none;border:none;color:#527A70;font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;margin-top:14px;padding:8px;text-decoration:underline;text-underline-offset:3px}
+#firstQGate .fqg-later:hover{color:#19342D}
 #firstQGate .fqg-tabs{display:flex;gap:4px;padding:4px;background:#EDEBE7;border-radius:12px;margin-bottom:20px}
 #firstQGate .fqg-tab{flex:1;padding:10px 14px;background:none;border:none;border-radius:9px;font-size:13.5px;font-weight:600;color:#527A70;cursor:pointer;font-family:inherit;transition:all .15s}
 #firstQGate .fqg-tab.active{background:#fff;color:#19342D;box-shadow:0 1px 3px rgba(14,85,82,.1)}
@@ -1769,13 +1780,26 @@ function sendStudentEvent(payload) {
 /* ========== PAYWALL ========== */
 function isYearFree(y) { return y === FREE_YEAR || window._IS_PREMIUM === true; }
 window.openPaywall = function(context) {
+  console.log('[openPaywall] called with context:', context);
   var box = document.getElementById('paywall');
-  if (context === 'year') {
-    document.getElementById('pwTitle').textContent = 'Cette année est premium';
-    document.getElementById('pwSub').textContent = 'Seule 2016 est ouverte en accès gratuit. Débloque toutes les annales.';
+  if (!box) { console.warn('[openPaywall] #paywall element not found'); return; }
+  var pwTitle = document.getElementById('pwTitle');
+  var pwSub = document.getElementById('pwSub');
+  if (context === 'post-signup') {
+    pwTitle.innerHTML = '🎉 Bienvenue chez Ask Amélie';
+    pwSub.innerHTML = 'Ton compte est créé. Maintenant, pour <strong>vraiment t\'entraîner</strong> sur 850+ dossiers, débloquer les 10 ans d\'annales et <strong>gagner des places</strong> au classement, passe au plan Illimité.';
+  } else if (context === 'explanation-locked') {
+    pwTitle.innerHTML = '🔒 Correction complète réservée';
+    pwSub.innerHTML = 'L\'accès <strong>en entier</strong> aux corrections détaillées d\'Amélie est exclusif au <strong>plan Illimité</strong>. C\'est ce qui te permet de comprendre vraiment chaque question et de gagner des places au classement.';
+  } else if (context === 'exam-locked' || context === 'qi-locked') {
+    pwTitle.innerHTML = '🔒 Cette épreuve est réservée';
+    pwSub.innerHTML = 'On t\'a sélectionné un seul exercice gratuit. Pour t\'entraîner sur <strong>toutes les épreuves</strong> (DCP, QI, LCA) et progresser à fond, passe au plan Illimité.';
+  } else if (context === 'year') {
+    pwTitle.innerHTML = '🔒 Cette année est réservée';
+    pwSub.innerHTML = 'Seule 2016 est ouverte en accès gratuit. Pour <strong>t\'entraîner sur les 10 ans d\'annales</strong> et gagner des places au classement, passe au plan Illimité.';
   } else {
-    document.getElementById('pwTitle').textContent = 'Débloque 2017 — 2025';
-    document.getElementById('pwSub').textContent = '9 années supplémentaires + Amélie illimitée + articles LCA.';
+    pwTitle.innerHTML = '🔒 ACCÈS LIMITÉ 🔒';
+    pwSub.innerHTML = 'Débloque tout le contenu ECN et EDN pour toutes les années.';
   }
   box.classList.add('open');
 };
@@ -2716,7 +2740,7 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
           '<span class="avatar">A</span><span class="name">Amélie</span>' +
         '</div>' +
         '<div class="q-verdict">' + verdict2 + '</div>' +
-        (hasExpl2 ? '<div class="q-explanation-body"><p>' + esc(q.explanation) + '</p></div>' : '') +
+        (hasExpl2 ? '<div class="q-explanation-body"' + (isLocked2 ? ' onclick="openPaywall(\'explanation-locked\')"' : '') + '><p>' + esc(q.explanation) + '</p></div>' : '') +
         (isLocked2 && hasExpl2 ? '<div class="q-voir-plus-wrap"><button type="button" class="q-voir-plus" onclick="openPaywall(\'explanation-locked\')">voir plus</button></div>' : '') +
         '</div>' +
         '<button type="button" class="ask-amelie-btn" onclick="openAskGate()">' +
@@ -2907,7 +2931,7 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
         '<span class="name">Amélie</span>' +
       '</div>' +
       '<div class="q-verdict">' + verdict + '</div>' +
-      (hasExpl ? '<div class="q-explanation-body"><p>' + esc(q.explanation) + '</p></div>' : '') +
+      (hasExpl ? '<div class="q-explanation-body"' + (isLocked ? ' onclick="openPaywall(\'explanation-locked\')"' : '') + '><p>' + esc(q.explanation) + '</p></div>' : '') +
       (isLocked && hasExpl ? '<div class="q-voir-plus-wrap"><button type="button" class="q-voir-plus" onclick="openPaywall(\'explanation-locked\')">voir plus</button></div>' : '') +
       '</div>' +
       '<button type="button" class="ask-amelie-btn" onclick="openAskGate()">' +
@@ -2955,7 +2979,7 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
     gate.id = 'firstQGate';
     gate.innerHTML =
       '<div class="fqg-card">' +
-        '' +
+        '<button type="button" class="fqg-close" onclick="closeFirstQuestionGate()" aria-label="Fermer">×</button>' +
         '<div class="fqg-tabs" role="tablist">' +
           '<button type="button" class="fqg-tab' + (isLogin ? ' active' : '') + '" role="tab" onclick="fqgSetMode(\'login\')">Connexion</button>' +
           '<button type="button" class="fqg-tab' + (isLogin ? '' : ' active') + '" role="tab" onclick="fqgSetMode(\'signup\')">Créer un compte</button>' +
@@ -2979,7 +3003,7 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
           '<div id="fqgError" style="display:none;padding:10px 14px;background:#FDF1ED;border:1px solid #E5C5C0;border-radius:10px;font-size:13px;color:#B94A3F"></div>' +
           '<button type="submit" class="fqg-btn" id="fqgBtn">' + esc(btnLabel) + '</button>' +
         '</form>' +
-        '' +
+        '<button type="button" class="fqg-later" onclick="closeFirstQuestionGate()">Plus tard</button>' +
       '</div>';
     document.body.appendChild(gate);
     gate.classList.add('open');
@@ -3055,6 +3079,11 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
       }).catch(function(){});
       if (_fqgPremiumIntent) {
         setTimeout(function(){ goToStripeCheckout(); }, 600);
+      } else {
+        // Funnel 2 temps : on a l'email/compte, on enchaîne sur le pitch Illimité
+        setTimeout(function(){
+          if (typeof openPaywall === 'function') openPaywall('post-signup');
+        }, 700);
       }
     }).catch(function(err) {
       btn.disabled = false;
@@ -3252,12 +3281,18 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
           var slot = document.getElementById('anonReportSlot');
           if (!slot) return;
           var analysis = (d && d.analysis) ? d.analysis : buildLocalAnalysis();
-          slot.innerHTML = '<div class="report-card">' +
+          slot.innerHTML = '<div class="report-card report-locked">' +
             '<div class="report-head">' +
             '<img class="report-avatar" src="amelie-128.jpg" alt="Amélie">' +
             '<div class="report-head-txt"><div class="name">Analyse d\'Amélie</div>' +
             '<div class="meta">À l\'instant</div></div></div>' +
-            '<div class="report-content">' + analysis + '</div></div>';
+            '<div class="report-content report-content-clamped">' + analysis + '</div>' +
+            '<div class="report-unlock">' +
+              '<div class="report-unlock-text">Tu n\'as accès qu\'à un aperçu du bilan d\'Amélie.<br><span class="muted">Sauvegarde aussi ta progression sur tous tes prochains dossiers.</span></div>' +
+              '<button type="button" class="report-unlock-btn" onclick="showFirstQuestionGate(false)">Voir ton bilan complet →</button>' +
+              '<div class="report-unlock-hint">🔓 Création de compte gratuite requise pour y avoir accès</div>' +
+            '</div>' +
+          '</div>';
         }, wait);
       });
     }
@@ -3902,25 +3937,26 @@ selectDur(30);
   var isDemo = h === 'localhost' || h === '127.0.0.1' || location.protocol === 'file:' || params.has('demo');
   if (!isDemo) return;
   var noop = function(){};
-  window.showFirstQuestionGate = noop;
   window.showEmailGate = noop;
-  window.openPaywall = noop;
-  // Ferme un gate déjà monté dans le DOM
-  ['emailGate','firstQGate','paywall'].forEach(function(id){
+  // En mode démo, on garde openPaywall et showFirstQuestionGate actifs
+  // pour pouvoir tester le funnel complet (paywall + signup) côté maquette.
+  // Ferme un gate déjà monté dans le DOM (sauf paywall qui sert au funnel)
+  ['emailGate'].forEach(function(id){
     var g = document.getElementById(id);
     if (g){ g.classList.remove('open','show'); g.style.display='none'; }
   });
-  // Observe le DOM : si un gate est ajouté dynamiquement, on le ferme aussitôt
+  // Observe le DOM : ferme uniquement l'emailGate (les autres gates restent
+  // disponibles pour tester le funnel paywall/signup en mode maquette).
   new MutationObserver(function(muts){
     muts.forEach(function(m){
       m.addedNodes.forEach(function(n){
-        if (n.nodeType===1 && (n.id==='emailGate' || n.id==='firstQGate')){
+        if (n.nodeType===1 && n.id==='emailGate'){
           n.classList.remove('open'); n.style.display='none';
         }
       });
     });
   }).observe(document.body, { childList:true });
-  console.info('[mockup] demo mode actif — gates désactivés');
+  console.info('[mockup] demo mode actif — paywall + signup gardés pour test');
 })();
 </script>
 </body>
