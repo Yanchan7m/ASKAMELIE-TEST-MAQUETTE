@@ -482,6 +482,9 @@ button{font-family:inherit}
 /* Bilan Amélie verrouillé (anon) : on voit ~50% puis CTA pour créer un compte */
 .report-card.report-locked{position:relative;overflow:hidden}
 .report-content-clamped{max-height:200px;overflow:hidden;position:relative;mask-image:linear-gradient(to bottom,#000 0%,#000 82%,transparent 100%);-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 82%,transparent 100%)}
+/* Zone floutée : tout ce qui suit "À retravailler en priorité :" */
+.report-content-hidden{position:relative;max-height:80px;overflow:hidden;filter:blur(4px);user-select:none;pointer-events:none;margin-top:-4px;mask-image:linear-gradient(to bottom,#000 0%,#000 40%,transparent 100%);-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 40%,transparent 100%)}
+.report-content-hidden p{color:#19342D!important}
 .report-unlock{margin-top:-10px;padding:18px 0 4px;text-align:center;position:relative;z-index:2}
 .report-unlock-text{font-size:14px;color:#19342D;font-weight:600;margin-bottom:14px;line-height:1.5}
 .report-unlock-text .muted{font-size:12.5px;color:#527A70;font-weight:500;display:inline-block;margin-top:4px}
@@ -3251,12 +3254,21 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
           var top3 = strong.slice(0, 3).map(function(t){ return '<strong>' + esc(t.name) + '</strong>'; }).join(', ');
           lines.push('Tes points forts : ' + top3 + '.');
         }
+        // Visible jusqu'à "À retravailler en priorité :" (teaser) — la suite
+        // (noms de thèmes + recommandations) part dans la zone floutée pour
+        // pousser au signup.
+        if (weak.length > 0) {
+          lines.push('À retravailler en priorité :');
+        }
+        var visibleHtml = lines.map(function(l) { return '<p>' + l + '</p>'; }).join('');
+        var hidden = [];
         if (weak.length > 0) {
           var w3 = weak.slice(0, 3).map(function(t){ return '<strong>' + esc(t.name) + '</strong>'; }).join(', ');
-          lines.push('À retravailler en priorité : ' + w3 + '. Refais 1-2 dossiers de chaque thème pour ancrer la démarche.');
+          hidden.push(w3 + '. Refais 1-2 dossiers de chaque thème pour ancrer la démarche.');
         }
-        lines.push('Continue avec d\'autres années pour te tester sur de nouveaux thèmes et stabiliser tes acquis sur le long terme.');
-        return lines.map(function(l) { return '<p>' + l + '</p>'; }).join('');
+        hidden.push('Continue avec d\'autres années pour te tester sur de nouveaux thèmes et stabiliser tes acquis sur le long terme.');
+        var hiddenHtml = '<div class="report-content-hidden">' + hidden.map(function(l) { return '<p>' + l + '</p>'; }).join('') + '</div>';
+        return visibleHtml + hiddenHtml;
       }
 
       var apiPromise = fetch('/api/quiz-bilan', {
@@ -3280,13 +3292,29 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
           clearInterval(thinkingInterval);
           var slot = document.getElementById('anonReportSlot');
           if (!slot) return;
-          var analysis = (d && d.analysis) ? d.analysis : buildLocalAnalysis();
+          var rawAnalysis = (d && d.analysis) ? d.analysis : buildLocalAnalysis();
+          // Si la réponse API ne contient pas déjà notre split, on coupe
+          // au niveau de "À retravailler en priorité" pour appliquer le flou.
+          var analysis = rawAnalysis;
+          if (analysis.indexOf('report-content-hidden') === -1) {
+            var splitMatch = analysis.match(/<p>([^<]*?À retravailler en priorité[^<]*?)<\/p>/i);
+            if (splitMatch) {
+              var teaserIdx = analysis.indexOf(splitMatch[0]) + splitMatch[0].length;
+              var visiblePart = analysis.substring(0, analysis.indexOf(splitMatch[0])) +
+                '<p>À retravailler en priorité :</p>';
+              var hiddenPart = '<div class="report-content-hidden">' +
+                '<p>' + splitMatch[1].replace(/^.*?:\s*/, '') + '</p>' +
+                analysis.substring(teaserIdx) +
+                '</div>';
+              analysis = visiblePart + hiddenPart;
+            }
+          }
           slot.innerHTML = '<div class="report-card report-locked">' +
             '<div class="report-head">' +
             '<img class="report-avatar" src="amelie-128.jpg" alt="Amélie">' +
             '<div class="report-head-txt"><div class="name">Analyse d\'Amélie</div>' +
             '<div class="meta">À l\'instant</div></div></div>' +
-            '<div class="report-content report-content-clamped">' + analysis + '</div>' +
+            '<div class="report-content">' + analysis + '</div>' +
             '<div class="report-unlock">' +
               '<div class="report-unlock-text">Tu n\'as accès qu\'à un aperçu du bilan d\'Amélie.<br><span class="muted">Sauvegarde aussi ta progression sur tous tes prochains dossiers.</span></div>' +
               '<button type="button" class="report-unlock-btn" onclick="showFirstQuestionGate(false)">Voir ton bilan complet →</button>' +
