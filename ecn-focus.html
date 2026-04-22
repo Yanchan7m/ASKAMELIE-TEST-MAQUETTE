@@ -3234,18 +3234,44 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
         'Je prépare une analyse personnalisée pour toi…'
       ];
       var msgIdx = 0;
-      var thinkingInterval = setInterval(function() {
-        var el = document.getElementById('amelieThinkingText');
-        if (!el) { clearInterval(thinkingInterval); return; }
-        msgIdx = (msgIdx + 1) % thinkingMsgs.length;
-        el.classList.add('fade-out');
-        setTimeout(function() {
-          if (el) { el.textContent = thinkingMsgs[msgIdx]; el.classList.remove('fade-out'); }
-        }, 320);
-      }, 1500);
-
-      var thinkStart = Date.now();
+      var thinkingInterval = null;
+      var thinkStart = null;
       var MIN_THINK_MS = 3000; // Durée min pour laisser l'animation jouer
+
+      function startThinking() {
+        if (thinkingInterval) return; // déjà démarré
+        thinkStart = Date.now();
+        thinkingInterval = setInterval(function() {
+          var el = document.getElementById('amelieThinkingText');
+          if (!el) { clearInterval(thinkingInterval); return; }
+          msgIdx = (msgIdx + 1) % thinkingMsgs.length;
+          el.classList.add('fade-out');
+          setTimeout(function() {
+            if (el) { el.textContent = thinkingMsgs[msgIdx]; el.classList.remove('fade-out'); }
+          }, 320);
+        }, 1500);
+      }
+
+      // Déclencher l'animation et l'API uniquement quand le bloc entre dans
+      // le viewport : évite que l'animation finisse avant que l'utilisateur
+      // ait scrollé jusqu'à elle.
+      var _thinkingEl = document.getElementById('amelieThinking');
+      if (_thinkingEl && 'IntersectionObserver' in window) {
+        var _obs = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              _obs.disconnect();
+              startThinking();
+              _runBilanApi();
+            }
+          });
+        }, { threshold: 0.25 });
+        _obs.observe(_thinkingEl);
+      } else {
+        // Fallback : pas d'IntersectionObserver, démarre directement
+        startThinking();
+        setTimeout(function(){ _runBilanApi(); }, 0);
+      }
 
       // Fallback local : si l'API ne répond pas (ou pas dispo en maquette),
       // on construit une analyse à partir des thèmes calculés côté JS.
@@ -3279,23 +3305,24 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
         return visibleHtml + hiddenHtml;
       }
 
-      var apiPromise = fetch('/api/quiz-bilan', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          dossier: name,
-          year: st.year,
-          pct: pct,
-          total: total,
-          correct: correct,
-          elapsed: elapsed,
-          themes: themes,
-        }),
-      }).then(function(r) { return r.json(); }).catch(function() { return null; });
+      function _runBilanApi() {
+        var apiPromise = fetch('/api/quiz-bilan', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            dossier: name,
+            year: st.year,
+            pct: pct,
+            total: total,
+            correct: correct,
+            elapsed: elapsed,
+            themes: themes,
+          }),
+        }).then(function(r) { return r.json(); }).catch(function() { return null; });
 
-      apiPromise.then(function(d) {
-        var apiElapsed = Date.now() - thinkStart;
-        var wait = Math.max(0, MIN_THINK_MS - apiElapsed);
+        apiPromise.then(function(d) {
+          var apiElapsed = Date.now() - (thinkStart || Date.now());
+          var wait = Math.max(0, MIN_THINK_MS - apiElapsed);
         setTimeout(function() {
           clearInterval(thinkingInterval);
           var slot = document.getElementById('anonReportSlot');
@@ -3337,8 +3364,9 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
               '<div class="report-unlock-hint">Ton internat se joue maintenant · sans engagement</div>' +
             '</div>' +
           '</div>';
-        }, wait);
-      });
+          }, wait);
+        });
+      }
     }
   }
 
