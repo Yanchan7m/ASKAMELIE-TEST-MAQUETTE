@@ -380,41 +380,39 @@ body.authed .already-subscribed{display:none}
 }
 
 /* ── Paywall modal (gold / teal Focus Illimité style) ── */
-.paywall-bg{position:fixed;inset:0;background:rgba(15,23,42,.78);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);z-index:200;display:none;align-items:center;justify-content:center;padding:24px;animation:fadeIn .2s}
+.paywall-bg{position:fixed;inset:0;background:rgba(15,23,42,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);z-index:200;display:none;align-items:center;justify-content:center;padding:24px;animation:fadeIn .2s}
 .paywall-bg.open{display:flex}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-.paywall{background:transparent;border-radius:28px;max-width:460px;width:100%;padding:0;box-shadow:none;position:relative;max-height:94vh;overflow-y:auto;display:flex;flex-direction:column;align-items:center}
-.paywall-close{position:absolute;top:14px;right:16px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.18);color:#fff;font-size:20px;font-weight:700;display:flex;align-items:center;justify-content:center;transition:all .15s;border:none;z-index:20;cursor:pointer;line-height:1}
-.paywall-close:hover{background:rgba(255,255,255,.32);color:#fff}
-/* Top banner */
-.pw-banner{position:relative;width:100%;padding:58px 24px 70px;border-radius:28px 28px 0 0;background:linear-gradient(135deg,#0E5552 0%,#1B6E68 35%,#D4A017 100%);overflow:hidden}
-.pw-banner::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(245,197,66,.35) 0%,transparent 55%);pointer-events:none}
-.pw-lock-wrap{position:relative;width:88px;height:88px;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;z-index:1;filter:drop-shadow(0 0 24px rgba(245,197,66,.85)) drop-shadow(0 6px 12px rgba(0,0,0,.25))}
-.pw-lock-wrap svg{width:88px;height:88px;color:#F5C542}
-.pw-banner-title{position:relative;z-index:1;font-family:var(--font-serif);font-size:34px;font-weight:700;color:#F5C542;letter-spacing:-.01em;text-align:center;text-shadow:0 2px 8px rgba(0,0,0,.25)}
-/* Card body */
-.pw-card{position:relative;margin-top:-38px;width:calc(100% - 24px);background:#FDF9EF;border-radius:22px;padding:28px 26px 22px;box-shadow:0 20px 50px rgba(0,0,0,.28);z-index:2;text-align:center}
-.pw-card h3{font-family:var(--font-serif);font-size:22px;font-weight:900;color:#0f172a;margin-bottom:10px;letter-spacing:-.01em}
-.pw-card .sub{font-size:14.5px;color:#334155;margin-bottom:18px;line-height:1.55;font-weight:500}
-.pw-card .pw-intro{font-size:14px;color:#475569;margin-bottom:14px;font-weight:600}
-.pw-feats{list-style:none;padding:0;margin:0 0 22px;text-align:left}
-.pw-feats li{font-size:14.5px;color:#1f2937;padding:7px 0;display:flex;align-items:center;gap:11px;font-weight:500}
-.pw-feats li::before{content:'✓';width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#F5C542,#D4A017);color:#fff;font-weight:900;font-size:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 6px rgba(212,160,23,.4)}
-.pw-cta-gold{display:block;padding:16px 22px;border-radius:100px;background:linear-gradient(135deg,#F5C542 0%,#E8B84D 50%,#D4A017 100%);color:#5B3F00;font-size:14px;font-weight:900;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;text-align:center;box-shadow:0 10px 28px rgba(212,160,23,.45),inset 0 1px 0 rgba(255,255,255,.5);border:none;cursor:pointer;font-family:inherit;transition:all .15s;margin-bottom:10px;width:100%}
-.pw-cta-gold:hover{transform:translateY(-1px);box-shadow:0 14px 32px rgba(212,160,23,.55),inset 0 1px 0 rgba(255,255,255,.5);text-decoration:none}
-.pw-trust{margin-top:8px;font-size:12px;color:#64748b;text-align:center}
-.pw-already{margin-top:14px;font-size:13px;color:#64748b;text-align:center}
-.pw-already .asub-link{background:none;border:none;color:#D4A017;font-weight:700;cursor:pointer;text-decoration:underline;font-family:inherit;font-size:13px;padding:0}
-.pw-already .asub-link:hover{color:#A67B00}
+.paywall{background:#fff;border-radius:22px;max-width:460px;width:100%;padding:32px 26px 22px;box-shadow:0 30px 80px rgba(14,85,82,.3);position:relative;max-height:94vh;overflow-y:auto;text-align:center;animation:egRise .35s cubic-bezier(.16,1,.3,1)}
+@keyframes egRise{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+.paywall-close{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;background:#EDEBE7;color:#527A70;font-size:20px;font-weight:500;display:flex;align-items:center;justify-content:center;transition:all .15s;border:none;z-index:20;cursor:pointer;line-height:1}
+.paywall-close:hover{background:#E3DFD8;color:#19342D}
+.pw-banner,.pw-banner::after,.pw-banner-title{display:none!important}
+.pw-lock-wrap{position:relative;width:56px;height:56px;margin:4px auto 14px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#EAF0EA;border:1px solid #C4D3C5;filter:none}
+.pw-lock-wrap svg{width:28px;height:28px;color:#0E5552}
+.pw-card{position:relative;margin:0;padding:0;background:transparent;box-shadow:none;width:100%;text-align:center}
+.pw-card h3{font-family:var(--font-serif);font-size:19px;font-weight:700;color:#19342D;line-height:1.3;margin-bottom:8px;letter-spacing:-.01em}
+.pw-card .sub{font-size:13.5px;color:#527A70;margin:0 auto 18px;line-height:1.5;font-weight:500;max-width:380px}
+.pw-card .pw-intro{display:none}
+.pw-feats{list-style:none;padding:0;margin:0 0 18px;display:grid;gap:7px;text-align:left}
+.pw-feats li{list-style:none;display:flex;align-items:flex-start;gap:10px;padding:10px 13px;background:#EAF0EA;border:1px solid #C4D3C5;border-radius:11px;font-size:13px;color:#19342D;font-weight:500;line-height:1.45}
+.pw-feats li::before{content:'✓';flex-shrink:0;width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,#A855F7 0%,#7c3aed 100%);color:#fff;font-weight:900;font-size:11px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(168,85,247,.35);margin-top:1px}
+.pw-feats li strong{color:#0E5552;font-weight:700}
+.pw-cta-gold{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 22px;border-radius:14px;background:linear-gradient(135deg,#A855F7 0%,#7c3aed 100%);color:#fff;font-size:14.5px;font-weight:800;text-decoration:none;text-align:center;box-shadow:0 10px 28px rgba(168,85,247,.42);border:none;cursor:pointer;font-family:inherit;transition:all .18s;margin-bottom:6px;width:100%;text-transform:none;letter-spacing:.005em}
+.pw-cta-gold:hover{transform:translateY(-1px);box-shadow:0 14px 34px rgba(168,85,247,.55);text-decoration:none}
+.pw-trust{margin-top:8px;font-size:12px;color:#94A29C;text-align:center;font-weight:500}
+.pw-already{margin-top:12px;padding-top:12px;border-top:1px solid #EDEBE7;font-size:13px;color:#527A70;text-align:center}
+.pw-already .asub-link{background:none;border:none;color:#0E5552;font-weight:700;cursor:pointer;text-decoration:underline;text-underline-offset:3px;font-family:inherit;font-size:13px;padding:0}
+.pw-already .asub-link:hover{color:#08403E}
 @media(max-width:480px){
   .paywall-bg{padding:14px}
-  .pw-banner{padding:48px 20px 62px}
-  .pw-lock-wrap,.pw-lock-wrap svg{width:74px;height:74px}
-  .pw-banner-title{font-size:28px}
-  .pw-card{padding:24px 20px 20px;margin-top:-34px}
-  .pw-card h3{font-size:19px}
-  .pw-feats li{font-size:13.5px}
-  .pw-cta-gold{font-size:13px;padding:15px 18px}
+  .paywall{padding:28px 20px 18px}
+  .pw-lock-wrap{width:50px;height:50px}
+  .pw-lock-wrap svg{width:24px;height:24px}
+  .pw-card h3{font-size:17.5px}
+  .pw-card .sub{font-size:13px}
+  .pw-feats li{font-size:12.5px;padding:9px 12px}
+  .pw-cta-gold{font-size:14px;padding:14px 18px}
 }
 </style>
 </head>
@@ -811,26 +809,20 @@ body.authed .already-subscribed{display:none}
 <!-- Paywall modal (kept for back-compat, used when clicking a locked year) -->
 <div class="paywall-bg" id="paywall" onclick="if(event.target.id==='paywall')closePaywall()">
   <div class="paywall">
-    <!-- Top banner: teal → gold gradient with glowing open padlock -->
-    <div class="pw-banner">
-      <button class="paywall-close" onclick="closePaywall()" aria-label="Fermer">×</button>
-      <div class="pw-lock-wrap">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5-2.28 0-4.2 1.53-4.8 3.62l1.92.54C9.46 4.01 10.63 3 12 3c1.66 0 3 1.34 3 3v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm0 12H6V10h12v10zm-6-3c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"/></svg>
-      </div>
-      <div class="pw-banner-title">Focus Illimité</div>
+    <button class="paywall-close" onclick="closePaywall()" aria-label="Fermer">×</button>
+    <div class="pw-lock-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
     </div>
-    <!-- Card body -->
     <div class="pw-card">
-      <h3>🔒 ACCÈS LIMITÉ 🔒</h3>
-      <p class="sub">Débloque tout le contenu ECN et EDN pour toutes les années.</p>
-      <p class="pw-intro">Passe à la version Focus Illimité pour accéder à :</p>
+      <h3 id="pwTitle">🔒 Cette année est réservée</h3>
+      <p class="sub" id="pwSub">Seule 2016 est ouverte en accès gratuit. Passe à Focus Illimité pour t'entraîner sur les 10 ans d'annales.</p>
       <ul class="pw-feats">
-        <li>Toutes les années (2016-2025)</li>
-        <li>Toutes les corrections détaillées</li>
-        <li>Suivi de progression complet</li>
-        <li>Mode d'entraînement avancé</li>
+        <li><span><strong>Toutes les années</strong> d'annales (2016-2025)</span></li>
+        <li><span><strong>Tes corrigés complets</strong> : Amélie t'explique chaque question</span></li>
+        <li><span><strong>Ton bilan personnalisé</strong> détaillé après chaque dossier</span></li>
+        <li><span><strong>+300 places en moyenne</strong> au classement pour nos élèves</span></li>
       </ul>
-      <button type="button" class="pw-cta-gold" onclick="goPremium('paywall')">Devenir Focus Illimité maintenant</button>
+      <button type="button" class="pw-cta-gold" onclick="goPremium('paywall')">Passer à Focus Illimité →</button>
       <div class="pw-trust">Sans engagement · Moins d'1 € / jour</div>
       <div class="pw-already">
         Tu as déjà souscrit&nbsp;? <button type="button" class="asub-link" onclick="closePaywall();openLoginModal()">Se connecter →</button>
@@ -1380,6 +1372,18 @@ window.submitLoginEmail = function(e) {
 
 // ─── Paywall modal ──────────────────────────────────────────
 window.openPaywall = function(ctx){
+  var title = document.getElementById('pwTitle');
+  var sub = document.getElementById('pwSub');
+  var yearMatch = typeof ctx === 'string' ? ctx.match(/^year-(\d{4})$/) : null;
+  if (yearMatch && title && sub) {
+    var y = parseInt(yearMatch[1], 10);
+    var fmt = y >= 2023 ? 'EDN' : 'ECN';
+    title.textContent = '🔒 ' + fmt + ' ' + y + ' est réservée';
+    sub.innerHTML = 'Seule <strong>ECN 2016</strong> est ouverte en accès gratuit. Passe à Focus Illimité pour t\'entraîner sur les <strong>10 ans d\'annales</strong>.';
+  } else if (title && sub) {
+    title.textContent = '🔒 Accès Focus Illimité';
+    sub.innerHTML = 'Débloque <strong>toutes les années</strong> d\'annales, tes corrigés complets et ton bilan personnalisé.';
+  }
   document.getElementById('paywall').classList.add('open');
   document.body.style.overflow = 'hidden';
   try { console.log('[paywall]', ctx); } catch(e){}
