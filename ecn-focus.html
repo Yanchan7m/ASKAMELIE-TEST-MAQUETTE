@@ -1795,6 +1795,9 @@ window.openPaywall = function(context) {
   } else if (context === 'explanation-locked') {
     pwTitle.innerHTML = '🔒 Correction complète réservée';
     pwSub.innerHTML = 'L\'accès <strong>en entier</strong> aux corrections détaillées d\'Amélie est exclusif au <strong>plan Focus Illimité</strong>. C\'est ce qui te permet de comprendre vraiment chaque question et de gagner des places au classement.';
+  } else if (context === 'bilan-locked') {
+    pwTitle.innerHTML = '🔒 Ton bilan personnalisé';
+    pwSub.innerHTML = 'Le bilan détaillé d\'Amélie (thèmes faibles, plan de travail ciblé, corrigés complets) est exclusif au <strong>plan Focus Illimité</strong>. Débloque aussi toutes les années d\'annales et gagne des places au classement.';
   } else if (context === 'exam-locked' || context === 'qi-locked') {
     pwTitle.innerHTML = '🔒 Cette épreuve est réservée';
     pwSub.innerHTML = 'On t\'a sélectionné un seul exercice gratuit. Pour t\'entraîner sur <strong>toutes les épreuves</strong> (DCP, QI, LCA) et progresser à fond, passe au plan Focus Illimité.';
@@ -3319,9 +3322,9 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
             '<div class="meta">À l\'instant</div></div></div>' +
             '<div class="report-content">' + analysis + '</div>' +
             '<div class="report-unlock">' +
-              '<div class="report-unlock-text">Tu n\'as accès qu\'à un aperçu du bilan d\'Amélie.<br><span class="muted">Sauvegarde aussi ta progression sur tous tes prochains dossiers.</span></div>' +
-              '<button type="button" class="report-unlock-btn" onclick="showFirstQuestionGate(false)">Voir ton bilan complet →</button>' +
-              '<div class="report-unlock-hint">🔓 Création de compte gratuite requise pour y avoir accès</div>' +
+              '<div class="report-unlock-text">Tu n\'as accès qu\'à un aperçu du bilan d\'Amélie.<br><span class="muted">Débloque ton bilan personnalisé complet et tes corrigés détaillés.</span></div>' +
+              '<button type="button" class="report-unlock-btn" onclick="openPaywall(\'bilan-locked\')">Passer à Focus Illimité pour voir ton bilan personnalisé →</button>' +
+              '<div class="report-unlock-hint">∞ Accès illimité à toutes les années + corrigés détaillés</div>' +
             '</div>' +
           '</div>';
         }, wait);
