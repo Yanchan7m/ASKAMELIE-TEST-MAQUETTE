@@ -2159,7 +2159,7 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
     var isPrem = window._IS_PREMIUM === true;
     var statusPill = isPrem
       ? '<span class="wdash-pill premium">✓ Focus Illimité actif · toutes les années débloquées</span>'
-      : '<span class="wdash-pill free">Compte gratuit · ECN 2016 ouvert</span>';
+      : '<button class="wdash-pill free" onclick="openPaywall(\'nav\')" style="border:none;font-family:inherit;cursor:pointer">Compte gratuit · ECN 2016 ouvert →</button>';
     var bodyEl = body();
     bodyEl.innerHTML =
       '<div class="ex-inner">' +
@@ -2180,7 +2180,7 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
             '<button class="wdash-btn-primary" onclick="closeWelcomeAndOpenExams()">' +
               (isPrem ? 'Continuer mes annales →' : 'Continuer les annales ECN 2016 →') +
             '</button>' +
-            (isPrem ? '' : '<button class="wdash-btn-ghost" onclick="goPremium(\'welcome\')">Passer au plan Focus Illimité : 29,90 € / mois</button>') +
+            (isPrem ? '' : '<button class="wdash-btn-ghost" onclick="openPaywall(\'nav\')">Passer au plan Focus Illimité : 29,90 € / mois</button>') +
           '</div>' +
         '</div>' +
       '</div>';
