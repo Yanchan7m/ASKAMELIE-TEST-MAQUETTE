@@ -303,29 +303,26 @@ button{font-family:inherit}
 .ex-badge.edn{background:rgba(168,85,247,.08);color:#A855F7}
 
 /* ── Paywall modal (gold / teal Focus Illimité style) ── */
-.paywall{position:fixed;inset:0;z-index:10800;background:rgba(15,23,42,.78);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;padding:24px}
+.paywall{position:fixed;inset:0;z-index:10800;background:rgba(15,23,42,.72);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;padding:24px}
 .paywall.open{display:flex;animation:fIn .25s ease}
-.paywall-box{background:transparent;border-radius:28px;padding:0;max-width:460px;width:100%;max-height:94vh;overflow-y:auto;box-shadow:none;text-align:center;position:relative;display:flex;flex-direction:column;align-items:center}
-/* Top banner: teal → gold gradient, rounded top, contains open padlock + Focus Illimité */
-.pw-banner{position:relative;width:100%;padding:58px 24px 70px;border-radius:28px 28px 0 0;background:linear-gradient(135deg,#0E5552 0%,#1B6E68 35%,#D4A017 100%);box-shadow:0 -6px 0 rgba(14,85,82,.25) inset;overflow:hidden}
-.pw-banner::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(245,197,66,.35) 0%,transparent 55%);pointer-events:none}
-.pw-close{position:absolute;top:14px;right:16px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.18);border:none;color:#fff;font-size:20px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2;line-height:1;transition:background .15s}
-.pw-close:hover{background:rgba(255,255,255,.32)}
-.pw-lock{position:relative;width:88px;height:88px;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;z-index:1;filter:drop-shadow(0 0 24px rgba(245,197,66,.85)) drop-shadow(0 6px 12px rgba(0,0,0,.25))}
-.pw-lock svg{width:88px;height:88px;color:#F5C542}
-.pw-banner-title{position:relative;z-index:1;font-family:'Libre Baskerville',Georgia,serif;font-size:34px;font-weight:700;color:#F5C542;letter-spacing:-.01em;text-shadow:0 2px 8px rgba(0,0,0,.25)}
-/* Main card (white, overlaps the banner bottom) */
-.pw-card{position:relative;margin-top:-38px;width:calc(100% - 24px);background:#FDF9EF;border-radius:22px;padding:28px 26px 22px;box-shadow:0 20px 50px rgba(0,0,0,.28);z-index:2}
-.pw-card h3{font-size:22px;font-weight:900;color:#0f172a;margin-bottom:12px;letter-spacing:-.01em;line-height:1.25}
-.pw-card .pw-sub{font-size:15px;color:#334155;margin-bottom:18px;line-height:1.55;font-weight:500}
-.pw-card .pw-intro{font-size:14px;color:#475569;margin-bottom:14px;font-weight:600}
-.pw-feats{text-align:left;margin:0 0 22px;padding:0;list-style:none}
-.pw-feats li{list-style:none;font-size:14.5px;color:#1f2937;padding:7px 0;display:flex;align-items:center;gap:11px;font-weight:500}
-.pw-feats li::before{content:'✓';width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#F5C542,#D4A017);color:#fff;font-weight:900;font-size:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 6px rgba(212,160,23,.4)}
-.pw-cta-gold{display:block;padding:16px 22px;border-radius:100px;background:linear-gradient(135deg,#F5C542 0%,#E8B84D 50%,#D4A017 100%);color:#5B3F00;font-size:14px;font-weight:900;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;text-align:center;box-shadow:0 10px 28px rgba(212,160,23,.45),inset 0 1px 0 rgba(255,255,255,.5);border:none;cursor:pointer;font-family:inherit;transition:all .15s;margin-bottom:14px}
-.pw-cta-gold:hover{transform:translateY(-1px);box-shadow:0 14px 32px rgba(212,160,23,.55),inset 0 1px 0 rgba(255,255,255,.5);text-decoration:none}
-.pw-learn-more{background:none;border:none;color:#64748b;font-size:13px;font-weight:500;text-decoration:underline;cursor:pointer;font-family:inherit;padding:6px 10px}
-.pw-learn-more:hover{color:#0f172a}
+.paywall-box{background:#fff;border-radius:22px;padding:32px 26px 20px;max-width:460px;width:100%;max-height:94vh;overflow-y:auto;box-shadow:0 30px 80px rgba(14,85,82,.3);text-align:center;position:relative;animation:egRise .35s cubic-bezier(.16,1,.3,1)}
+.pw-close{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;background:#EDEBE7;color:#527A70;border:none;font-size:20px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:3;line-height:1;transition:all .15s}
+.pw-close:hover{background:#E3DFD8;color:#19342D}
+.pw-lock{position:relative;width:56px;height:56px;margin:4px auto 14px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#EAF0EA;border:1px solid #C4D3C5;filter:none}
+.pw-lock svg{width:28px;height:28px;color:#0E5552}
+.pw-banner,.pw-banner::after,.pw-banner-title{display:none!important}
+.pw-card{position:relative;margin:0;padding:0;background:transparent;box-shadow:none;width:100%}
+.pw-card h3{font-family:'Libre Baskerville',Georgia,serif;font-size:19px;font-weight:700;color:#19342D;line-height:1.3;margin-bottom:8px;letter-spacing:-.01em}
+.pw-card .pw-sub{font-size:13.5px;color:#527A70;margin:0 auto 18px;line-height:1.5;font-weight:500;max-width:380px}
+.pw-card .pw-intro{display:none}
+.pw-feats{list-style:none;padding:0;margin:0 0 18px;display:grid;gap:7px;text-align:left}
+.pw-feats li{list-style:none;display:flex;align-items:flex-start;gap:10px;padding:10px 13px;background:#EAF0EA;border:1px solid #C4D3C5;border-radius:11px;font-size:13px;color:#19342D;font-weight:500;line-height:1.45}
+.pw-feats li::before{content:'✓';flex-shrink:0;width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,#A855F7 0%,#7c3aed 100%);color:#fff;font-weight:900;font-size:11px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(168,85,247,.35);margin-top:1px}
+.pw-feats li strong{color:#0E5552;font-weight:700}
+.pw-cta-gold{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:15px 22px;border:none;border-radius:14px;background:linear-gradient(135deg,#A855F7 0%,#7c3aed 100%);color:#fff;font-size:14.5px;font-weight:800;cursor:pointer;box-shadow:0 10px 28px rgba(168,85,247,.42);transition:all .18s;text-decoration:none;text-align:center;font-family:inherit;letter-spacing:.005em;margin-bottom:6px;text-transform:none}
+.pw-cta-gold:hover{transform:translateY(-1px);box-shadow:0 14px 34px rgba(168,85,247,.55);text-decoration:none}
+.pw-learn-more{background:none;border:none;color:#527A70;font-size:13px;font-weight:500;text-decoration:underline;text-underline-offset:3px;cursor:pointer;font-family:inherit;padding:10px 14px;margin-top:4px}
+.pw-learn-more:hover{color:#19342D}
 /* Back-compat: keep .paywall-btns / .pw-btn for any code still referencing them */
 .paywall-btns{display:flex;flex-direction:column;gap:10px}
 .pw-btn{padding:14px;border-radius:12px;font-size:14px;font-weight:800;cursor:pointer;border:none;text-decoration:none;display:block;text-align:center;transition:all .15s}
@@ -633,14 +630,13 @@ button{font-family:inherit}
   .dur-card .dur-best{font-size:7.5px;padding:3px 7px}
   /* Paywall */
   .paywall{padding:14px}
-  .pw-banner{padding:48px 20px 62px}
-  .pw-lock,.pw-lock svg{width:74px;height:74px}
-  .pw-banner-title{font-size:28px}
-  .pw-card{padding:24px 20px 20px;margin-top:-34px}
-  .pw-card h3{font-size:19px}
-  .pw-card .pw-sub{font-size:14px}
-  .pw-feats li{font-size:13.5px}
-  .pw-cta-gold{font-size:13px;padding:15px 18px}
+  .paywall-box{padding:28px 20px 18px}
+  .pw-lock{width:50px;height:50px}
+  .pw-lock svg{width:24px;height:24px}
+  .pw-card h3{font-size:17.5px}
+  .pw-card .pw-sub{font-size:13px}
+  .pw-feats li{font-size:12.5px;padding:9px 12px}
+  .pw-cta-gold{font-size:14px;padding:14px 18px}
   /* Exam overlay */
   .ex-inner{padding:18px}
   .q-text{font-size:15px}
@@ -1385,27 +1381,21 @@ body{background:#F7F5F2}
 
 <div class="paywall" id="paywall">
   <div class="paywall-box">
-    <!-- Top banner: teal → gold gradient with glowing open padlock -->
-    <div class="pw-banner">
-      <button class="pw-close" onclick="closePaywall()" aria-label="Fermer">×</button>
-      <div class="pw-lock">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5-2.28 0-4.2 1.53-4.8 3.62l1.92.54C9.46 4.01 10.63 3 12 3c1.66 0 3 1.34 3 3v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm0 12H6V10h12v10zm-6-3c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"/></svg>
-      </div>
-      <div class="pw-banner-title">Focus Illimité</div>
+    <button class="pw-close" onclick="closePaywall()" aria-label="Fermer">×</button>
+    <div class="pw-lock">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
     </div>
-    <!-- Card body -->
     <div class="pw-card">
-      <h3 id="pwTitle">🔒 ACCÈS LIMITÉ 🔒</h3>
+      <h3 id="pwTitle">🔒 Accès limité</h3>
       <p class="pw-sub" id="pwSub">Débloque tout le contenu ECN et EDN pour toutes les années.</p>
-      <p class="pw-intro">Passe à la version Focus Illimité pour accéder à :</p>
       <ul class="pw-feats">
-        <li>Toutes les années (2016-2025)</li>
-        <li>Toutes les corrections détaillées</li>
-        <li>Suivi de progression complet</li>
-        <li>Mode d'entraînement avancé</li>
+        <li><strong>Toutes les années</strong> d'annales (2016-2025)</li>
+        <li><strong>Tes corrigés complets</strong> : Amélie t'explique chaque question</li>
+        <li><strong>Ton bilan personnalisé</strong> détaillé après chaque dossier</li>
+        <li><strong>+300 places en moyenne</strong> au classement pour nos élèves</li>
       </ul>
-      <a href="https://buy.stripe.com/eVqaEY8BGgN5ckgg3M5gc01" target="_blank" class="pw-cta-gold">Devenir Focus Illimité maintenant</a>
-      <button type="button" class="pw-learn-more" onclick="tryFreeYear()">Continuer avec le dossier gratuit</button>
+      <a href="https://buy.stripe.com/eVqaEY8BGgN5ckgg3M5gc01" target="_blank" class="pw-cta-gold">Passer à Focus Illimité →</a>
+      <button type="button" class="pw-learn-more" onclick="closePaywall()">Plus tard</button>
     </div>
   </div>
 </div>
