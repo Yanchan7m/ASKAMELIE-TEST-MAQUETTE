@@ -379,7 +379,7 @@ body.authed .already-subscribed{display:none}
   .sticky-cta .sticky-btn{width:100%;text-align:center;padding:14px;font-size:14px}
 }
 
-/* ── Paywall modal (gold / teal Illimité style) ── */
+/* ── Paywall modal (gold / teal Focus Illimité style) ── */
 .paywall-bg{position:fixed;inset:0;background:rgba(15,23,42,.78);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);z-index:200;display:none;align-items:center;justify-content:center;padding:24px;animation:fadeIn .2s}
 .paywall-bg.open{display:flex}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
@@ -435,7 +435,7 @@ body.authed .already-subscribed{display:none}
     </a>
     <div class="nav-links">
       <a href="#annales" class="nav-link">Annales</a>
-      <a href="#compare" class="nav-link">Gratuit vs Illimité</a>
+      <a href="#compare" class="nav-link">Gratuit vs Focus Illimité</a>
     </div>
     <div class="nav-user" id="navUser" onclick="toggleUserMenu(event)">
       <div class="nav-user-avatar" id="navUserAvatar">A</div>
@@ -573,7 +573,7 @@ body.authed .already-subscribed{display:none}
     <div class="step-card">
       <div class="step-num">3</div>
       <h3>Débloque les 10 années</h3>
-      <p>Passe en Illimité et accède à 850+ dossiers corrigés par des spécialistes sur 10 ans d'annales.</p>
+      <p>Passe en Focus Illimité et accède à 850+ dossiers corrigés par des spécialistes sur 10 ans d'annales.</p>
     </div>
   </div>
 </section>
@@ -582,14 +582,14 @@ body.authed .already-subscribed{display:none}
 <section class="years-section" id="annales">
   <div class="years-header">
     <h2>Choisis ton année</h2>
-    <p>Ton dossier gratuit t'attend sur 2016. Les autres années se débloquent en Illimité.</p>
+    <p>Ton dossier gratuit t'attend sur 2016. Les autres années se débloquent en Focus Illimité.</p>
   </div>
   <div class="year-grid" id="yearGrid"></div>
   <div class="free-hint">
     ✨ Ton premier dossier, <strong>100% gratuit</strong>. Avec la correction complète d'un médecin spécialiste.
   </div>
   <div class="already-subscribed" id="alreadySub">
-    <span>Tu as déjà souscrit l'Illimité sur un autre appareil&nbsp;?</span>
+    <span>Tu as déjà souscrit le Focus Illimité sur un autre appareil&nbsp;?</span>
     <button type="button" class="asub-link" onclick="openLoginModal()">Connecte-toi pour retrouver ton accès →</button>
   </div>
 </section>
@@ -611,7 +611,7 @@ body.authed .already-subscribed{display:none}
       <div>
         <div class="dash-preview-name">Camille · D4 Lyon</div>
         <div class="dash-preview-badge">
-          <span class="dash-preview-dot"></span> Illimité actif · 143 questions traitées
+          <span class="dash-preview-dot"></span> Focus Illimité actif · 143 questions traitées
         </div>
       </div>
     </div>
@@ -717,7 +717,7 @@ body.authed .already-subscribed{display:none}
     </div>
     <div class="pricing-actions">
       <button type="button" class="primary" onclick="goPremium('pricing')" style="border:none;cursor:pointer;font-family:inherit">
-        Démarrer l'Illimité
+        Démarrer le Focus Illimité
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </button>
       <a href="ecn-focus.html?year=2016&auto=1" class="secondary">Tester le dossier gratuit</a>
@@ -782,7 +782,7 @@ body.authed .already-subscribed{display:none}
   <h3>Tu viens de voir la qualité sur <em>1 année</em>.<br>Imagine sur <em>10</em>.</h3>
   <p>850 dossiers corrigés par des médecins spécialistes. Raisonnement clinique complet. Tout ce qu'il te faut pour décrocher ta spé.</p>
   <button type="button" class="premium-cta-btn" onclick="goPremium('footer')" style="border:none;cursor:pointer;font-family:inherit">
-    Passer au plan Illimité — 29,90 € / mois
+    Passer au plan Focus Illimité — 29,90 € / mois
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
   </button>
   <div class="trust-line">Satisfait ou remboursé 14 jours · Sans engagement · Moins d'1 € / jour</div>
@@ -805,7 +805,7 @@ body.authed .already-subscribed{display:none}
 <!-- Sticky CTA -->
 <div class="sticky-cta" id="stickyCta">
   <span class="sticky-label">🎓 Version gratuite</span>
-  <button type="button" class="sticky-btn" onclick="goPremium('sticky')" style="border:none;cursor:pointer;font-family:inherit">Passer au plan Illimité — 29,90 € / mois →</button>
+  <button type="button" class="sticky-btn" onclick="goPremium('sticky')" style="border:none;cursor:pointer;font-family:inherit">Passer au plan Focus Illimité — 29,90 € / mois →</button>
 </div>
 
 <!-- Paywall modal (kept for back-compat, used when clicking a locked year) -->
@@ -817,20 +817,20 @@ body.authed .already-subscribed{display:none}
       <div class="pw-lock-wrap">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5-2.28 0-4.2 1.53-4.8 3.62l1.92.54C9.46 4.01 10.63 3 12 3c1.66 0 3 1.34 3 3v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm0 12H6V10h12v10zm-6-3c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"/></svg>
       </div>
-      <div class="pw-banner-title">Illimité</div>
+      <div class="pw-banner-title">Focus Illimité</div>
     </div>
     <!-- Card body -->
     <div class="pw-card">
       <h3>🔒 ACCÈS LIMITÉ 🔒</h3>
       <p class="sub">Débloque tout le contenu ECN et EDN pour toutes les années.</p>
-      <p class="pw-intro">Passe à la version Illimité pour accéder à :</p>
+      <p class="pw-intro">Passe à la version Focus Illimité pour accéder à :</p>
       <ul class="pw-feats">
         <li>Toutes les années (2016 — 2025)</li>
         <li>Toutes les corrections détaillées</li>
         <li>Suivi de progression complet</li>
         <li>Mode d'entraînement avancé</li>
       </ul>
-      <button type="button" class="pw-cta-gold" onclick="goPremium('paywall')">Devenir Illimité maintenant</button>
+      <button type="button" class="pw-cta-gold" onclick="goPremium('paywall')">Devenir Focus Illimité maintenant</button>
       <div class="pw-trust">Sans engagement · Moins d'1 € / jour</div>
       <div class="pw-already">
         Tu as déjà souscrit&nbsp;? <button type="button" class="asub-link" onclick="closePaywall();openLoginModal()">Se connecter →</button>
@@ -910,11 +910,11 @@ function applyAuthedUI(){
   var nudEmail = document.getElementById('nudEmail');
   if (nudEmail) nudEmail.textContent = AUTH_USER.email;
   var nudStatus = document.getElementById('nudStatus');
-  if (nudStatus) nudStatus.textContent = IS_PREMIUM ? 'Illimité actif · toutes les années débloquées' : 'Compte actif · version gratuite';
+  if (nudStatus) nudStatus.textContent = IS_PREMIUM ? 'Focus Illimité actif · toutes les années débloquées' : 'Compte actif · version gratuite';
   if (IS_PREMIUM) {
-    setNavCta('✓ Illimité actif', 'check', 'Illimité actif', true);
+    setNavCta('✓ Focus Illimité actif', 'check', 'Focus Illimité actif', true);
   } else {
-    setNavCta('Passer au plan Illimité', 'crown', 'Passer au plan Illimité', false);
+    setNavCta('Passer au plan Focus Illimité', 'crown', 'Passer au plan Focus Illimité', false);
   }
 }
 
@@ -1181,12 +1181,12 @@ function renderGrid(){
     var card = document.createElement('div');
     card.className = 'year-card ' + (unlocked ? (isFree ? 'free' : 'premium-unlocked') : 'locked');
     var inner =
-      '<span class="badge">' + (isFree ? '✅ Gratuit — Commence ici' : (unlocked ? 'Accès libre' : 'Illimité')) + '</span>' +
+      '<span class="badge">' + (isFree ? '✅ Gratuit — Commence ici' : (unlocked ? 'Accès libre' : 'Focus Illimité')) + '</span>' +
       '<div class="year-icon">' + (unlocked ? iconOpen : iconLock) + '</div>' +
       '<div class="year-num">' + y.y + '</div>' +
       '<div class="year-label">' + y.label + ' ' + y.y + '</div>' +
       '<div class="year-meta"><strong>DCP · QI · LCA</strong></div>';
-    if (!unlocked) inner += '<div class="tip"><strong>Disponible en Illimité</strong>29,90 € / mois · Tout débloqué</div>';
+    if (!unlocked) inner += '<div class="tip"><strong>Disponible en Focus Illimité</strong>29,90 € / mois · Tout débloqué</div>';
     card.innerHTML = inner;
     card.onclick = function(){
       if (unlocked) window.location.assign('/ecn-focus.html?year=' + y.y + '&auto=1');
@@ -1427,7 +1427,7 @@ function maybeShowWelcome(){
   var cs = p.get('cs') || p.get('session_id') || '';
   var toast = document.createElement('div');
   toast.style.cssText = 'position:fixed;top:24px;left:50%;transform:translateX(-50%);z-index:500;background:var(--primary);color:#fff;padding:16px 26px;border-radius:12px;box-shadow:var(--shadow-lg);font-size:14px;font-weight:500;max-width:90vw;display:flex;align-items:center;gap:12px';
-  toast.innerHTML = '<span style="font-size:20px">✓</span><span>Paiement reçu. On active ton accès Illimité…</span>';
+  toast.innerHTML = '<span style="font-size:20px">✓</span><span>Paiement reçu. On active ton accès Focus Illimité…</span>';
   document.body.appendChild(toast);
   // Strip query params BEFORE reload so the welcome handler ne re-fire pas.
   try { history.replaceState({}, '', '/'); } catch(e){}

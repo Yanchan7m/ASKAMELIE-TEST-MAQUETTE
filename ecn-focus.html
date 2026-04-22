@@ -302,11 +302,11 @@ button{font-family:inherit}
 .ex-badge.ecn{background:rgba(249,115,22,.08);color:#EA580C}
 .ex-badge.edn{background:rgba(168,85,247,.08);color:#A855F7}
 
-/* ── Paywall modal (gold / teal Illimité style) ── */
+/* ── Paywall modal (gold / teal Focus Illimité style) ── */
 .paywall{position:fixed;inset:0;z-index:10800;background:rgba(15,23,42,.78);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;padding:24px}
 .paywall.open{display:flex;animation:fIn .25s ease}
 .paywall-box{background:transparent;border-radius:28px;padding:0;max-width:460px;width:100%;max-height:94vh;overflow-y:auto;box-shadow:none;text-align:center;position:relative;display:flex;flex-direction:column;align-items:center}
-/* Top banner: teal → gold gradient, rounded top, contains open padlock + Illimité */
+/* Top banner: teal → gold gradient, rounded top, contains open padlock + Focus Illimité */
 .pw-banner{position:relative;width:100%;padding:58px 24px 70px;border-radius:28px 28px 0 0;background:linear-gradient(135deg,#0E5552 0%,#1B6E68 35%,#D4A017 100%);box-shadow:0 -6px 0 rgba(14,85,82,.25) inset;overflow:hidden}
 .pw-banner::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(245,197,66,.35) 0%,transparent 55%);pointer-events:none}
 .pw-close{position:absolute;top:14px;right:16px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.18);border:none;color:#fff;font-size:20px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2;line-height:1;transition:background .15s}
@@ -704,7 +704,7 @@ button{font-family:inherit}
 .q-explanation .q-verdict{font-family:'Libre Baskerville',Georgia,serif;font-size:22px;font-weight:700;letter-spacing:-.01em;margin:4px 0 10px;line-height:1.2}
 .q-explanation.ok .q-verdict{color:#0E5552}
 .q-explanation.ko .q-verdict{color:#B94A3F}
-/* Body clampé à 2 lignes + fade quand verrouillé (non-Illimité) */
+/* Body clampé à 2 lignes + fade quand verrouillé (non-Focus Illimité) */
 .q-explanation.locked .q-explanation-body{position:relative!important;display:-webkit-box!important;-webkit-line-clamp:2;-webkit-box-orient:vertical;max-height:calc(1.7em * 2)!important;overflow:hidden!important;cursor:pointer;padding-bottom:2px}
 .q-explanation.locked .q-explanation-body::after{content:'';position:absolute;bottom:0;left:0;right:0;height:38px;background:linear-gradient(to bottom,transparent,#EAF0EA);pointer-events:none;z-index:1}
 .q-explanation.ko.locked .q-explanation-body::after{background:linear-gradient(to bottom,transparent,#F5E8E6)}
@@ -941,7 +941,8 @@ button{font-family:inherit}
 #firstQGate .fqg-close:hover{background:#E3DFD8;color:#19342D}
 #firstQGate .fqg-icon{width:62px;height:62px;border-radius:50%;background:#EAF0EA;color:#0E5552;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;border:2px solid #C4D3C5}
 #firstQGate .fqg-icon svg{width:30px;height:30px}
-#firstQGate .fqg-title{font-family:'Libre Baskerville',Georgia,serif;font-size:clamp(18px,3vw,22px);font-weight:700;color:#19342D;letter-spacing:-.015em;line-height:1.3;margin-bottom:16px}
+#firstQGate .fqg-title{font-family:'Libre Baskerville',Georgia,serif;font-size:clamp(18px,3vw,22px);font-weight:700;color:#19342D;letter-spacing:-.015em;line-height:1.3;margin-bottom:8px}
+#firstQGate .fqg-sub{font-size:14px;color:#527A70;line-height:1.45;margin:0 auto 18px;max-width:380px}
 #firstQGate .fqg-google{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;padding:14px 22px;background:#fff;color:#19342D;border:1.5px solid #E3DFD8;border-radius:12px;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .15s;margin-bottom:14px}
 #firstQGate .fqg-google:hover{border-color:#0E5552;background:#FAF9F6;transform:translateY(-1px);box-shadow:0 2px 8px rgba(14,85,82,.12)}
 #firstQGate .fqg-sep{display:flex;align-items:center;margin-bottom:14px;color:#527A70;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em}
@@ -1166,9 +1167,9 @@ body{background:#F7F5F2}
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
         <span class="dot-live"></span><span class="lbl-full">Mon profil</span>
       </button>
-      <button class="top-cta" onclick="openPaywall('nav')" title="Passer au plan Illimité" aria-label="Illimité">
+      <button class="top-cta" onclick="openPaywall('nav')" title="Passer au plan Focus Illimité" aria-label="Focus Illimité">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 16L2 6l5.5 4L12 4l4.5 6L22 6l-3 10H5zm0 2h14v2H5v-2z"/></svg>
-        <span class="lbl-full">Illimité</span>
+        <span class="lbl-full">Focus Illimité</span>
       </button>
     </div>
   </div>
@@ -1252,7 +1253,7 @@ body{background:#F7F5F2}
     <div class="offer-card premium">
       <div class="offer-badge">Le plus populaire</div>
       <div class="offer-icon">🚀</div>
-      <h3>Illimité</h3>
+      <h3>Focus Illimité</h3>
       <div class="offer-tag">Accès illimité, à ton rythme</div>
       <div class="offer-price">
         <span class="num">19</span><span class="cur">,99 €</span><span class="freq">/ mois</span>
@@ -1268,7 +1269,7 @@ body{background:#F7F5F2}
         <li>Compte rendu Amélie mis à jour tout seul</li>
         <li>Sans pub, annulable à tout moment</li>
       </ul>
-      <a href="https://buy.stripe.com/eVqaEY8BGgN5ckgg3M5gc01" target="_blank" class="offer-cta">Démarrer l'Illimité →</a>
+      <a href="https://buy.stripe.com/eVqaEY8BGgN5ckgg3M5gc01" target="_blank" class="offer-cta">Démarrer le Focus Illimité →</a>
       <p class="offer-trust">Paiement sécurisé · Sans engagement · Annulable</p>
     </div>
 
@@ -1292,7 +1293,7 @@ body{background:#F7F5F2}
         <li>À la demande, aucun engagement</li>
       </ul>
       <a href="javascript:openBooking(30)" class="offer-cta">Réserver ma séance →</a>
-      <p class="offer-trust">Compatible avec l'Illimité · Cumulable</p>
+      <p class="offer-trust">Compatible avec le Focus Illimité · Cumulable</p>
     </div>
   </div>
 </section>
@@ -1342,10 +1343,10 @@ body{background:#F7F5F2}
     <div class="ask-gate-crown">
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 17h18l-1.5-9L15 12 12 5 9 12 4.5 8 3 17zm0 2h18v2H3v-2z"/></svg>
     </div>
-    <div class="ask-gate-tag">Réservé à l'Illimité</div>
+    <div class="ask-gate-tag">Réservé à le Focus Illimité</div>
     <h3 id="askGateTitle">Amélie IA, ton assistante médicale</h3>
     <p>Accède à une assistante IA avec <span class="ask-gate-stat">+ de 10 millions de connaissances médicales</span> à portée de question.</p>
-    <p class="muted">Avec l'Illimité, ton parcours devient ultra-personnalisé : Amélie repère tes faiblesses, adapte tes prochains dossiers et répond à toutes tes questions pour te faire progresser jour après jour.</p>
+    <p class="muted">Avec le Focus Illimité, ton parcours devient ultra-personnalisé : Amélie repère tes faiblesses, adapte tes prochains dossiers et répond à toutes tes questions pour te faire progresser jour après jour.</p>
 
     <div class="ask-gate-chat" aria-hidden="true">
       <div class="ask-gate-chat-head"><span class="ask-gate-chat-head-dot"></span>Amélie · en direct</div>
@@ -1364,12 +1365,12 @@ body{background:#F7F5F2}
       <div class="ask-gate-chat-fade"></div>
       <div class="ask-gate-chat-lock">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5zm-3 8V7a3 3 0 1 1 6 0v3H9z"/></svg>
-        Illimité
+        Focus Illimité
       </div>
     </div>
 
     <button type="button" class="ask-gate-cta" onclick="goPremium('ask-gate')">
-      Passer au plan Illimité
+      Passer au plan Focus Illimité
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </button>
     <button type="button" class="ask-gate-ghost" onclick="closeAskGate()">Plus tard</button>
@@ -1384,20 +1385,20 @@ body{background:#F7F5F2}
       <div class="pw-lock">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5-2.28 0-4.2 1.53-4.8 3.62l1.92.54C9.46 4.01 10.63 3 12 3c1.66 0 3 1.34 3 3v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm0 12H6V10h12v10zm-6-3c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"/></svg>
       </div>
-      <div class="pw-banner-title">Illimité</div>
+      <div class="pw-banner-title">Focus Illimité</div>
     </div>
     <!-- Card body -->
     <div class="pw-card">
       <h3 id="pwTitle">🔒 ACCÈS LIMITÉ 🔒</h3>
       <p class="pw-sub" id="pwSub">Débloque tout le contenu ECN et EDN pour toutes les années.</p>
-      <p class="pw-intro">Passe à la version Illimité pour accéder à :</p>
+      <p class="pw-intro">Passe à la version Focus Illimité pour accéder à :</p>
       <ul class="pw-feats">
         <li>Toutes les années (2016 — 2025)</li>
         <li>Toutes les corrections détaillées</li>
         <li>Suivi de progression complet</li>
         <li>Mode d'entraînement avancé</li>
       </ul>
-      <a href="https://buy.stripe.com/eVqaEY8BGgN5ckgg3M5gc01" target="_blank" class="pw-cta-gold">Devenir Illimité maintenant</a>
+      <a href="https://buy.stripe.com/eVqaEY8BGgN5ckgg3M5gc01" target="_blank" class="pw-cta-gold">Devenir Focus Illimité maintenant</a>
       <button type="button" class="pw-learn-more" onclick="tryFreeYear()">Continuer avec le dossier gratuit</button>
     </div>
   </div>
@@ -1790,16 +1791,16 @@ window.openPaywall = function(context) {
   var pwSub = document.getElementById('pwSub');
   if (context === 'post-signup') {
     pwTitle.innerHTML = '🎉 Bienvenue chez Ask Amélie';
-    pwSub.innerHTML = 'Ton compte est créé. Maintenant, pour <strong>vraiment t\'entraîner</strong> sur 850+ dossiers, débloquer les 10 ans d\'annales et <strong>gagner des places</strong> au classement, passe au plan Illimité.';
+    pwSub.innerHTML = 'Ton compte est créé. Maintenant, pour <strong>vraiment t\'entraîner</strong> sur 850+ dossiers, débloquer les 10 ans d\'annales et <strong>gagner des places</strong> au classement, passe au plan Focus Illimité.';
   } else if (context === 'explanation-locked') {
     pwTitle.innerHTML = '🔒 Correction complète réservée';
-    pwSub.innerHTML = 'L\'accès <strong>en entier</strong> aux corrections détaillées d\'Amélie est exclusif au <strong>plan Illimité</strong>. C\'est ce qui te permet de comprendre vraiment chaque question et de gagner des places au classement.';
+    pwSub.innerHTML = 'L\'accès <strong>en entier</strong> aux corrections détaillées d\'Amélie est exclusif au <strong>plan Focus Illimité</strong>. C\'est ce qui te permet de comprendre vraiment chaque question et de gagner des places au classement.';
   } else if (context === 'exam-locked' || context === 'qi-locked') {
     pwTitle.innerHTML = '🔒 Cette épreuve est réservée';
-    pwSub.innerHTML = 'On t\'a sélectionné un seul exercice gratuit. Pour t\'entraîner sur <strong>toutes les épreuves</strong> (DCP, QI, LCA) et progresser à fond, passe au plan Illimité.';
+    pwSub.innerHTML = 'On t\'a sélectionné un seul exercice gratuit. Pour t\'entraîner sur <strong>toutes les épreuves</strong> (DCP, QI, LCA) et progresser à fond, passe au plan Focus Illimité.';
   } else if (context === 'year') {
     pwTitle.innerHTML = '🔒 Cette année est réservée';
-    pwSub.innerHTML = 'Seule 2016 est ouverte en accès gratuit. Pour <strong>t\'entraîner sur les 10 ans d\'annales</strong> et gagner des places au classement, passe au plan Illimité.';
+    pwSub.innerHTML = 'Seule 2016 est ouverte en accès gratuit. Pour <strong>t\'entraîner sur les 10 ans d\'annales</strong> et gagner des places au classement, passe au plan Focus Illimité.';
   } else {
     pwTitle.innerHTML = '🔒 ACCÈS LIMITÉ 🔒';
     pwSub.innerHTML = 'Débloque tout le contenu ECN et EDN pour toutes les années.';
@@ -1885,7 +1886,7 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
       var _cs = _spq.get('cs') || '';
       var _toast = document.createElement('div');
       _toast.style.cssText = 'position:fixed;top:24px;left:50%;transform:translateX(-50%);z-index:99999;background:#0E5552;color:#fff;padding:16px 26px;border-radius:12px;font-size:14px;font-weight:600;box-shadow:0 10px 30px rgba(14,85,82,.3);display:flex;align-items:center;gap:10px';
-      _toast.innerHTML = '<span style="font-size:18px">✓</span><span>Paiement confirmé. Accès Illimité activé.</span>';
+      _toast.innerHTML = '<span style="font-size:18px">✓</span><span>Paiement confirmé. Accès Focus Illimité activé.</span>';
       document.body.appendChild(_toast);
       setTimeout(function(){ _toast.style.transition='opacity .4s'; _toast.style.opacity='0'; }, 4500);
       setTimeout(function(){ _toast.remove(); }, 5000);
@@ -2016,7 +2017,7 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
     wrap.id = 'exAuthedBadge';
     wrap.style.cssText = 'position:relative;margin-left:auto';
     var isPrem = window._IS_PREMIUM === true;
-    var statusText = isPrem ? 'Illimité actif · toutes les années débloquées' : 'Compte actif · version gratuite';
+    var statusText = isPrem ? 'Focus Illimité actif · toutes les années débloquées' : 'Compte actif · version gratuite';
     var statusDot = isPrem ? '#22C55E' : '#94A29C';
     wrap.innerHTML =
       '<button type="button" id="exAuthedBtn" aria-label="Mon compte" ' +
@@ -2151,7 +2152,7 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
     var initial = (firstName || '?').charAt(0).toUpperCase();
     var isPrem = window._IS_PREMIUM === true;
     var statusPill = isPrem
-      ? '<span class="wdash-pill premium">✓ Illimité actif · toutes les années débloquées</span>'
+      ? '<span class="wdash-pill premium">✓ Focus Illimité actif · toutes les années débloquées</span>'
       : '<span class="wdash-pill free">Compte gratuit · ECN 2016 ouvert</span>';
     var bodyEl = body();
     bodyEl.innerHTML =
@@ -2173,7 +2174,7 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
             '<button class="wdash-btn-primary" onclick="closeWelcomeAndOpenExams()">' +
               (isPrem ? 'Continuer mes annales →' : 'Continuer les annales ECN 2016 →') +
             '</button>' +
-            (isPrem ? '' : '<button class="wdash-btn-ghost" onclick="goPremium(\'welcome\')">Passer au plan Illimité — 29,90 € / mois</button>') +
+            (isPrem ? '' : '<button class="wdash-btn-ghost" onclick="goPremium(\'welcome\')">Passer au plan Focus Illimité — 29,90 € / mois</button>') +
           '</div>' +
         '</div>' +
       '</div>';
@@ -2275,7 +2276,7 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
     var isPrem = window._IS_PREMIUM === true;
     var sub = isPrem
       ? 'Toutes les années débloquées — choisis ton annale.'
-      : 'ECN 2016 est gratuite. Les autres années sont réservées à l\'Illimité.';
+      : 'ECN 2016 est gratuite. Les autres années sont réservées à l\'Focus Illimité.';
     body().innerHTML =
       '<div class="ex-inner">' +
         '<div class="wdash-wrap">' +
@@ -2377,20 +2378,20 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
     setTop(yd ? yd.label : 'Annales ' + st.year, st.exams.length + ' épreuves');
     var h = '<div class="ex-inner">' +
       buildYearSwitcherHTML(st.year) +
-      '<div class="ex-section-hdr"><div class="ex-badge '+fmt+'">'+fmt.toUpperCase()+' '+st.year+'</div><h2>Il te reste 1 exercice à tester</h2><p>On t\'a sélectionné le <strong>DCP 1</strong> — c\'est le format qui te montre le mieux ce qu\'Amélie peut t\'apporter.<br>Les autres épreuves sont réservées aux membres <strong>Illimité</strong>.</p></div><div class="dossier-list">';
+      '<div class="ex-section-hdr"><div class="ex-badge '+fmt+'">'+fmt.toUpperCase()+' '+st.year+'</div><h2>Il te reste 1 exercice à tester</h2><p>On t\'a sélectionné le <strong>DCP 1</strong> — c\'est le format qui te montre le mieux ce qu\'Amélie peut t\'apporter.<br>Les autres épreuves sont réservées aux membres <strong>Focus Illimité</strong>.</p></div><div class="dossier-list">';
     st.exams.forEach(function(e, i) {
       var t = getExamTypeInfo(e.exam_type);
       var isQI = /\bQI\b/i.test(e.exam_type || '') || /\bQI\b/i.test(e.name || '');
-      // Pour les non-Illimité : seul le 1er exercice (DCP 1) est libre, tout le reste est verrouillé
+      // Pour les non-Focus Illimité : seul le 1er exercice (DCP 1) est libre, tout le reste est verrouillé
       var locked = !window._IS_PREMIUM && i !== 0;
       var onClick = locked ? 'onclick="openPaywall(\'exam-locked\')"' : 'onclick="loadExamDossiers('+i+')"';
       var metaText;
       if (!locked) {
         metaText = e.exam_type + ' · Correction détaillée';
       } else if (isQI) {
-        metaText = '120 questions · Accès Illimité';
+        metaText = '120 questions · Accès Focus Illimité';
       } else {
-        metaText = e.exam_type + ' · Accès Illimité';
+        metaText = e.exam_type + ' · Accès Focus Illimité';
       }
       h += '<div class="dossier-card'+(locked?' locked':'')+'" '+onClick+'>' +
         '<div class="dossier-icon '+t.cls+'">'+t.icon+'</div>' +
@@ -2974,8 +2975,9 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
     var isLogin = (_fqgMode === 'login');
     // Modal unifié : même layout partout (tabs Connexion / Créer un compte en haut,
     // google button, form email/password). Pas de variante premium.
-    var title = isLogin ? 'Se connecter' : 'Créer un compte';
-    var btnLabel = isLogin ? 'Se connecter' : 'Créer mon compte';
+    var title = isLogin ? 'Se connecter' : 'Tu veux qu\'Amélie enregistre ton résultat ?';
+    var subtitle = isLogin ? '' : 'Retrouve tes résultats et continue sur d\'autres dossiers.';
+    var btnLabel = isLogin ? 'Se connecter' : 'Suivant →';
     var gate = document.getElementById('firstQGate');
     if (gate) { gate.remove(); }
     gate = document.createElement('div');
@@ -2988,6 +2990,7 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
           '<button type="button" class="fqg-tab' + (isLogin ? '' : ' active') + '" role="tab" onclick="fqgSetMode(\'signup\')">Créer un compte</button>' +
         '</div>' +
         '<div class="fqg-title">' + esc(title) + '</div>' +
+        (subtitle ? '<div class="fqg-sub">' + esc(subtitle) + '</div>' : '') +
         '<button type="button" class="fqg-google" onclick="fqgGoogleSignIn(' + (_fqgPremiumIntent ? 'true' : 'false') + ')">' +
           '<svg viewBox="0 0 48 48" style="width:20px;height:20px;flex-shrink:0"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>' +
           'Continuer avec Google' +
@@ -3083,7 +3086,7 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
       if (_fqgPremiumIntent) {
         setTimeout(function(){ goToStripeCheckout(); }, 600);
       } else {
-        // Funnel 2 temps : on a l'email/compte, on enchaîne sur le pitch Illimité
+        // Funnel 2 temps : on a l'email/compte, on enchaîne sur le pitch Focus Illimité
         setTimeout(function(){
           if (typeof openPaywall === 'function') openPaywall('post-signup');
         }, 700);
@@ -3202,7 +3205,7 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
       h += '<div class="conv-block">' +
         '<div class="conv-headline">Tu viens de voir la qualité sur <em>1 dossier</em>.<br>Débloque les <em>9 autres années</em>.</div>' +
         '<div class="conv-sub">850+ dossiers progressifs corrigés par des médecins spécialistes. Ton suivi personnel est maintenant sauvegardé.</div>' +
-        '<button type="button" class="conv-btn-primary conv-btn-stripe" onclick="goPremium(\'score\')" style="border:none;font-family:inherit">Passer au plan Illimité — 29,90 € / mois →</button>' +
+        '<button type="button" class="conv-btn-primary conv-btn-stripe" onclick="goPremium(\'score\')" style="border:none;font-family:inherit">Passer au plan Focus Illimité — 29,90 € / mois →</button>' +
         '<div class="conv-trust">Sans engagement · Remboursé 14 jours · Moins d\'1 € / jour</div>' +
         '<button class="conv-later" onclick="exGoBack()">Plus tard · Retour aux dossiers</button>' +
       '</div>';
