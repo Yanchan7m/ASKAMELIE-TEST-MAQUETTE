@@ -714,7 +714,7 @@ button{font-family:inherit}
 .q-voir-plus-wrap{display:flex;justify-content:flex-end;margin-top:6px;position:relative;z-index:3}
 .q-voir-plus{display:inline-flex;align-items:center;gap:5px;padding:6px 4px;background:none;border:none;color:#00B85E;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:color .15s;text-decoration:underline;text-underline-offset:2px;position:relative;z-index:3}
 .q-voir-plus:hover{color:#00A050}
-.q-voir-plus::before{content:'♛';font-size:13px;text-decoration:none;display:inline-block;line-height:1}
+.q-voir-plus::before{content:'';width:14px;height:14px;display:inline-block;background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22%2300B85E%22%3E%3Cpath%20d%3D%22M3%2017h18l-1.5-9L15%2012%2012%205%209%2012%204.5%208%203%2017zm0%202h18v2H3v-2z%22%2F%3E%3C%2Fsvg%3E");background-repeat:no-repeat;background-size:contain;background-position:center;flex-shrink:0}
 .q-opt-text{color:#19342D;font-size:15px;font-weight:400;padding-top:0}
 
 /* Letter badge : circle, not rounded square */
@@ -1344,7 +1344,7 @@ body{background:#F7F5F2}
   <div class="ask-gate-box" role="dialog" aria-labelledby="askGateTitle">
     <button class="ask-gate-close" onclick="closeAskGate()" aria-label="Fermer">×</button>
     <div class="ask-gate-crown">
-      <svg viewBox="0 0 640 512" fill="currentColor" aria-hidden="true"><path d="M528 448H112c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h416c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32zm64-320c-26.5 0-48 21.5-48 48 0 7.1 1.6 13.7 4.4 19.8L476 239.2c-15.4 9.2-35.3 4-44.2-11.6L350.3 85C361 76.2 368 63 368 48c0-26.5-21.5-48-48-48s-48 21.5-48 48c0 15 7 28.2 17.7 37l-81.5 142.6c-8.9 15.6-28.9 20.8-44.2 11.6L96 195.8c2.8-6 4.4-12.7 4.4-19.8 0-26.5-21.5-48-48-48S4 149.5 4 176s21.5 48 48 48c.2 0 .5-.1.7-.1L112 416h416l59.3-192.1c.2 0 .4.1.7.1 26.5 0 48-21.5 48-48s-21.5-48-48-48z"/></svg>
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 17h18l-1.5-9L15 12 12 5 9 12 4.5 8 3 17zm0 2h18v2H3v-2z"/></svg>
     </div>
     <div class="ask-gate-tag">Réservé au Focus Illimité</div>
     <h3 id="askGateTitle">Amélie IA, <span class="ask-gate-title-accent">ton assistante médicale</span></h3>
@@ -1383,7 +1383,7 @@ body{background:#F7F5F2}
   <div class="paywall-box">
     <button class="pw-close" onclick="closePaywall()" aria-label="Fermer">×</button>
     <div class="pw-lock">
-      <svg viewBox="0 0 640 512" fill="currentColor" aria-hidden="true"><path d="M528 448H112c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h416c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32zm64-320c-26.5 0-48 21.5-48 48 0 7.1 1.6 13.7 4.4 19.8L476 239.2c-15.4 9.2-35.3 4-44.2-11.6L350.3 85C361 76.2 368 63 368 48c0-26.5-21.5-48-48-48s-48 21.5-48 48c0 15 7 28.2 17.7 37l-81.5 142.6c-8.9 15.6-28.9 20.8-44.2 11.6L96 195.8c2.8-6 4.4-12.7 4.4-19.8 0-26.5-21.5-48-48-48S4 149.5 4 176s21.5 48 48 48c.2 0 .5-.1.7-.1L112 416h416l59.3-192.1c.2 0 .4.1.7.1 26.5 0 48-21.5 48-48s-21.5-48-48-48z"/></svg>
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 17h18l-1.5-9L15 12 12 5 9 12 4.5 8 3 17zm0 2h18v2H3v-2z"/></svg>
     </div>
     <div class="pw-card">
       <h3 id="pwTitle">Accès limité</h3>
@@ -2511,7 +2511,7 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
         var badge = status ? '<span class="dossier-status ' + status.cls + '">' + status.label + '</span>' : '';
         var locked = anonLocked && String(freeDid) !== String(d.id);
         var lockCls = locked ? ' locked' : '';
-        var lockBadge = locked ? '<span style="font-size:15px;color:#00B85E;line-height:1">♛</span>' : '';
+        var lockBadge = locked ? '<svg viewBox="0 0 24 24" fill="#00B85E" aria-hidden="true" style="width:16px;height:16px;flex-shrink:0"><path d="M3 17h18l-1.5-9L15 12 12 5 9 12 4.5 8 3 17zm0 2h18v2H3v-2z"/></svg>' : '';
         h += '<div class="dossier-card' + (status ? ' done-' + status.cls : '') + lockCls + '" onclick="startQuiz('+i+')" style="' + (locked ? 'opacity:.55;' : '') + '">' +
           '<div class="dossier-icon dcp" style="font-size:11px">'+(i+1)+'</div>' +
           '<div style="flex:1;min-width:0"><div class="dossier-name">'+esc(d.name)+'</div>' +
