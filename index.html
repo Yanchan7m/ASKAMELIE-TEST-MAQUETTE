@@ -312,14 +312,24 @@ body.authed .already-subscribed{display:none}
 @media(max-width:600px){.premium-cta{padding:40px 24px;border-radius:14px;margin:40px 18px 0}}
 
 /* ── Footer ── */
-.foot{max-width:1200px;margin:56px auto 0;padding:48px 24px 36px;border-top:1px solid var(--border);display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
-.foot .brand-foot{font-family:var(--font-serif);font-size:15px;color:var(--fg-soft);font-weight:400}
-.foot .brand-foot strong{color:var(--fg);font-weight:700}
-.foot .foot-contact{font-size:14px;color:var(--fg-soft);max-width:540px;line-height:1.6}
-.foot .foot-contact a{color:var(--primary);font-weight:600;text-decoration:underline;text-decoration-color:rgba(14,85,82,.35);text-underline-offset:3px}
-.foot .foot-contact a:hover{text-decoration-color:var(--primary)}
-.foot .legal{font-size:12px;color:var(--fg-soft);display:flex;gap:20px;flex-wrap:wrap;justify-content:center}
-.foot .legal a{color:var(--fg-soft);text-decoration:none}
+.foot{max-width:1200px;margin:56px auto 0;padding:48px 24px 24px;border-top:1px solid var(--border)}
+.foot-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:40px;margin-bottom:36px}
+@media(max-width:900px){.foot-top{grid-template-columns:1fr 1fr;gap:28px}}
+@media(max-width:540px){.foot-top{grid-template-columns:1fr;gap:24px}}
+.foot-brand-col{max-width:280px}
+.foot-brand-col .brand-foot{font-family:var(--font-serif);font-size:18px;color:var(--fg);font-weight:700;letter-spacing:-.01em;margin-bottom:10px;display:flex;align-items:center;gap:7px}
+.foot-brand-col .brand-foot .dot{width:8px;height:8px;border-radius:50%;background:#00B85E;display:inline-block}
+.foot-brand-col p{font-size:13.5px;color:var(--fg-soft);line-height:1.55;margin:0}
+.foot-col h4{font-size:11.5px;font-weight:700;color:var(--fg);text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px}
+.foot-col ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px}
+.foot-col ul a{font-size:13.5px;color:var(--fg-soft);text-decoration:none;transition:color .15s}
+.foot-col ul a:hover{color:var(--primary)}
+.foot-trust{padding-top:24px;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:6px;font-size:12px;color:var(--fg-soft);line-height:1.6}
+.foot-trust-row{display:flex;align-items:center;gap:8px}
+.foot-trust-row svg{width:14px;height:14px;color:#00B85E;flex-shrink:0}
+.foot-bottom{margin-top:14px;padding-top:14px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:12px;color:var(--fg-soft)}
+.foot-bottom a{color:var(--primary);text-decoration:underline;text-underline-offset:2px}
+.foot-bottom a:hover{color:var(--primary-darkest,#08403E)}
 .foot .legal a:hover{color:var(--primary)}
 
 /* ── Dashboard preview section ── */
@@ -782,15 +792,53 @@ body.authed .already-subscribed{display:none}
 
 <!-- Footer -->
 <footer class="foot">
-  <div class="brand-foot">Ask<strong>amélie</strong> · Faite par des médecins, pour les externes</div>
-  <div class="foot-contact">
-    Une question, un bug, un retour ? Écris-nous à <a href="cdn-cgi/l/email-protection.html"><span class="__cf_email__" data-cfemail="06656968726765724667756d676b636a6f632865696b">[email&#160;protected]</span></a>
+  <div class="foot-top">
+    <div class="foot-brand-col">
+      <div class="brand-foot"><span class="dot"></span>Ask Amélie</div>
+      <p>Ask Amélie EDN : l'entraînement aux EDN corrigé par des médecins spécialistes.</p>
+    </div>
+    <div class="foot-col">
+      <h4>Produit</h4>
+      <ul>
+        <li><a href="ecn-focus.html?year=2016&auto=1">Démo</a></li>
+        <li><a href="#pricing">Tarifs</a></li>
+        <li><a href="#testimonials">Témoignages</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>Ressources</h4>
+      <ul>
+        <li><a href="#">Centre d'aide</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Guides pratiques</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>Entreprise</h4>
+      <ul>
+        <li><a href="#">À propos</a></li>
+        <li><a href="mailto:contact@askamelie.com">Contact</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>Légal</h4>
+      <ul>
+        <li><a href="mentions-legales.html">Mentions légales</a></li>
+        <li><a href="privacy.html">Confidentialité</a></li>
+        <li><a href="terms.html">CGV</a></li>
+        <li><a href="#">Cookies</a></li>
+      </ul>
+    </div>
   </div>
-  <div class="legal">
-    <a href="privacy.html">Confidentialité</a>
-    <a href="terms.html">CGU</a>
-    <a href="mentions-legales.html">Mentions légales</a>
-    <a href="cdn-cgi/l/email-protection.html">Contact</a>
+  <div class="foot-trust">
+    <div class="foot-trust-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Corrections médicales · Contenu corrigé par des médecins spécialistes en exercice</div>
+    <div class="foot-trust-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Hébergement conforme RGPD : données en France</div>
+    <div class="foot-trust-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Édité par Askamelie · Paris, France</div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 Ask Amélie</span>
+    <span>Signaler une erreur : <a href="mailto:contact@askamelie.com">contact@askamelie.com</a></span>
   </div>
 </footer>
 
