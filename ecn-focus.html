@@ -3306,7 +3306,7 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
       var msgIdx = 0;
       var thinkingInterval = null;
       var thinkStart = null;
-      var MIN_THINK_MS = 3000; // Durée min pour laisser l'animation jouer
+      var MIN_THINK_MS = 4000; // Durée fixe de l'animation (hard cap)
 
       function startThinking() {
         if (thinkingInterval) return; // déjà démarré
