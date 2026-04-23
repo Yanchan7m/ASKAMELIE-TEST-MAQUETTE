@@ -21,7 +21,10 @@ Document complet de la refonte 22-23 avril 2026. À transmettre au dev prod pour
 10. [Commande perl reproductible](#perl)
 11. [Vérifications post-migration](#verif)
 12. [Itération 23 avril PM — beige → blanc + logo sans-serif](#blanc23)
-13. [Trust block "Amélie conçue pour ne pas se tromper" × 7 emplacements](#trust)
+13. [Trust block "Amélie conçue pour ne pas se tromper" × 8 emplacements (refonte design)](#trust)
+14. [Section science "Pourquoi t'entraîner bat toujours le fait de relire"](#science)
+15. [Témoignages : carrousel auto-scroll × 10 avis (Promo 2025 + D4)](#testis)
+16. [Fin de quiz : scroll-to-top effectif après injection du bilan](#scrolltop)
 
 ---
 
@@ -495,6 +498,8 @@ perl -pi -e "
 <a id="trust"></a>
 ## 13. 🛡️ Trust block "Amélie conçue pour ne pas se tromper"
 
+> **⚠️ Update 23/04 PM** — cette section documentait la v1 (HTML `<ul><li>` avec bullet bold mid-phrase). **La v2 est désormais en place** : structure "stat headline + description" avec icônes thématiques différentes par item, badge gradient vert dans l'en-tête, footer avec icône circle-check. Voir détails sous-section **13.7** en bas de section. Ajout d'un 8ᵉ emplacement (fin de quiz anon `.report-unlock`). Ask-gate modal conserve la v1 compact (classes renommées `.trust-amelie-compact-*`).
+
 Bloc de réassurance ajouté avant **chaque CTA vers le paiement** pour renforcer la valeur perçue. Wording choisi après arbitrage **défendable DGCCRF / art. L.121-1** (pratiques commerciales trompeuses) : on décrit le **process de validation** et l'**intention** du système, pas une infaillibilité absolue.
 
 ### 13.1 Wording exact (copy validée)
@@ -589,6 +594,223 @@ Le "a été conçue pour ne pas se tromper" décrit une **intention de design**,
 2. Le `<svg>` d'icône bouclier du `.trust-amelie-head` doit avoir `stroke-width="2.2"` (différent du 3 des checks bullets).
 3. Variant dark du `.premium-cta` : vérifier le contraste du foot italique (couleur `rgba(255,255,255,.78)`) AA.
 4. Dans `ecn-focus.html`, le bloc du conv-block passe par la génération JS — tester manuellement en finissant un dossier.
+
+---
+
+### 13.7 Design v2 (en place — 7/8 emplacements)
+
+**Changement structurel** : chaque item est passé d'une `<li>` avec check-icon + phrase avec bold mid-sentence à un bloc **icône thématique + stat headline + description**. Badge gradient vert dans le head, footer avec icône circle-check.
+
+**HTML v2** :
+
+```html
+<div class="trust-amelie">
+  <div class="trust-amelie-head">
+    <div class="trust-amelie-badge">
+      <svg><!-- bouclier --></svg>
+    </div>
+    <div class="trust-amelie-title">Amélie a été conçue pour <strong>ne pas se tromper</strong>.</div>
+  </div>
+  <div class="trust-amelie-grid">
+    <div class="trust-amelie-item">
+      <div class="trust-amelie-item-icon"><svg><!-- équipe --></svg></div>
+      <div class="trust-amelie-item-body">
+        <div class="trust-amelie-item-stat">800+ médecins et professeurs spécialistes</div>
+        <div class="trust-amelie-item-desc">Tous ont validé le raisonnement clinique d'Amélie.</div>
+      </div>
+    </div>
+    <div class="trust-amelie-item">
+      <div class="trust-amelie-item-icon"><svg><!-- double-check --></svg></div>
+      <div class="trust-amelie-item-body">
+        <div class="trust-amelie-item-stat">Double vérification systématique</div>
+        <div class="trust-amelie-item-desc">Chaque correction est croisée avec les référentiels officiels : CUESPB, CNEMV, collèges de spécialité.</div>
+      </div>
+    </div>
+    <div class="trust-amelie-item">
+      <div class="trust-amelie-item-icon"><svg><!-- livre --></svg></div>
+      <div class="trust-amelie-item-body">
+        <div class="trust-amelie-item-stat">10 ans d'annales EDN/ECN</div>
+        <div class="trust-amelie-item-desc">Toutes corrigées manuellement par des spécialistes avant d'entraîner Amélie.</div>
+      </div>
+    </div>
+  </div>
+  <div class="trust-amelie-foot">
+    <svg><!-- circle-check --></svg>
+    <span>Une fiabilité clinique que tu ne trouveras nulle part ailleurs — tu peux t'appuyer dessus en toute confiance.</span>
+  </div>
+</div>
+```
+
+**CSS v2 (résumé)** :
+
+```css
+.trust-amelie{max-width:640px;padding:28px 32px;background:#fff;border:1px solid #DDD3C3;border-radius:16px;box-shadow:var(--shadow-sm)}
+.trust-amelie-head{display:flex;align-items:center;gap:14px;padding-bottom:20px;margin-bottom:20px;border-bottom:1px solid #EEE7DC}
+.trust-amelie-badge{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#0F6B5B,#1B4D3E);color:#fff;box-shadow:0 4px 12px rgba(15,107,91,.28)}
+.trust-amelie-title{font-family:'Libre Baskerville',serif;font-size:17px;font-weight:700;color:var(--fg)}
+.trust-amelie-grid{display:flex;flex-direction:column;gap:18px}
+.trust-amelie-item{display:flex;gap:14px;align-items:flex-start}
+.trust-amelie-item-icon{width:36px;height:36px;border-radius:10px;background:var(--sage-soft);color:var(--primary-darkest)}
+.trust-amelie-item-stat{font-size:14.5px;font-weight:700;color:var(--primary-darkest)}
+.trust-amelie-item-desc{font-size:13.5px;color:var(--fg-soft);line-height:1.5}
+.trust-amelie-foot{margin-top:22px;padding-top:18px;border-top:1px solid #EEE7DC;display:flex;gap:10px;font-size:13.5px;font-weight:500}
+/* Variant dark pour .premium-cta : fond rgba(255,255,255,.06), badge gradient salmon, icônes en accent */
+```
+
+**SVG icônes (à recopier exactement)** :
+- **Badge head** (bouclier + check) : `<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/>`
+- **Item 1** (équipe) : `<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>`
+- **Item 2** (double-check) : `<polyline points="20 6 9 17 4 12"/><polyline points="14 17 18 21 22 17"/>`
+- **Item 3** (livre ouvert) : `<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>`
+- **Foot** (circle-check) : `<circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/>`
+
+**Emplacements (8 au total)** :
+
+| # | Fichier | Contexte | Design |
+|---|---|---|---|
+| 1 | `index.html` | Hero homepage | v2 |
+| 2 | `index.html` | Pricing card (avant bouton "Démarrer Focus Illimité") | v2 |
+| 3 | `index.html` | `.premium-cta` footer (variant dark) | v2 |
+| 4 | `ecn-focus.html` | Paywall modal `#paywall` | v2 |
+| 5 | `ecn-focus.html` | **Ask-gate modal `#askGate`** | **v1 compact** — classes `.trust-amelie-compact-*` |
+| 6 | `ecn-focus.html` | Offer card "Focus Illimité" (section `.offers`) | v2 |
+| 7 | `ecn-focus.html` | Conv-block fin de quiz authed non-premium (JS `renderScore`) | v2 |
+| 8 | `ecn-focus.html` | **NOUVEAU** — `.report-unlock` fin de quiz anon (JS) | v2 |
+
+**Raisons de garder v1 compact sur ask-gate** : popup "Demander à Amélie" déjà dense (tag + titre + chat preview), le v2 y serait trop volumineux. Classes renommées `.trust-amelie-compact*` + CSS dédié préservé en parallèle dans `ecn-focus.html`.
+
+---
+
+<a id="science"></a>
+## 14. 🧠 Section science — "Pourquoi t'entraîner bat relire"
+
+Nouvelle section `index.html` entre `.steps-section` et `.years-section`. Argumente la méthodo par l'**effet de test** (testing effect) documenté en neurosciences cognitives (Roediger & Karpicke, Dunlosky). Appuie la valeur perçue : s'entraîner sur QCM/dossiers > relire son cours.
+
+**HTML** :
+
+```html
+<section class="science-section">
+  <div class="science-inner">
+    <h2>Pourquoi <span class="underline">t'entraîner</span> bat toujours le fait de relire ton cours.</h2>
+    <div class="science-body">
+      <p>Les neurosciences et la psychologie de l'apprentissage parlent de l'<strong>« effet de test »</strong> (<em>testing effect</em>) : rappeler régulièrement une information — par exemple via un quiz ou un QCM — <strong>renforce sa consolidation dans la mémoire à long terme</strong>.</p>
+      <p>Les synthèses et méta‑analyses sont unanimes : les étudiants qui s'entraînent avec des mini‑quiz / QCM obtiennent <strong>systématiquement de meilleures performances</strong> que ceux qui se contentent de relire leur cours.</p>
+      <div class="science-quote">
+        <p>C'est exactement ce que fait Amélie : elle te met face à de vrais dossiers EDN/ECN, te corrige avec le raisonnement d'un spécialiste, et garde la trace de <strong>tes</strong> faiblesses pour te re-tester au bon moment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+```
+
+**Notes** :
+- Pas de badge eyebrow "Basé sur les neurosciences" (retiré dans `b99c83a` — trop lourd, la section parle déjà du sujet).
+- Le mot `t'entraîner` est surligné (`<span class="underline">`) avec un filet salmon semi-transparent (40% hauteur, `rgba(232,156,110,.38)`).
+- La citation finale pointe vers le design témoignage du trust-block (citation en italique dans un encart vert sauge avec filet de gauche).
+
+**CSS clé** :
+
+```css
+.science-section{max-width:1100px;margin:56px auto 0;padding:0 24px}
+.science-inner{background:#fff;border:1px solid #DDD3C3;border-radius:18px;padding:44px 48px;box-shadow:var(--shadow-sm)}
+.science-section h2{font-family:var(--font-serif);font-size:clamp(24px,3.4vw,34px)}
+.science-section h2 .underline::after{content:'';position:absolute;inset:auto 0 4% 0;height:40%;background:rgba(232,156,110,.38);z-index:-1}
+.science-quote{padding:18px 22px;background:var(--sage-soft);border-left:3px solid var(--primary);border-radius:10px}
+.science-quote p{font-style:italic;line-height:1.6}
+```
+
+---
+
+<a id="testis"></a>
+## 15. ⭐ Témoignages — carrousel auto-scroll × 10 avis
+
+Section testimonials passée d'un **grid statique 4 colonnes** à un **marquee horizontal auto-scroll** (pause au survol, respect de `prefers-reduced-motion`) avec 10 témoignages qui défilent en continu. Cards dupliquées en JS pour un loop seamless.
+
+**Composition 10 témoignages** :
+
+| # | Prénom | Statut | Ville | Photo | Angle spécifique |
+|---|---|---|---|---|---|
+| 1 | Léa D. | D4 · Top 500 | Paris Descartes | `img/students/student_lea.png` | Raisonnement vs PDFs illisibles |
+| 2 | Antoine M. | **Promo 2025** · Top 800 | Bordeaux | `pravatar?img=12` | Qualité du corrigé |
+| 3 | Sofia R. | **Promo 2025** · Dermatologie | Toulouse | `pravatar?img=47` | Bilans personnalisés |
+| 4 | Thomas L. | D4 · Top 400 | Lyon Est | `pravatar?img=33` | Onglet "Demander à Amélie" |
+| 5 | Clara B. | **Promo 2025** · Radiologie | Strasbourg | `pravatar?img=45` | IRM/ECG analysés directement |
+| 6 | Hugo V. | D4 | Lille | `pravatar?img=14` | LCA : 7→16 en 3 mois |
+| 7 | Mathilde G. | D4 | Rennes | `pravatar?img=23` | Redoublement · méthode vs contenu |
+| 8 | **Julie M.** | D4 | Angers | **Sans photo** · initiales JM | **Répétition des tests → mémorisation** (écho à la section 14) |
+| 9 | Pauline D. | **Promo 2025** | Nantes | `pravatar?img=44` | Gain de temps 12h→7h |
+| 10 | Lucas T. | D4 | Montpellier | `pravatar?img=68` | Personnalisation pharmaco |
+
+**Mix** : 4 alumni `Promo 2025` (ont passé l'EDN l'an dernier = track-record prouvé) + 6 D4 actuels (in progress). Genre équilibré : 5 F, 5 M.
+
+**Avatar sans photo (Julie M.)** :
+
+```html
+<div class="testi-avatar-initials" aria-label="Julie M.">JM</div>
+```
+
+```css
+.testi-avatar-initials{width:40px;height:40px;border-radius:50%;background:var(--sage-soft);color:var(--primary-darkest);display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);font-size:14px;font-weight:700;border:1px solid var(--sage)}
+```
+
+**Structure marquee** :
+
+```html
+<div class="testi-marquee">
+  <div class="testi-track" id="testiTrack">
+    <!-- 10 <div class="testi-card"> -->
+  </div>
+</div>
+<script>
+  (function(){
+    var track = document.getElementById('testiTrack');
+    if (track) track.insertAdjacentHTML('beforeend', track.innerHTML);
+  })();
+</script>
+```
+
+**CSS marquee** :
+
+```css
+.testi-marquee{overflow:hidden;position:relative;margin:0 -24px;padding:4px 0;-webkit-mask-image:linear-gradient(to right,transparent 0,#000 6%,#000 94%,transparent 100%);mask-image:linear-gradient(to right,transparent 0,#000 6%,#000 94%,transparent 100%)}
+.testi-track{display:flex;gap:18px;padding:4px 24px;width:max-content;animation:testiScroll 90s linear infinite}
+.testi-marquee:hover .testi-track,.testi-marquee:focus-within .testi-track{animation-play-state:paused}
+.testi-track .testi-card{flex:0 0 340px;width:340px}
+@keyframes testiScroll{from{transform:translateX(0)}to{transform:translateX(calc(-50% - 9px))}}
+@media(prefers-reduced-motion:reduce){.testi-track{animation:none}}
+```
+
+**Note math** : `calc(-50% - 9px)` compense la moitié du gap inter-set (18px / 2) pour un loop seamless quand le track est dupliqué.
+
+---
+
+<a id="scrolltop"></a>
+## 16. ⬆️ Fin de quiz — scroll-to-top effectif après injection
+
+**Bug fixé** : à la fin d'un quiz, l'utilisateur atterrissait au milieu de l'animation "Amélie réfléchit" au lieu du haut du bilan (card `Bravo · 40%`). Le `scrollTo({top:0})` dans `renderScore()` s'exécutait **avant** `body().innerHTML = h`, donc avant que le DOM n'existe → sans effet visuel.
+
+**Fix** : ajouter un second scroll-to-top **après** l'injection HTML, redéclenché dans `requestAnimationFrame` pour couvrir les re-layouts asynchrones (sticky CTA append au body, paint du dashboard en `setTimeout(150ms)`, etc.).
+
+**Emplacement** : dans `renderScore()`, juste après le bloc sticky CTA (fin du switch `if (!isPremium)`) :
+
+```js
+// Scroll-to-top après rendu : garantit que l'utilisateur atterrit en
+// haut du bilan (card "Bravo" + score) et pas au milieu de l'animation
+// "Amélie réfléchit".
+try {
+  var ovTop = document.getElementById('examOverlay');
+  if (ovTop) ovTop.scrollTo({ top: 0, behavior: 'auto' });
+  window.scrollTo({ top: 0, behavior: 'auto' });
+  requestAnimationFrame(function(){
+    if (ovTop) ovTop.scrollTo({ top: 0, behavior: 'auto' });
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  });
+} catch(e){}
+```
+
+Le scroll initial en haut de `renderScore()` (avant le build de `h`) est **conservé comme fallback**, mais c'est le scroll post-render qui fait le boulot.
+
+**Test rapide** : ouvrir `/ecn-focus.html?endquiz=1` → doit atterrir sur "ECN 2016 · Dossier démo cardio · Bravo · 40%" sans scroll manuel.
 
 ---
 
