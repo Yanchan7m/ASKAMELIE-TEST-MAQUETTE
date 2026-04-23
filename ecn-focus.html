@@ -894,10 +894,10 @@ button{font-family:inherit}
 /* Score / final screen : partner-style wrap */
 .score-card-wrap{max-width:560px;margin:0 auto;padding:48px 24px 120px}
 /* Unified score card : fusion de score-bravo + score-card */
-.score-unified{background:linear-gradient(180deg,#FAF8F3 0%,#FAF8F3 100%);border:1px solid #DDD3C3;border-radius:20px;padding:28px 28px 24px;position:relative;overflow:hidden;text-align:center}
-.score-unified.good{background:linear-gradient(180deg,#DCE8DB 0%,#FAF8F3 100%);border-color:#B5CDB4}
-.score-unified.mid{background:linear-gradient(180deg,#EEE7DC 0%,#FAF8F3 100%);border-color:#DDD3C3}
-.score-unified.low{background:linear-gradient(180deg,#F5E8E6 0%,#FAF8F3 100%);border-color:#E5C5C0}
+.score-unified{background:#fff;border:1px solid #DDD3C3;border-radius:20px;padding:28px 28px 24px;position:relative;overflow:hidden;text-align:center;box-shadow:0 8px 28px rgba(15,107,91,.08)}
+.score-unified.good{border-color:#B5CDB4}
+.score-unified.mid{border-color:#DDD3C3}
+.score-unified.low{border-color:#E5C5C0}
 .score-unified::before{content:'';position:absolute;top:-30%;right:-15%;width:220px;height:220px;background:radial-gradient(circle,rgba(15,107,91,.08) 0%,transparent 60%);pointer-events:none}
 .score-unified .score-hdr{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:10px;position:relative}
 .score-unified .score-bravo-title{font-family:'Libre Baskerville',Georgia,serif;font-size:clamp(24px,3.8vw,28px);font-weight:700;color:#163A3A;letter-spacing:-.02em;line-height:1.15;margin-bottom:8px;position:relative}
@@ -2341,6 +2341,8 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
 
   function closeExam() {
     stopTimer();
+    var _stk = document.getElementById('scoreStickyCta');
+    if (_stk && _stk.parentElement) _stk.parentElement.removeChild(_stk);
     // In auto-launched mode : back from a year always lands on the year
     // list (welcome dashboard for authed users, or a light year grid view
     // for anonymous users). From the year list, a second back hits home.
@@ -2366,6 +2368,10 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
 
   window.exGoBack = function() {
     stopTimer();
+    // Cleanup sticky CTA (append to body in renderScore, doit être retiré
+    // quand on quitte l'écran de fin de quiz)
+    var _stk = document.getElementById('scoreStickyCta');
+    if (_stk && _stk.parentElement) _stk.parentElement.removeChild(_stk);
     if (st.history.length === 0 || st.history[st.history.length-1] === 'landing') { closeExam(); return; }
     var prev = st.history.pop();
     if (prev === 'dossiers') renderDossierList();
