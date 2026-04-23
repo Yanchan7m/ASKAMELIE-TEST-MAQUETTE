@@ -3376,6 +3376,8 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
       }
 
       function _runBilanApi() {
+        var apiResponse = null;
+        var rendered = false;
         var apiPromise = fetch('/api/quiz-bilan', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -3389,11 +3391,14 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
             themes: themes,
           }),
         }).then(function(r) { return r.json(); }).catch(function() { return null; });
+        apiPromise.then(function(d){ apiResponse = d; });
 
-        apiPromise.then(function(d) {
-          var apiElapsed = Date.now() - (thinkStart || Date.now());
-          var wait = Math.max(0, MIN_THINK_MS - apiElapsed);
+        // Hard cap : affiche le bilan après EXACTEMENT 3s max, avec l'API
+        // si dispo, sinon avec le fallback local. L'animation "Amélie
+        // réfléchit" ne tourne jamais plus de 3 secondes.
         setTimeout(function() {
+          if (rendered) return; rendered = true;
+          var d = apiResponse;
           clearInterval(thinkingInterval);
           var slot = document.getElementById('anonReportSlot');
           if (!slot) return;
@@ -3434,8 +3439,7 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
               '<div class="report-unlock-hint">Ton internat se joue maintenant · sans engagement</div>' +
             '</div>' +
           '</div>';
-          }, wait);
-        });
+        }, MIN_THINK_MS);
       }
     }
   }
