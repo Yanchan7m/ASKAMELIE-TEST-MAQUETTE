@@ -20,6 +20,7 @@ Document complet de la refonte 22-23 avril 2026. À transmettre au dev prod pour
 9. [Bugs corrigés](#bugs)
 10. [Commande perl reproductible](#perl)
 11. [Vérifications post-migration](#verif)
+12. [Itération 23 avril PM — beige → blanc + logo sans-serif](#blanc23)
 
 ---
 
@@ -153,18 +154,30 @@ Partout ailleurs : couronne.
 ```css
 .brand{
   display:inline-flex; align-items:baseline;
-  font-family:'Libre Baskerville',Georgia,serif;
-  font-size:22px; font-weight:800; letter-spacing:-.02em;
+  font-family:'Work Sans','Inter',-apple-system,sans-serif;
+  font-size:17px; font-weight:600; letter-spacing:-.02em;
   text-decoration:none; line-height:1;
 }
 .brand .mark{display:none}
-.brand .title{color:#0F6B5B}
-.brand .title em{font-style:normal;color:#E89C6E;font-weight:700}
+.brand .title{
+  font-family:'Work Sans','Inter',-apple-system,sans-serif;
+  font-size:17px; font-weight:600; letter-spacing:-.02em;
+  color:#0F6B5B;
+}
+.brand .title em{font-style:normal;color:#E89C6E;font-weight:600}
 ```
 
-**Wordmark 2 tons** (comme sur promo.askamelie.com) :
-- `Ask` vert profond `#0F6B5B`
-- `amelie` salmon `#E89C6E`
+**Wordmark 2 tons sans-serif** (comme sur promo.askamelie.com) :
+- `Ask` vert profond `#0F6B5B`, Work Sans 600
+- `amelie` salmon `#E89C6E`, Work Sans 600 (pas d'italique — `font-style:normal` sur le `<em>`)
+- Texte sans accent : `amelie`, pas `amélie`
+
+**Font loader** (Google Fonts, dans le `<head>`) :
+```html
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+```
+
+**Historique** : la version antérieure utilisait Libre Baskerville serif 22px/800. Passé en sans-serif Work Sans 600/17px le 23 avril 2026 pour matcher le wordmark de promo.askamelie.com.
 
 ---
 
@@ -180,16 +193,19 @@ Partout ailleurs : couronne.
 - Sub : "Toutes les annales EDN/ECN depuis 2016 en conditions réelles. Raisonnement clinique détaillé par des médecins spécialistes : pas juste la bonne lettre."
 - CTA vert teal : "Commencer le dossier gratuit →"
 
-### Stats row dans card beige
-- `background:#EEE7DC; border:1px solid #DDD3C3; border-radius:14px`
+### Stats row dans card blanche
+- `.hero-stats{background:#fff; border:1px solid #DDD3C3; border-radius:14px}`
 - 4 chiffres : 10 années · 850+ dossiers · 13 spécialités · 100% corrigé médecins
+- ⚠️ Anciennement beige `#EEE7DC`, passé en blanc le 23/04 (cf. section 12).
 
 ### Social proof
 - Texte : "Rejoint par **+2034 D4** cette année · ⭐ 4.9/5 sur 400+ avis"
 - 4 avatars via `pravatar.cc/80?img=5/15/23/33` (URLs stables)
 
-### Section "Comment ça marche" (fond beige full-width)
-Sous-titre : "En 3 étapes, découvre ton niveau réel…"
+### Section "Comment ça marche" (fond blanc full-width)
+- `.steps-section{background:#fff; border-top:1px solid #DDD3C3; border-bottom:1px solid #DDD3C3}`
+- Sous-titre : "En 3 étapes, découvre ton niveau réel…"
+- ⚠️ Anciennement beige `#EEE7DC`, passé en blanc le 23/04 (cf. section 12).
 
 3 cards **blanches** uniformes (`grid-template-columns: repeat(3, minmax(0, 1fr))` + `height:100%`) :
 1. **Teste un vrai dossier.** - Découvre ton niveau sur un cas concret
@@ -421,6 +437,57 @@ perl -pi -e "
 8. **Sticky CTA** : z-index:10500 pour passer au-dessus de examOverlay.
 9. **Animation thinking** : hard cap 4s.
 10. **Logo 2 tons** : `Ask` vert profond, `amelie` salmon.
+
+---
+
+<a id="blanc23"></a>
+## 12. ⚪ Itération 23 avril PM — beige → blanc + logo sans-serif
+
+Suite à un retour visuel, deux décisions :
+
+### 12.1 Fonds beiges `#EEE7DC` retirés des gros conteneurs
+
+Le beige reste une couleur de la palette (section 1) mais est **cantonné aux petits accents** (icônes paywall, cards de correction pendant un quiz, badges dashboard…). Les **gros conteneurs de fond** passent en blanc `#fff` (bordure `#DDD3C3` conservée pour la définition) :
+
+| Fichier | Sélecteur | Avant | Après |
+|---|---|---|---|
+| `index.html` | `.hero-stats` | `background:#EEE7DC` | `background:#fff` |
+| `index.html` | `.steps-section` | `background:#EEE7DC` | `background:#fff` |
+| `ecn-focus.html` | `.year-switcher` | `background:#EEE7DC` | `background:#fff` |
+| `ecn-focus.html` | `.ex-section-hdr` | `background:#EEE7DC` | `background:#fff` |
+| `ecn-focus.html` | `.dossier-card` (L852) | `background:#FAF8F3` | `background:#fff` |
+| `ecn-focus.html` | `.dossier-card.locked` | `background:#F7F5F2` | `background:#fff` |
+
+**Conservés beige** (sémantique / accent) :
+- `.q-context`, `.q-explanation`, `.q-opt.selected`, `.q-opt.correct` (pendant un quiz)
+- `.dossier-card.done-mastered` (`#EEE7DC`) — indique un dossier maîtrisé
+- `.dossier-card.done-weak` (`#F5E8E6`) — indique un dossier à retravailler
+- `.pw-lock`, `.pw-feats li`, `.report-unlock-*`, `.ask-gate-*` (icônes / cards paywall)
+- `.auth-banner` (gradient subtil)
+
+### 12.2 Logo passé en Work Sans sans-serif 600/17px
+
+Voir section 4 (mise à jour en place). Résumé :
+- Libre Baskerville serif 22px/800 → Work Sans sans-serif 17px/600
+- `amélie` → `amelie` (sans accent)
+- Font loader : ajout de weight 800 à Work Sans (pour usage futur)
+
+### Commandes perl reproductibles
+
+```bash
+# Fonds blancs sur les 6 sélecteurs
+perl -pi -e "
+  s|(\.hero-stats\{[^}]*?background:)#EEE7DC|\${1}#fff|g;
+  s|(\.steps-section\{[^}]*?background:)#EEE7DC|\${1}#fff|g;
+  s|(\.year-switcher\{[^}]*?background:)#EEE7DC|\${1}#fff|g;
+  s|(\.ex-section-hdr\{[^}]*?background:)#EEE7DC|\${1}#fff|g;
+  s|(\.dossier-card\{background:)#FAF8F3|\${1}#fff|g;
+  s|(\.dossier-card\.locked\{opacity:\.62;background:)#F7F5F2|\${1}#fff|g;
+" index.html ecn-focus.html
+
+# Logo sans-serif (remplace le bloc .brand d'un coup — à valider manuellement)
+# Voir section 4 pour le CSS cible exact.
+```
 
 ---
 
