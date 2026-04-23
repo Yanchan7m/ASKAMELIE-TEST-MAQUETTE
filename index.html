@@ -215,7 +215,9 @@ body.authed .nav-user{display:inline-flex}
 .year-card.locked{opacity:.55;cursor:pointer}
 .year-card.locked .year-num{color:var(--fg-soft)}
 .year-card.locked:hover{opacity:.85}
-.year-card.locked .badge{background:var(--muted);color:var(--fg-soft);border:1px solid var(--border)}
+.year-card.locked .badge.badge-illimite{background:linear-gradient(135deg,#19D36B 0%,#13B05A 100%);color:#fff;border:none;padding:5px 11px 5px 22px;font-weight:900;font-size:10.5px;letter-spacing:.08em;box-shadow:0 2px 8px rgba(25,211,107,.35);background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22white%22%3E%3Cpath%20d%3D%22M3%2017h18l-1.5-9L15%2012%2012%205%209%2012%204.5%208%203%2017zm0%202h18v2H3v-2z%22%2F%3E%3C%2Fsvg%3E"),linear-gradient(135deg,#19D36B 0%,#13B05A 100%);background-repeat:no-repeat,no-repeat;background-position:6px center,0 0;background-size:11px auto,100% 100%}
+.year-card.locked{opacity:1}
+.year-card.locked .year-num{color:var(--fg)}
 .year-card.locked .tip{position:absolute;inset:0;background:rgba(15,107,91,.92);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;border-radius:14px;padding:20px;font-size:12px;font-weight:500;line-height:1.5;z-index:3;pointer-events:none}
 .year-card.locked:hover .tip{opacity:1}
 .year-card.locked .tip strong{display:block;font-family:var(--font-serif);font-size:16px;margin-bottom:6px;font-weight:700}
@@ -1204,7 +1206,7 @@ function renderGrid(){
     var card = document.createElement('div');
     card.className = 'year-card ' + (unlocked ? (isFree ? 'free' : 'premium-unlocked') : 'locked');
     var inner =
-      '<span class="badge">' + (isFree ? '✅ Gratuit : Commence ici' : (unlocked ? 'Accès libre' : 'Focus Illimité')) + '</span>' +
+      '<span class="badge' + (!unlocked ? ' badge-illimite' : '') + '">' + (isFree ? '✅ Gratuit : Commence ici' : (unlocked ? 'Accès libre' : 'ILLIMITÉ')) + '</span>' +
       '<div class="year-icon">' + (unlocked ? iconOpen : iconLock) + '</div>' +
       '<div class="year-num">' + y.y + '</div>' +
       '<div class="year-label">' + y.label + ' ' + y.y + '</div>' +
