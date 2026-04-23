@@ -893,6 +893,37 @@ button{font-family:inherit}
 
 /* Score / final screen : partner-style wrap */
 .score-card-wrap{max-width:560px;margin:0 auto;padding:48px 24px}
+/* Unified score card : fusion de score-bravo + score-card */
+.score-unified{background:linear-gradient(180deg,#FAF8F3 0%,#FAF8F3 100%);border:1px solid #DDD3C3;border-radius:20px;padding:28px 28px 24px;position:relative;overflow:hidden;text-align:center}
+.score-unified.good{background:linear-gradient(180deg,#DCE8DB 0%,#FAF8F3 100%);border-color:#B5CDB4}
+.score-unified.mid{background:linear-gradient(180deg,#EEE7DC 0%,#FAF8F3 100%);border-color:#DDD3C3}
+.score-unified.low{background:linear-gradient(180deg,#F5E8E6 0%,#FAF8F3 100%);border-color:#E5C5C0}
+.score-unified::before{content:'';position:absolute;top:-30%;right:-15%;width:220px;height:220px;background:radial-gradient(circle,rgba(15,107,91,.08) 0%,transparent 60%);pointer-events:none}
+.score-unified .score-hdr{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:10px;position:relative}
+.score-unified .score-bravo-title{font-family:'Libre Baskerville',Georgia,serif;font-size:clamp(24px,3.8vw,28px);font-weight:700;color:#163A3A;letter-spacing:-.02em;line-height:1.15;margin-bottom:8px;position:relative}
+.score-unified .score-bravo-title::after{content:' 🎉';font-family:inherit}
+.score-unified .score-intro{font-size:13.5px;color:#527A70;line-height:1.55;margin:0 auto 18px;max-width:420px;font-weight:500;position:relative}
+.score-unified .score-headline{font-family:'Libre Baskerville',Georgia,serif;font-size:clamp(17px,2.8vw,22px);font-weight:700;color:#19D36B;margin-bottom:6px;line-height:1.2;position:relative}
+.score-unified.low .score-headline{color:#B94A3F}
+.score-unified .score-bignum{font-family:'Libre Baskerville',Georgia,serif;font-size:clamp(56px,11vw,80px);font-weight:700;color:#0F6B5B;line-height:1;letter-spacing:-.03em;display:inline-block;position:relative}
+.score-unified.low .score-bignum{color:#B94A3F}
+.score-unified .score-bignum .pct-sign{font-size:.5em;font-weight:500;color:#527A70;margin-left:4px;font-family:'Work Sans',sans-serif}
+.score-unified .score-meta{display:flex;align-items:center;justify-content:center;gap:12px;margin:10px 0 22px;flex-wrap:wrap;color:#527A70;font-size:13px;position:relative}
+.score-unified .score-meta .meta-item{display:inline-flex;align-items:baseline;gap:5px}
+.score-unified .score-meta .meta-item strong{font-family:'Libre Baskerville',Georgia,serif;font-size:17px;color:#163A3A;font-weight:700}
+.score-unified .score-meta .meta-item span{font-size:12px}
+.score-unified .score-meta .meta-sep{opacity:.4}
+.score-unified .stakes-box{position:relative;background:#fff;border:1px solid #DDD3C3;border-radius:14px;padding:14px 16px;margin:4px auto 14px;text-align:left;max-width:460px}
+.score-unified .stakes-box .stakes-title{font-family:'Libre Baskerville',Georgia,serif;font-size:15.5px;font-weight:700;color:#163A3A;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.score-unified .stakes-box .stakes-title::before{content:'🎯';font-size:16px}
+.score-unified .stakes-box p{font-size:13.5px;color:#527A70;line-height:1.55;margin:0 0 8px;font-weight:500}
+.score-unified .stakes-box p:last-child{margin-bottom:0}
+.score-unified .stakes-box .stakes-breakdown{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12px;color:#527A70;font-weight:600;background:#EEE7DC;border:2px dashed #19D36B;border-radius:10px;padding:8px 12px;margin-top:10px}
+.score-unified .stakes-box .stakes-breakdown strong{color:#0F6B5B;font-weight:800}
+.score-unified .score-anchor{position:relative;font-size:14px;color:#163A3A;line-height:1.6;margin:0 auto 12px;max-width:480px;font-weight:500}
+.score-unified .stat-hl{background:linear-gradient(180deg,transparent 60%,rgba(25,211,107,.3) 60%);color:#163A3A;font-weight:800;padding:0 3px}
+.score-unified .anchor-line{display:flex;align-items:flex-start;gap:8px;color:#0F6B5B;font-weight:600;font-size:13.5px;margin:14px auto 0;padding-top:14px;border-top:1px dashed #DDD3C3;max-width:480px;text-align:left;position:relative}
+.score-unified .anchor-line::before{content:'⏱';flex-shrink:0;font-size:17px;line-height:1.2}
 .score-sticky-cta{margin:24px 0 0;background:#fff;border:1px solid #DDD3C3;border-radius:16px;padding:16px 20px;box-shadow:0 6px 18px rgba(15,107,91,.08);display:flex;align-items:center;gap:14px}
 .score-sticky-cta-txt{flex:1;min-width:0;font-size:13px;color:#163A3A;font-weight:600;line-height:1.35}
 .score-sticky-cta-txt .muted{display:block;font-size:12px;color:#527A70;font-weight:500;margin-top:2px}
@@ -1280,7 +1311,7 @@ body{background:#F7F5F2}
         <li>Compte rendu Amélie mis à jour tout seul</li>
         <li>Sans pub, annulable à tout moment</li>
       </ul>
-      <a href="https://buy.stripe.com/eVqaEY8BGgN5ckgg3M5gc01" target="_blank" class="offer-cta">Démarrer le Focus Illimité →</a>
+      <button type="button" class="offer-cta" onclick="showFirstQuestionGate(true)" style="border:none;cursor:pointer;font-family:inherit">Démarrer le Focus Illimité →</button>
       <p class="offer-trust">Paiement sécurisé · Sans engagement · Annulable</p>
     </div>
 
@@ -1402,7 +1433,7 @@ body{background:#F7F5F2}
         <li><span><strong>Ton bilan personnalisé</strong> détaillé après chaque dossier</span></li>
         <li><span><strong>+300 places en moyenne</strong> au classement pour nos élèves</span></li>
       </ul>
-      <a href="https://buy.stripe.com/eVqaEY8BGgN5ckgg3M5gc01" target="_blank" class="pw-cta-gold">Passer à Focus Illimité →</a>
+      <button type="button" class="pw-cta-gold" onclick="closePaywall();showFirstQuestionGate(true)" style="border:none;cursor:pointer;font-family:inherit">Passer à Focus Illimité →</button>
       <button type="button" class="pw-learn-more" onclick="closePaywall()">Plus tard</button>
     </div>
   </div>
@@ -3133,22 +3164,20 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
     var isAuthed = !!AUTH_USER;
     var isPremium = window._IS_PREMIUM === true;
 
-    // Score card (always shown)
+    // Scroll to top quand le quiz se termine
+    try {
+      var ov = document.getElementById('examOverlay');
+      if (ov) ov.scrollTo({ top: 0, behavior: 'auto' });
+      window.scrollTo({ top: 0, behavior: 'auto' });
+    } catch(e){}
+
+    // Card unifiée : badge + bravo + score + stakes (fusion des 2 anciens blocs)
     var h = '<div class="score-card-wrap">' +
-      '<div class="score-bravo">' +
-        '<div class="score-bravo-title">Bravo</div>' +
-        '<p>Tu viens de faire ton premier test et tu as sans doute vu la puissance d\'Amélie.</p>' +
-        '<div class="stakes-box">' +
-          '<div class="stakes-title">Aux EDN, chaque place compte.</div>' +
-          '<p>Ton rang détermine ta <strong>spécialité</strong> et ta <strong>ville d\'internat</strong>. Plus ton classement est haut, plus tu as de choix.</p>' +
-          '<p class="stakes-breakdown">EDN <strong>60%</strong> · ECOS <strong>30%</strong> · Parcours <strong>10%</strong></p>' +
-        '</div>' +
-        '<p>Chez Ask Amélie, nos élèves gagnent en moyenne <span class="stat-hl">+300 places</span> au classement grâce à la mémorisation répétée.</p>' +
-        '<div class="anchor-line">Tu as bossé 5 ans : alors mets toutes les chances de ton côté pour décrocher l\'internat que tu veux.</div>' +
-      '</div>' +
-      '<div class="score-card ' + tone + '">' +
+      '<div class="score-unified ' + tone + '">' +
         '<div class="score-hdr"><span class="score-badge">' + esc(yrLabel2) + '</span>' +
           '<span class="score-dossier">' + esc(name) + '</span></div>' +
+        '<div class="score-bravo-title">Bravo</div>' +
+        '<p class="score-intro">Tu viens de faire ton premier test et tu as sans doute vu la puissance d\'Amélie.</p>' +
         '<div class="score-headline">' + headline + '</div>' +
         '<div class="score-bignum">' + pct + '<span class="pct-sign">%</span></div>' +
         '<div class="score-meta">' +
@@ -3156,6 +3185,13 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
           '<span class="meta-sep">·</span>' +
           '<span class="meta-item"><strong>' + elapsed + '</strong><span>temps</span></span>' +
         '</div>' +
+        '<div class="stakes-box">' +
+          '<div class="stakes-title">Aux EDN, chaque place compte.</div>' +
+          '<p>Ton rang détermine ta <strong>spécialité</strong> et ta <strong>ville d\'internat</strong>. Plus ton classement est haut, plus tu as de choix.</p>' +
+          '<p class="stakes-breakdown">EDN <strong>60%</strong> · ECOS <strong>30%</strong> · Parcours <strong>10%</strong></p>' +
+        '</div>' +
+        '<p class="score-anchor">Chez Ask Amélie, nos élèves gagnent en moyenne <span class="stat-hl">+300 places</span> au classement grâce à la mémorisation répétée.</p>' +
+        '<div class="anchor-line">Tu as bossé 5 ans : alors mets toutes les chances de ton côté pour décrocher l\'internat que tu veux.</div>' +
       '</div>';
 
     if (isPremium) {
