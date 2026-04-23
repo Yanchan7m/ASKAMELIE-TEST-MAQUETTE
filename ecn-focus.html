@@ -3453,6 +3453,21 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
         document.body.appendChild(_stickyEl);
       }
     }
+    // Scroll-to-top après rendu : garantit que l'utilisateur atterrit en
+    // haut du bilan (card "Bravo" + score) et pas au milieu de l'animation
+    // "Amélie réfléchit". Le scroll avant body().innerHTML est inefficace
+    // car le contenu n'existe pas encore, et certains navigateurs
+    // restaurent une position après l'injection. On le redéclenche ici
+    // + une fois en fin de frame pour couvrir les layouts async.
+    try {
+      var ovTop = document.getElementById('examOverlay');
+      if (ovTop) ovTop.scrollTo({ top: 0, behavior: 'auto' });
+      window.scrollTo({ top: 0, behavior: 'auto' });
+      requestAnimationFrame(function(){
+        if (ovTop) ovTop.scrollTo({ top: 0, behavior: 'auto' });
+        window.scrollTo({ top: 0, behavior: 'auto' });
+      });
+    } catch(e){}
     // Paint the dashboard asynchronously (fetch student stats then render)
     setTimeout(function(){
       paintDashboardTeaser(isAuthed);
