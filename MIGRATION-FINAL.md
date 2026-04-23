@@ -21,6 +21,7 @@ Document complet de la refonte 22-23 avril 2026. À transmettre au dev prod pour
 10. [Commande perl reproductible](#perl)
 11. [Vérifications post-migration](#verif)
 12. [Itération 23 avril PM — beige → blanc + logo sans-serif](#blanc23)
+13. [Trust block "Amélie conçue pour ne pas se tromper" × 7 emplacements](#trust)
 
 ---
 
@@ -488,6 +489,106 @@ perl -pi -e "
 # Logo sans-serif (remplace le bloc .brand d'un coup — à valider manuellement)
 # Voir section 4 pour le CSS cible exact.
 ```
+
+---
+
+<a id="trust"></a>
+## 13. 🛡️ Trust block "Amélie conçue pour ne pas se tromper"
+
+Bloc de réassurance ajouté avant **chaque CTA vers le paiement** pour renforcer la valeur perçue. Wording choisi après arbitrage **défendable DGCCRF / art. L.121-1** (pratiques commerciales trompeuses) : on décrit le **process de validation** et l'**intention** du système, pas une infaillibilité absolue.
+
+### 13.1 Wording exact (copy validée)
+
+```
+[icône bouclier]  Amélie a été conçue pour ne pas se tromper.
+
+✓ Elle représente l'équivalent de 800+ médecins et professeurs spécialistes
+  qui ont validé son raisonnement.
+✓ Chaque correction est croisée et doublement vérifiée avec les référentiels
+  officiels (CUESPB, CNEMV, collèges de spécialité).
+✓ Entraînée sur 10 ans d'annales EDN/ECN corrigées manuellement par des
+  spécialistes.
+
+— Une fiabilité clinique que tu ne trouveras nulle part ailleurs.
+```
+
+⚠️ **Wordings interdits** (risque DGCCRF + contre-productif sur cible médicale) :
+- ❌ "Amélie ne se trompe jamais"
+- ❌ "Il est impossible qu'elle se trompe"
+- ❌ "Fiabilité 100%" / "garantie d'exactitude"
+
+Le "a été conçue pour ne pas se tromper" décrit une **intention de design**, pas une garantie absolue — c'est ce qui rend le wording défendable.
+
+### 13.2 CSS composant réutilisable
+
+```css
+.trust-amelie{max-width:640px;margin:32px auto 0;padding:22px 26px;background:#fff;border:1px solid #DDD3C3;border-radius:14px;text-align:left}
+.trust-amelie-head{display:flex;align-items:center;gap:10px;margin-bottom:14px;font-family:var(--font-serif);font-size:16px;color:var(--fg);font-weight:700;letter-spacing:-.01em;line-height:1.3}
+.trust-amelie-head svg{flex-shrink:0;width:22px;height:22px;color:var(--primary)}
+.trust-amelie-feats{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
+.trust-amelie-feats li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--fg);line-height:1.55}
+.trust-amelie-feats li svg{flex-shrink:0;width:16px;height:16px;color:var(--primary);margin-top:3px}
+.trust-amelie-feats li strong{color:var(--primary-darkest);font-weight:700}
+.trust-amelie-foot{margin-top:14px;padding-top:12px;border-top:1px dashed #DDD3C3;font-size:13px;color:var(--fg-soft);font-style:italic;line-height:1.5}
+
+/* Variant dark pour fond vert foncé (.premium-cta) */
+.premium-cta .trust-amelie{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.22);margin:24px auto 0;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.premium-cta .trust-amelie-head{color:#fff}
+.premium-cta .trust-amelie-head svg{color:var(--accent)}
+.premium-cta .trust-amelie-feats li{color:rgba(255,255,255,.92)}
+.premium-cta .trust-amelie-feats li svg{color:var(--accent)}
+.premium-cta .trust-amelie-feats li strong{color:#fff}
+.premium-cta .trust-amelie-foot{color:rgba(255,255,255,.78);border-top-color:rgba(255,255,255,.22)}
+
+/* Responsive mobile */
+@media(max-width:600px){.trust-amelie{padding:18px 20px;margin:24px 18px 0}.trust-amelie-head{font-size:15px}.trust-amelie-feats li{font-size:13.5px}}
+```
+
+**Version compacte dans `ecn-focus.html`** (contextes modal plus serrés) : padding 16px 18px, font 12.5px, pas de max-width fixe. Voir fichier pour détails.
+
+### 13.3 HTML du bloc (gabarit)
+
+```html
+<div class="trust-amelie">
+  <div class="trust-amelie-head">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9 12l2 2 4-4"/>
+      <path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9c2.35 0 4.5.9 6.1 2.4"/>
+    </svg>
+    Amélie a été conçue pour ne pas se tromper.
+  </div>
+  <ul class="trust-amelie-feats">
+    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Elle représente l'équivalent de <strong>800+ médecins et professeurs spécialistes</strong> qui ont validé son raisonnement.</li>
+    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Chaque correction est <strong>croisée et doublement vérifiée</strong> avec les référentiels officiels (CUESPB, CNEMV, collèges de spécialité).</li>
+    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Entraînée sur <strong>10 ans d'annales EDN/ECN</strong> corrigées manuellement par des spécialistes.</li>
+  </ul>
+  <div class="trust-amelie-foot">Une fiabilité clinique que tu ne trouveras nulle part ailleurs — tu peux t'appuyer dessus en toute confiance.</div>
+</div>
+```
+
+### 13.4 Emplacements (7 au total)
+
+| # | Fichier | Contexte | Position |
+|---|---|---|---|
+| 1 | `index.html` | Hero homepage | Juste après `.hero-proof`, à la fin de `<section class="hero">` |
+| 2 | `index.html` | Pricing card "29,90 €/mois" | Entre `</div><!-- .pricing-feats -->` et `<div class="pricing-actions">` |
+| 3 | `index.html` | `.premium-cta` footer (fond vert foncé) | Entre `<p>…</p>` et `<button class="premium-cta-btn">` — utilise variant dark CSS |
+| 4 | `ecn-focus.html` | Paywall modal `#paywall` | Entre `</ul><!-- .pw-feats -->` et `<button class="pw-cta-gold">` |
+| 5 | `ecn-focus.html` | Ask-gate modal `#askGate` | Juste avant `<button class="ask-gate-cta">` |
+| 6 | `ecn-focus.html` | Offer card "Focus Illimité" (section `.offers`) | Entre `</ul><!-- .offer-feats -->` et `<button class="offer-cta">` |
+| 7 | `ecn-focus.html` | Conv-block fin de quiz (template JS `renderScore`) | Entre `<div class="conv-sub">…</div>` et `<button class="conv-btn-primary conv-btn-stripe">` |
+
+### 13.5 Non touché volontairement
+
+- **`firstQGate`** (modal signup/login) : c'est un **formulaire**, pas un pitch. Y ajouter la réassurance serait redondant et alourdirait la conversion.
+- **Sticky CTA bottom** de fin de quiz : volontairement compact (1 ligne), le trust block apparaît dans le `.conv-block` juste au-dessus donc la réassurance est déjà présente en amont.
+
+### 13.6 Checklist vérification
+
+1. Les 3 bullets utilisent bien la graphie `800+` (pas `800`) et les acronymes exacts `CUESPB` + `CNEMV`.
+2. Le `<svg>` d'icône bouclier du `.trust-amelie-head` doit avoir `stroke-width="2.2"` (différent du 3 des checks bullets).
+3. Variant dark du `.premium-cta` : vérifier le contraste du foot italique (couleur `rgba(255,255,255,.78)`) AA.
+4. Dans `ecn-focus.html`, le bloc du conv-block passe par la génération JS — tester manuellement en finissant un dossier.
 
 ---
 
