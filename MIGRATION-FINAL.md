@@ -1,23 +1,21 @@
-# Guide de migration final — Ask Amélie (23 avril 2026)
+# Guide de migration final — Ask Amélie
 
-Document complet reprenant la **palette finale "Premium Clinical" 4 teintes** + **accents salmon logo** + **tous les ajustements UX** depuis le passage violet → vert. À transmettre pour porter les changements de la maquette statique vers la codebase prod.
+Document complet de la refonte 22-23 avril 2026. À transmettre au dev prod pour porter les changements de la maquette statique vers la codebase prod.
 
 - **Fichiers source** : `index.html`, `ecn-focus.html`
-- **40 commits** sur la branche principale depuis le palette swap
-- **Date** : 22-23 avril 2026
 - **Repo** : `Yanchan7m/ASKAMELIE-TEST-MAQUETTE` branche `main`
 
 ---
 
-## 📋 Table des matières
+## 📋 Sections
 
-1. [Palette couleur "Premium Clinical" (4 teintes + accent logo)](#palette)
+1. [Palette couleur simplifiée (4 teintes + logo)](#palette)
 2. [Règles d'ouverture des popups + matrice CTA](#popups)
 3. [Couronne unifiée partout](#couronne)
-4. [Homepage : hero, stats, sections](#homepage)
-5. [Footer structure multi-colonnes](#footer)
-6. [Logo wordmark Ask + amelie](#logo)
-7. [Fin de quiz : card unifiée + sticky](#finquiz)
+4. [Logo wordmark "Ask amelie"](#logo)
+5. [Homepage](#homepage)
+6. [Footer multi-colonnes](#footer)
+7. [Fin de quiz](#finquiz)
 8. [Règle critique : signup d'abord, Stripe ensuite](#signupfirst)
 9. [Bugs corrigés](#bugs)
 10. [Commande perl reproductible](#perl)
@@ -26,54 +24,62 @@ Document complet reprenant la **palette finale "Premium Clinical" 4 teintes** + 
 ---
 
 <a id="palette"></a>
-## 1. 🎨 Palette couleur "Premium Clinical" — 4 teintes + accent
+## 1. 🎨 Palette simplifiée — 4 teintes
 
-### Les 4 teintes fonctionnelles
+Après plusieurs itérations, la palette finale est volontairement restreinte pour garder une interface premium et cohérente.
 
 | Rôle | Couleur | Hex | Usage |
 |---|---|---|---|
-| **Vert profond** (brand) | Teal profond | `#0F6B5B` | Titres, couronne, coches bullets, logo, bordures principales, texte fort |
-| **Vert flash** (action) | Vert vif | `#19D36B` (light) / `#13B05A` (dark) | CTA uniquement, badges ILLIMITÉ, signaux de conversion |
-| **Vert sauge** (support) | Menthe douce | `#B5CDB4` / `#DCE8DB` (soft) | Cards actives, états légers, backgrounds tintés secondaires |
-| **Beige chaud** (ambiance) | Pierre crème | `#EEE7DC` / `#DDD3C3` (border) | Encadrements, surlignages, fonds secondaires structurants |
+| 🟢 **Vert profond** (brand) | Teal profond | `#0F6B5B` | Titres, couronne, coches bullets, logo, bordures principales, texte fort |
+| ⚡ **Vert flash** (action) | Vert vif | `#19D36B` (light) / `#13B05A` (dark) | **CTA uniquement**, badges ILLIMITÉ, signaux de conversion |
+| 🟤 **Beige chaud** (ambiance) | Pierre crème | `#EEE7DC` / `#DDD3C3` (border) | Encadrements, surlignages, fonds secondaires |
+| ⚪ **Blanc** | `#fff` (cards) / `#FAF8F3` (bg général) | | Backgrounds principaux |
 
-### Accent identité — couleur du logo
+### Accent identité — logo uniquement
 
-| Accent | Hex | Usage minimaliste |
+| Accent | Hex | Usage |
 |---|---|---|
-| **Salmon/beige logo** | `#E89C6E` | Surligneur "+300 places" (translucide `.45`), border-top dashed fin de quiz, progress bar gradient (teal → salmon) |
+| **Salmon logo** | `#E89C6E` / `#E69F70` | Uniquement sur la partie "amelie" du logo + surligneurs spécifiques (ex: `.hl-beige` sur "tester") |
 
-### Variables de support
+### Variables CSS clés
 
 ```css
 :root{
-  --bg:#FAF8F3;           /* Fond général */
-  --fg:#163A3A;           /* Texte principal */
-  --fg-soft:#527A70;      /* Texte secondaire sage */
-  --primary:#0F6B5B;      /* Vert profond brand */
+  --bg:#FAF8F3;
+  --fg:#163A3A;
+  --fg-soft:#527A70;
+  --primary:#0F6B5B;
   --primary-darkest:#1B4D3E;
-  --accent:#E89C6E;       /* Salmon logo */
-  --sage:#DDD3C3;         /* Border beige */
-  --sage-soft:#EEE7DC;    /* Fond beige */
-  --sauge:#B5CDB4;        /* Vert sauge */
-  --sauge-soft:#DCE8DB;   /* Vert sauge pâle */
+  --accent:#E89C6E;
+  --sage:#DDD3C3;
+  --sage-soft:#EEE7DC;
 }
 ```
 
-### Règle d'hiérarchie
+### Règles d'hiérarchie (strictes)
 
 1. **Vert profond** reste dominant (80% de l'UI)
 2. **Vert flash** strictement réservé à l'action (max 1 actif par écran)
-3. **Vert sauge** pour adoucir, jamais concurrence le CTA
-4. **Beige** pour structurer sans prendre le poids visuel principal
-5. **Salmon** en touches signature (rappel logo), jamais en dominante
+3. **Beige** pour structurer sans prendre le poids principal
+4. **Salmon** : logo + highlights de mots-clés (span `.hl-beige`), pas autre chose
+
+### Classe réutilisable pour surlignage
+
+```css
+.hl-beige{
+  background: linear-gradient(180deg, transparent 60%, #E69F70 60%);
+  padding: 0 3px;
+}
+```
+
+Utilisable : `<span class="hl-beige">mot</span>`
 
 ---
 
 <a id="popups"></a>
-## 2. 🪟 Règles d'ouverture popups — Matrice CTA
+## 2. 🪟 Matrice popups — règles d'ouverture
 
-### Popup paywall ouvre quand :
+### Popup paywall ouvre sur :
 
 | Action user | Context | Titre résultant |
 |---|---|---|
@@ -83,30 +89,23 @@ Document complet reprenant la **palette finale "Premium Clinical" 4 teintes** + 
 | Clic dossier verrouillé 2016 (non-free) | `exam-locked` | Cette épreuve est réservée |
 | Clic exam verrouillé (DCP 2+, QI, LCA) | `exam-locked` | Cette épreuve est réservée |
 | Clic "voir plus" correction verrouillée | `explanation-locked` | Correction complète réservée |
-| Clic status pill "Compte gratuit" dashboard | `nav` | Accès Focus Illimité |
-| Clic bouton nav "Focus Illimité" topbar | `nav` | Accès Focus Illimité |
+| Clic status pill dashboard / bouton nav | `nav` | Accès Focus Illimité |
 | Post-signup | `post-signup` | 🎉 Bienvenue chez Ask Amélie |
 
 ### Popup ask-gate (Demander à Amélie)
 
-| Action user | Popup |
-|---|---|
-| Clic bouton "Demander à Amélie" dans feedback quiz | ✅ Ask-gate |
+Ouvre sur : clic bouton "Demander à Amélie" dans feedback quiz
 
 ### Popup signup gate (firstQGate)
 
-| Action user | Mode |
-|---|---|
-| Clic "Passer à Focus Illimité" dans paywall | `signup` (premiumIntent=true) |
-| Clic "Passer à Focus Illimité" fin de quiz | `signup` |
-| Clic "Se connecter" (lien bas paywall) | `login` |
+Ouvre sur : tous les CTA Focus Illimité (avec `premiumIntent=true`) → user crée compte puis Stripe
 
 ---
 
 <a id="couronne"></a>
-## 3. 👑 Couronne SVG unifiée partout
+## 3. 👑 Couronne SVG unifiée
 
-### SVG standard
+### SVG standard (24×24)
 
 ```html
 <svg viewBox="0 0 24 24" fill="currentColor">
@@ -114,19 +113,19 @@ Document complet reprenant la **palette finale "Premium Clinical" 4 teintes** + 
 </svg>
 ```
 
-### Emplacements (9 endroits)
+### 9 emplacements
 
-| Lieu | Sélecteur | Taille | Couleur |
-|---|---|---|---|
-| Popup ask-gate | `.ask-gate-crown svg` | 32×32 dans cercle 64×64 | `#0F6B5B` (vert profond) |
-| Popup paywall (ecn-focus) | `.pw-lock svg` | 28×28 dans cercle 56×56 | `#0F6B5B` |
-| Popup paywall (index) | `.pw-lock-wrap svg` | 28×28 dans cercle 56×56 | `#0F6B5B` |
-| Card CTA fin de quiz | `.report-unlock-crown svg` | 28×28 dans cercle 56×56 | `#0F6B5B` |
-| Badge year card verrouillée | `.year-card.locked::after` data URI | 10×10 | Blanc sur gradient flash |
-| Badge year switcher | `.ys-card.locked::after` data URI | 9×9 | Blanc sur gradient flash |
-| Badge dossier verrouillé | `.dossier-card .lock-badge::before` data URI | 11×11 | Blanc sur gradient flash |
-| Icône "voir plus" | `.q-voir-plus::before` data URI | 14×14 | Vert profond |
-| Dossier locked inline JS | `lockBadge <svg>` inline | 16×16 | Vert profond `#0F6B5B` |
+| Lieu | Taille | Couleur |
+|---|---|---|
+| `.ask-gate-crown svg` (popup ask-Amélie) | 32×32 dans cercle 64×64 (desktop) ; 26×26 dans 52×52 (mobile) | `#0F6B5B` |
+| `.pw-lock svg` (popup paywall ecn-focus) | 28×28 dans cercle 56×56 | `#0F6B5B` |
+| `.pw-lock-wrap svg` (popup paywall index) | 28×28 dans cercle 56×56 | `#0F6B5B` |
+| `.report-unlock-crown svg` (card fin de quiz) | 28×28 dans cercle 56×56 | `#0F6B5B` |
+| `.year-card.locked::after` data URI (badges) | 10×10 | Blanc sur gradient flash |
+| `.ys-card.locked::after` data URI | 9×9 | Blanc sur gradient flash |
+| `.dossier-card .lock-badge::before` data URI | 11×11 | Blanc sur gradient flash |
+| `.q-voir-plus::before` data URI (voir plus) | 14×14 | Vert profond |
+| Dossier locked inline (JS `lockBadge <svg>`) | 16×16 | `#0F6B5B` |
 
 ### Cercle d'accueil des couronnes principales
 
@@ -135,88 +134,14 @@ width: 56px; height: 56px; border-radius: 50%;
 background: #EEE7DC; border: 1px solid #DDD3C3;
 ```
 
-### Cadenas 🔒 conservé UNIQUEMENT sur "Paiement sécurisé"
-Partout ailleurs, couronne.
+### Cadenas 🔒 conservé uniquement sur "Paiement sécurisé" (booking Stripe)
 
----
-
-<a id="homepage"></a>
-## 4. 🏠 Homepage
-
-### Bandeau top
-> 🎯 **Mieux classé** = plus de choix sur ta ville et ta spé
-
-### Hero
-- **Pas d'eyebrow** (ex "Plateforme n°1 EDN" retirée)
-- H1 : `Teste un dossier <em>gratuitement</em>.<br>Vois la différence.`
-- Sub : "Toutes les annales EDN/ECN depuis 2016 en conditions réelles. Raisonnement clinique détaillé par des médecins spécialistes : pas juste la bonne lettre."
-- CTA vert teal : "Commencer le dossier gratuit →"
-
-### Stats row — **card beige**
-- Encadré dans une card `background:#EEE7DC; border:1px solid #DDD3C3; border-radius:14px`
-- 4 chiffres : 10 années · 850+ dossiers · 13 spécialités · 100% corrigé médecins
-
-### Social proof
-- Texte : "Rejoint par **+2034 D4** cette année · ⭐ 4.9/5 sur 400+ avis"
-- 4 avatars via `pravatar.cc/80?img=5/15/23/33` (URLs stables, visages jeunes adultes)
-
-### Section "Comment ça marche" — **fond beige full-width**
-- Fond section beige `#EEE7DC` avec bordures top/bottom
-- 3 cards **blanches** pour contraster
-- Sous-titre : "En 3 étapes, découvre ton niveau réel..."
-- 3 cards parfaitement uniformes (`grid-template-columns: repeat(3, minmax(0, 1fr))` + `display:flex; height:100%`) :
-  1. **Teste un vrai dossier.** - Découvre ton niveau sur un cas concret
-  2. **Vois ce que ça t'apporte.** - Compare avec la correction d'un spécialiste
-  3. **Transforme ça en choix.** - Augmente tes chances de garder l'option
-
-### Year cards verrouillées
-- **Badge "ILLIMITÉ" vert flash** avec couronne SVG blanche (même design que dossier cards)
-- Card opacity:1 (plus de fade)
-- Hover tip `pointer-events:none` (évite bug de clic)
-
-### Section "Amélie te connaît" (Dashboard preview)
-- **Pill "SUIVI INTELLIGENT" retiré** (faisait trop IA)
-
-### Section "Pricing"
-- **Pill "TARIF UNIQUE" retiré**
-
-### Section "Témoignages"
-- **Pill "RÉSULTATS" retiré**
-- **3 témoignages étudiants** (Dr. S. Martin retiré, cardiologue correcteur) :
-  - Léa D. - D4 Paris Descartes
-  - Antoine M. - D4 Bordeaux (étudiant blanc, img=12)
-  - Sofia R. - D4 Toulouse (étudiante hispanique, img=47)
-
----
-
-<a id="footer"></a>
-## 5. 🦶 Footer structure multi-colonnes (inspiration Docgenda)
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│ ● Ask Amélie         PRODUIT   RESSOURCES  ENTREPRISE LÉGAL│
-│ Ask Amélie EDN :     Démo      Centre aide À propos   M.L. │
-│ l'entraînement…      Tarifs    Blog        Contact    Conf.│
-│                      Témoignages Guides                 CGV│
-│                      FAQ                               Cook│
-│─────────────────────────────────────────────────────────────│
-│ ✓ Corrections médicales · médecins spécialistes            │
-│ ✓ Hébergement conforme RGPD · données en France            │
-│ ✓ Édité par Askamelie · Paris, France                      │
-│─────────────────────────────────────────────────────────────│
-│ © 2026 Ask Amélie     Signaler erreur : contact@…com       │
-└─────────────────────────────────────────────────────────────┘
-```
-
-- 5 colonnes desktop, 2 cols tablet (<900px), 1 col mobile (<540px)
-- **Pas d'Instagram/TikTok** (retirés à la demande)
-- Zone "trust" avec 3 checkmarks verts
-- Copyright + signalement en bas
+Partout ailleurs : couronne.
 
 ---
 
 <a id="logo"></a>
-## 6. 🎨 Logo wordmark "Ask amelie"
+## 4. 🎨 Logo wordmark "Ask amelie"
 
 ```html
 <a href="index.html" class="brand">
@@ -225,70 +150,136 @@ Partout ailleurs, couronne.
 </a>
 ```
 
-CSS :
 ```css
 .brand{
-  display:inline-flex;align-items:baseline;
+  display:inline-flex; align-items:baseline;
   font-family:'Libre Baskerville',Georgia,serif;
-  font-size:22px;font-weight:800;letter-spacing:-.02em;
-  text-decoration:none;line-height:1;
+  font-size:22px; font-weight:800; letter-spacing:-.02em;
+  text-decoration:none; line-height:1;
 }
 .brand .mark{display:none}
-.brand .title{color:#0F6B5B}           /* "Ask" vert profond */
-.brand .title em{font-style:normal;color:#E89C6E;font-weight:700}  /* "amelie" salmon */
+.brand .title{color:#0F6B5B}
+.brand .title em{font-style:normal;color:#E89C6E;font-weight:700}
 ```
 
-**Wordmark 2 tons** comme sur le screenshot promo.askamelie :
+**Wordmark 2 tons** (comme sur promo.askamelie.com) :
 - `Ask` vert profond `#0F6B5B`
 - `amelie` salmon `#E89C6E`
 
 ---
 
+<a id="homepage"></a>
+## 5. 🏠 Homepage `index.html`
+
+### Bandeau top
+> 🎯 **Mieux classé** = plus de choix sur ta ville et ta spé
+
+### Hero
+- Pas d'eyebrow
+- H1 : `Teste un dossier <em>gratuitement</em>.<br>Vois la différence.`
+- Sub : "Toutes les annales EDN/ECN depuis 2016 en conditions réelles. Raisonnement clinique détaillé par des médecins spécialistes : pas juste la bonne lettre."
+- CTA vert teal : "Commencer le dossier gratuit →"
+
+### Stats row dans card beige
+- `background:#EEE7DC; border:1px solid #DDD3C3; border-radius:14px`
+- 4 chiffres : 10 années · 850+ dossiers · 13 spécialités · 100% corrigé médecins
+
+### Social proof
+- Texte : "Rejoint par **+2034 D4** cette année · ⭐ 4.9/5 sur 400+ avis"
+- 4 avatars via `pravatar.cc/80?img=5/15/23/33` (URLs stables)
+
+### Section "Comment ça marche" (fond beige full-width)
+Sous-titre : "En 3 étapes, découvre ton niveau réel…"
+
+3 cards **blanches** uniformes (`grid-template-columns: repeat(3, minmax(0, 1fr))` + `height:100%`) :
+1. **Teste un vrai dossier.** - Découvre ton niveau sur un cas concret
+2. **Vois ce que ça t'apporte.** - Compare avec la correction d'un spécialiste
+3. **Transforme ça en choix.** - Augmente tes chances pour l'internat
+
+### Year cards verrouillées
+- Badge **"ILLIMITÉ" vert flash** avec couronne SVG blanche
+- Card opacity:1 (plus de fade)
+- `.tip` hover avec `pointer-events:none`
+
+### Sections avec pills retirées
+Les pills kickers "SUIVI INTELLIGENT", "TARIF UNIQUE", "RÉSULTATS" supprimés au-dessus des H2 (faisaient "trop IA").
+
+### Témoignages (3 avis étudiants D4)
+- **Léa D.** - D4 Paris Descartes
+- **Antoine M.** - D4 Bordeaux (étudiant blanc, pravatar img=12)
+- **Sofia R.** - D4 Toulouse (étudiante hispanique, pravatar img=47)
+
+Dr. S. Martin (cardiologue correcteur) retiré — pas pertinent pour la cible D4.
+
+---
+
+<a id="footer"></a>
+## 6. 🦶 Footer multi-colonnes
+
+Structure 5 colonnes desktop, 2 cols tablet (<900px), 1 col mobile (<540px) :
+
+```
+┌──────────────────────────────────────────────────────────────┐
+│ ● Ask Amélie         PRODUIT    RESSOURCES  ENTREPRISE  LÉGAL│
+│ Ask Amélie EDN :     Démo       Centre aide À propos    M.L.│
+│ l'entraînement…      Tarifs     Blog        Contact     Conf│
+│                      Témoignages Guides                  CGV│
+│                      FAQ                                 Cook│
+│──────────────────────────────────────────────────────────────│
+│ ✓ Corrections médicales · médecins spécialistes             │
+│ ✓ Hébergement conforme RGPD · données en France             │
+│ ✓ Édité par Askamelie · Paris, France                       │
+│──────────────────────────────────────────────────────────────│
+│ © 2026 Ask Amélie     Signaler erreur : contact@…com        │
+└──────────────────────────────────────────────────────────────┘
+```
+
+- Pas d'Instagram ni TikTok
+- Zone "trust" avec 3 checkmarks verts
+- Copyright + signalement email
+
+---
+
 <a id="finquiz"></a>
-## 7. 🎓 Fin de quiz — card unifiée + sticky CTA
+## 7. 🎓 Fin de quiz
 
 ### Card unifiée `.score-unified` (fusion score-bravo + score-card)
 
-Structure (un seul bloc, plus 2 cards séparées) :
+Structure (un seul bloc) :
 
 ```
 ┌────────────────────────────────────────┐
-│  [ECN 2016] Dossier démo cardio        │  ← header
+│  [ECN 2016] Dossier démo cardio        │
+│         Bravo 🎉                        │
+│   Tu viens de faire ton premier test…   │
 │                                         │
-│         Bravo 🎉                        │  ← title
-│   Tu viens de faire ton premier test…   │  ← intro
-│                                         │
-│        Tu progresses.                   │  ← headline (vert flash)
-│           40%                           │  ← bignum (vert profond)
-│    4/10 bonnes réponses · 12:00 temps   │  ← meta
+│        Tu progresses.                   │  ← headline vert flash
+│           40%                           │  ← bignum vert profond
+│    4/10 bonnes réponses · 12:00 temps   │
 │                                         │
 │  ┌────────────────────────────────┐    │
-│  │ 🎯 Aux EDN, chaque place compte │    │  ← stakes box
-│  │ Ton rang détermine...           │    │
-│  │ [EDN 60% · ECOS 30% · Parc 10%] │    │  ← breakdown dashed vert flash
+│  │ 🎯 Aux EDN, chaque place compte │    │
+│  │ Ton rang détermine…             │    │
+│  │ [EDN 60% · ECOS 30% · Parc 10%] │    │  ← dashed vert flash
 │  └────────────────────────────────┘    │
 │                                         │
-│  Chez Ask Amélie, +300 places en…       │  ← stat avec salmon highlight
+│  Chez Ask Amélie, +300 places en…       │  ← surligneur beige
 │                                         │
-│  ╌╌╌╌╌╌╌ dashed SALMON ╌╌╌╌╌╌╌╌         │
-│  ⏱ Tu as bossé 5 ans :                  │  ← anchor (vert profond)
+│  ╌╌╌╌╌╌╌╌ beige dashed ╌╌╌╌╌╌╌╌╌        │
+│  ⏱ Tu as bossé 5 ans :                  │
 └────────────────────────────────────────┘
 ```
 
-**CSS** :
-- `background: #fff` (blanc uniforme comme les autres blocks)
-- `border: 1px solid #DDD3C3` (bordure beige)
-- Bordures latérales tonales selon score : good=sauge, mid=beige, low=rose
-- Shadow : `0 8px 28px rgba(15,107,91,.08)`
+**CSS** : fond blanc `#fff`, bordure `#DDD3C3`, shadow `rgba(15,107,91,.08)`, border-radius 20px.
 
 ### 3 blocks harmonisés (tous blancs + bordure beige)
 
 1. `.score-unified` - résumé quiz
-2. `.amelie-thinking` - "Amélie réfléchit" animation
+2. `.amelie-thinking` - animation "Amélie réfléchit"
 3. `.report-card` - "Analyse d'Amélie" bilan
 4. `.report-unlock` - "Ton bilan personnalisé t'attend" CTA
 
-Même style partout :
+Même style :
 ```css
 background: #fff;
 border: 1px solid #DDD3C3;
@@ -296,13 +287,14 @@ border-radius: 20px;
 box-shadow: 0 8px 28px rgba(15,107,91,.08);
 ```
 
-### Animation "Amélie réfléchit" — scroll-triggered
+### Animation "Amélie réfléchit" — hard cap 4s
 
-- IntersectionObserver sur `#amelieThinking` avec `threshold: 0.25`
-- L'animation + l'API call démarrent **quand le bloc entre à 25% dans le viewport**
-- Fallback si IntersectionObserver absent : démarrage direct
+- Durée fixe **4 secondes** maximum
+- Appel API en parallèle, render au bout de 4s avec :
+  - Réponse API si disponible
+  - Fallback local sinon
 
-### Scroll-to-top au render
+### Scroll-to-top automatique
 
 Au début de `renderScore()` :
 ```js
@@ -313,9 +305,7 @@ try {
 } catch(e){}
 ```
 
-L'utilisateur atterrit en haut du bilan quand le quiz se termine.
-
-### Sticky CTA fin de quiz (non-premium uniquement)
+### Sticky CTA fin de quiz (non-premium)
 
 ```html
 <div class="score-sticky-cta visible" id="scoreStickyCta">
@@ -330,77 +320,54 @@ L'utilisateur atterrit en haut du bilan quand le quiz se termine.
 </div>
 ```
 
-CSS clé :
-```css
-.score-sticky-cta{
-  position: fixed; bottom: 0; left: 0; right: 0;
-  z-index: 10500;  /* IMPORTANT : au-dessus de examOverlay (9999) */
-  background: #fff; border-top: 1px solid #DDD3C3;
-  padding: 14px 20px; box-shadow: 0 -8px 28px rgba(15,107,91,.12);
-  transform: translateY(110%); transition: transform .4s cubic-bezier(.16,1,.3,1);
-  opacity: 0; pointer-events: none;
-}
-.score-sticky-cta.visible{
-  transform: translateY(0); opacity: 1; pointer-events: auto;
-}
-```
-
-**Mécanique JS** :
-1. Sticky créée dans `renderScore()` si `!isPremium`
-2. **Déplacée dans `<body>`** via `appendChild` (pour que `position:fixed` soit viewport-relative)
-3. `#scoreStickyCta` **ajouté à la whitelist early-hide CSS** (pour `?auto=1`/`?dash=1`)
-4. Cleanup automatique dans `exGoBack()` et `closeExam()` (retire du DOM au back)
-
-### Accents salmon sur la fin de quiz
-
-- Surligneur "+300 places" : `background: linear-gradient(180deg, transparent 60%, rgba(232,156,110,.45) 60%)`
-- Border-top `.anchor-line` : `2px dashed #E89C6E`
-- Progress bar quiz : gradient `#0F6B5B 0% → #E89C6E 100%`
+**Points clés techniques** :
+- `position: fixed; bottom: 0; left: 0; right: 0`
+- `z-index: 10500` (au-dessus de examOverlay qui est à 9999)
+- Déplacée dans `<body>` via `appendChild` pour que position:fixed soit viewport-relative
+- Ajoutée à la whitelist `early-hide` CSS (pour `?auto=1`/`?dash=1`)
+- Cleanup dans `exGoBack()` et `closeExam()` pour éviter qu'elle persiste
 
 ---
 
 <a id="signupfirst"></a>
 ## 8. ⚠️ Règle critique : signup d'abord, Stripe ensuite
 
-**Exigence** : quand un utilisateur clique "Passer à Focus Illimité" n'importe où, il va d'abord vers la **création de compte**. Le paiement Stripe se fait après, depuis son compte.
+**Exigence** : quand un utilisateur clique "Passer à Focus Illimité" n'importe où, il est redirigé d'abord vers **la création de compte**. Le paiement Stripe se fait après, depuis son compte.
 
 ### Implémentation
 
-Tous les CTA Focus Illimité appellent soit :
+Tous les CTA Focus Illimité appellent :
 - `showFirstQuestionGate(true)` directement (anonyme ou authed)
-- `goPremium(ctx)` qui route : anon → signup gate, authed → Stripe
+- Ou `goPremium(ctx)` qui route : anon → signup, authed → Stripe
 
 **Liens directs Stripe supprimés** :
-- `.pw-cta-gold` dans paywall modal → `onclick="closePaywall();showFirstQuestionGate(true)"`
+- `.pw-cta-gold` paywall modal → `onclick="closePaywall();showFirstQuestionGate(true)"`
 - `.offer-cta` section pricing → `onclick="showFirstQuestionGate(true)"`
 
-### Exceptions (Stripe direct conservé)
-
-| CTA | Justification |
-|---|---|
-| CTA Stripe **dans** popup paywall | User a déjà vu le pitch |
-| CTA `.premium-cta-btn` footer | Section de conversion dédiée |
-| CTA `.sticky-btn` bottom bar homepage | Identique |
+### Exceptions (Stripe direct OK)
+- CTA Stripe à l'intérieur d'une popup paywall (user a vu le pitch)
+- CTA `.premium-cta-btn` footer
+- CTA `.sticky-btn` bottom bar homepage
 
 ---
 
 <a id="bugs"></a>
-## 9. 🐛 Bugs corrigés à vérifier côté prod
+## 9. 🐛 Bugs corrigés
 
 | Bug | Cause | Fix |
 |---|---|---|
-| Clamp 2 lignes KO sur explication verrouillée | Règle CSS non !important | `!important` + `-webkit-line-clamp:2` + `display:-webkit-box` |
-| `<strong>`/`<em>` sautent sur lignes | `<li>` en flex → chaque enfant = flex item | Wrapper contenu dans `<span>` |
-| Clic année verrouillée sans effet | `.tip` hover `position:absolute;inset:0` bloquait | `pointer-events:none` sur `.tip` |
+| Clamp 2 lignes KO sur explication verrouillée | CSS non !important | `!important` + `-webkit-line-clamp:2` + `display:-webkit-box` |
+| `<strong>`/`<em>` sautent sur lignes | `<li>` en flex → enfants = flex items | Wrapper contenu dans `<span>` |
+| Clic année verrouillée sans effet | `.tip` hover absolute inset:0 bloquait | `pointer-events:none` sur `.tip` |
 | Popup voir plus KO en `?auto=1` | Whitelist early-hide ne contenait pas `#paywall` | Ajouter `:not(#paywall):not(.paywall)` |
 | SVG data URI casse parsing CSS | Quotes mal encodées | Percent-encoder tout (`%20`, `%22`, `%3C`, `%3E`, `%2F`) |
-| Sticky CTA fin de quiz invisible | z-index 60 < examOverlay z-index 9999 | z-index 10500 + appendChild to body + whitelist |
-| Sticky CTA persiste après back | Pas de cleanup au navigateur | Remove element dans `exGoBack()` + `closeExam()` |
+| Sticky CTA fin de quiz invisible | z-index 60 < examOverlay 9999 | z-index 10500 + appendChild body + whitelist |
+| Sticky CTA persiste après back | Pas de cleanup au navigateur | Remove dans `exGoBack()` + `closeExam()` |
 
 ---
 
 <a id="perl"></a>
-## 10. 🔧 Commande perl reproductible (palette swap prod)
+## 10. 🔧 Commande perl reproductible
 
 ```bash
 perl -pi -e "
@@ -433,10 +400,10 @@ perl -pi -e "
   s/%237c3aed/%230F6B5B/g;
 " path/to/your/files.{html,css,scss,js,jsx,tsx,vue}
 
-# Puis ajuster les gradients CTA pour éviter "flash→profond" moche
+# Gradients CTA ajustés post-swap :
 perl -pi -e "
   s|linear-gradient\(135deg,#19D36B 0%,#0F6B5B 100%\)|linear-gradient(135deg,#19D36B 0%,#13B05A 100%)|g;
-" files.{html,css}
+" path/to/your/files.{html,css}
 ```
 
 ---
@@ -444,27 +411,27 @@ perl -pi -e "
 <a id="verif"></a>
 ## 11. 🚨 Vérifications post-migration
 
-1. **Contraste AA** : `#19D36B` sur fond blanc ≥ 4.5:1 pour le texte. Sur boutons CTA avec texte blanc, préférer `#13B05A` en gradient.
+1. **Contraste AA** : `#19D36B` sur fond blanc ≥ 4.5:1 pour texte. Sur boutons CTA texte blanc, préférer `#13B05A` en gradient.
 2. **Cohérence** : aucun élément décoratif en vert flash (réservé action uniquement).
-3. **SVG crown data URIs** : `fill="%230F6B5B"` bien percent-encodé (pas de `#`).
+3. **SVG crown data URIs** : `fill="%230F6B5B"` bien percent-encodé.
 4. **Couronne dans cercle** : sur mobile, SVG ~50% du wrap (ex: 26×26 dans 52×52).
 5. **Popups centrés** : `align-items:center` partout, pas de `flex-end` résiduel.
 6. **Blocks fin de quiz** : même largeur max (560px via `.score-card-wrap`).
 7. **Cards "Comment ça marche"** : uniformes (flex + `height:100%`).
 8. **Sticky CTA** : z-index:10500 pour passer au-dessus de examOverlay.
-9. **IntersectionObserver** : fallback pour vieux navigateurs.
+9. **Animation thinking** : hard cap 4s.
 10. **Logo 2 tons** : `Ask` vert profond, `amelie` salmon.
 
 ---
 
-## 📦 Fichiers de référence
+## 📦 Fichiers associés
 
-- `index.html` : homepage cible
+- `index.html` : homepage
 - `ecn-focus.html` : quiz engine + fin de quiz
 - `CHANGELOG-2026-04-22.md` : historique chronologique du 22 avril
-- `MIGRATION-PROD.md` : guide global avec visuels ASCII + matrice popups
+- `MIGRATION-PROD.md` : guide global initial avec visuels ASCII
 - `MIGRATION-COLOR-CLINICAL-GREEN.md` : détail swap violet → vert
 - `DESIGN-BRIEF-NEW-HOMEPAGE.md` : brief inspiration Docgenda
-- **Ce document** : guide final tout-en-un (palette + UX + bugs)
+- **Ce document** : guide final tout-en-un
 
 Repo GitHub : `Yanchan7m/ASKAMELIE-TEST-MAQUETTE` branche `main`.
