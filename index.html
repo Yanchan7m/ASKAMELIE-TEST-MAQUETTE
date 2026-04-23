@@ -285,9 +285,15 @@ body.authed .already-subscribed{display:none}
 .testimonials-header h2{font-family:var(--font-serif);font-size:clamp(28px,4vw,40px);font-weight:700;letter-spacing:-.02em;color:var(--fg);margin-bottom:14px;line-height:1.15}
 .testimonials-header h2 .underline{position:relative;display:inline-block}
 .testimonials-header h2 .underline::after{content:'';position:absolute;left:-2%;right:-2%;bottom:-4px;height:8px;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 12'><path d='M2,8 Q30,2 60,7 T118,5' fill='none' stroke='%23E89C6E' stroke-width='3' stroke-linecap='round'/></svg>") center/100% 100% no-repeat}
-.testi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.testi-marquee{overflow:hidden;position:relative;margin:0 -24px;padding:4px 0;-webkit-mask-image:linear-gradient(to right,transparent 0,#000 6%,#000 94%,transparent 100%);mask-image:linear-gradient(to right,transparent 0,#000 6%,#000 94%,transparent 100%)}
+.testi-track{display:flex;gap:18px;padding:4px 24px 4px 24px;width:max-content;animation:testiScroll 90s linear infinite}
+.testi-marquee:hover .testi-track,.testi-marquee:focus-within .testi-track{animation-play-state:paused}
+.testi-track .testi-card{flex:0 0 340px;width:340px}
+@keyframes testiScroll{from{transform:translateX(0)}to{transform:translateX(calc(-50% - 9px))}}
+@media(prefers-reduced-motion:reduce){.testi-track{animation:none}}
 .testi-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 20px 18px;display:flex;flex-direction:column;gap:12px;box-shadow:var(--shadow-sm);transition:all .2s;min-height:280px}
 .testi-card:hover{border-color:var(--sage);box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.testi-avatar-initials{width:40px;height:40px;border-radius:50%;background:var(--sage-soft);color:var(--primary-darkest);display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);font-size:14px;font-weight:700;letter-spacing:-.01em;border:1px solid var(--sage);flex-shrink:0}
 .testi-stars{display:flex;gap:2px;color:var(--accent);font-size:13px;letter-spacing:.5px}
 .testi-quote{font-size:13px;color:var(--fg);line-height:1.6;flex:1}
 .testi-foot{display:flex;align-items:center;gap:10px;padding-top:12px;border-top:1px solid var(--border)}
@@ -876,40 +882,97 @@ body.authed .already-subscribed{display:none}
   <div class="testimonials-header">
     <h2>Ils ont décroché la spé de leur <span class="underline">choix</span>.</h2>
   </div>
-  <div class="testi-grid">
-    <div class="testi-card">
-      <div class="testi-stars">★★★★★</div>
-      <p class="testi-quote">"Je bossais sur des PDF illisibles depuis des mois. Avec Amélie, j'ai enfin compris le raisonnement derrière les corrections. J'ai gagné 300 places en 3 mois."</p>
-      <div class="testi-foot">
-        <img class="testi-avatar" src="img/students/student_lea.png" alt="Léa D." loading="lazy" width="40" height="40">
-        <div><div class="testi-name">Léa D.</div><div class="testi-meta">D4 · Top 500 · Paris Descartes</div></div>
+  <div class="testi-marquee">
+    <div class="testi-track" id="testiTrack">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Je bossais sur des PDF illisibles depuis des mois. Avec Amélie, j'ai enfin compris le raisonnement derrière les corrections. J'ai gagné 300 places en 3 mois."</p>
+        <div class="testi-foot">
+          <img class="testi-avatar" src="img/students/student_lea.png" alt="Léa D." loading="lazy" width="40" height="40">
+          <div><div class="testi-name">Léa D.</div><div class="testi-meta">D4 · Top 500 · Paris Descartes</div></div>
+        </div>
       </div>
-    </div>
-    <div class="testi-card">
-      <div class="testi-stars">★★★★★</div>
-      <p class="testi-quote">"J'ai longtemps pensé que faire plus de dossiers suffisait. Avec Amélie, j'ai compris que ce qui compte c'est la qualité du corrigé. Mes scores ont décollé en 2 mois."</p>
-      <div class="testi-foot">
-        <img class="testi-avatar" src="https://i.pravatar.cc/150?img=12" alt="Antoine M." loading="lazy" width="40" height="40">
-        <div><div class="testi-name">Antoine M.</div><div class="testi-meta">D4 · Top 800 · Bordeaux</div></div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"J'ai longtemps pensé que faire plus de dossiers suffisait. Avec Amélie, j'ai compris que ce qui compte c'est la qualité du corrigé. Mes scores ont décollé en 2 mois."</p>
+        <div class="testi-foot">
+          <img class="testi-avatar" src="https://i.pravatar.cc/150?img=12" alt="Antoine M." loading="lazy" width="40" height="40">
+          <div><div class="testi-name">Antoine M.</div><div class="testi-meta">Promo 2025 · Top 800 · Bordeaux</div></div>
+        </div>
       </div>
-    </div>
-    <div class="testi-card">
-      <div class="testi-stars">★★★★★</div>
-      <p class="testi-quote">"Les bilans personnalisés m'ont permis d'identifier mes vraies faiblesses. J'ai arrêté de perdre mon temps sur ce que je maîtrisais déjà. Game changer."</p>
-      <div class="testi-foot">
-        <img class="testi-avatar" src="https://i.pravatar.cc/150?img=47" alt="Sofia R." loading="lazy" width="40" height="40">
-        <div><div class="testi-name">Sofia R.</div><div class="testi-meta">D4 · Dermatologie · Toulouse</div></div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Les bilans personnalisés m'ont permis d'identifier mes vraies faiblesses. J'ai arrêté de perdre mon temps sur ce que je maîtrisais déjà. Game changer."</p>
+        <div class="testi-foot">
+          <img class="testi-avatar" src="https://i.pravatar.cc/150?img=47" alt="Sofia R." loading="lazy" width="40" height="40">
+          <div><div class="testi-name">Sofia R.</div><div class="testi-meta">Promo 2025 · Dermatologie · Toulouse</div></div>
+        </div>
       </div>
-    </div>
-    <div class="testi-card">
-      <div class="testi-stars">★★★★★</div>
-      <p class="testi-quote">"L'onglet « Demander à Amélie » après chaque QCM, c'est ce qui m'a fait décoller. Avant je passais une heure à googler pourquoi telle réponse était fausse, maintenant j'ai un raisonnement clair en 10 secondes. Top 400 aux blancs."</p>
-      <div class="testi-foot">
-        <img class="testi-avatar" src="https://i.pravatar.cc/150?img=33" alt="Thomas L." loading="lazy" width="40" height="40">
-        <div><div class="testi-name">Thomas L.</div><div class="testi-meta">D4 · Top 400 · Lyon Est</div></div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"L'onglet « Demander à Amélie » après chaque QCM, c'est ce qui m'a fait décoller. Avant je passais une heure à googler pourquoi telle réponse était fausse, maintenant j'ai un raisonnement clair en 10 secondes. Top 400 aux blancs."</p>
+        <div class="testi-foot">
+          <img class="testi-avatar" src="https://i.pravatar.cc/150?img=33" alt="Thomas L." loading="lazy" width="40" height="40">
+          <div><div class="testi-name">Thomas L.</div><div class="testi-meta">D4 · Top 400 · Lyon Est</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Les IRM et les ECG sont analysés directement par Amélie. Je n'ai plus besoin de 3 bouquins ouverts à côté pour comprendre un tracé. C'est devenu mon réflexe de révision."</p>
+        <div class="testi-foot">
+          <img class="testi-avatar" src="https://i.pravatar.cc/150?img=45" alt="Clara B." loading="lazy" width="40" height="40">
+          <div><div class="testi-name">Clara B.</div><div class="testi-meta">Promo 2025 · Radiologie · Strasbourg</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"La LCA me terrorisait. Amélie décortique chaque article étape par étape, et je comprends enfin la méthodologie. De 7/20 à 16/20 en 3 mois aux blancs."</p>
+        <div class="testi-foot">
+          <img class="testi-avatar" src="https://i.pravatar.cc/150?img=14" alt="Hugo V." loading="lazy" width="40" height="40">
+          <div><div class="testi-name">Hugo V.</div><div class="testi-meta">D4 · Lille</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"J'ai redoublé ma D3. Au lieu de me dire « travaille plus », Amélie m'a dit « travaille comme ça ». Première fois que quelqu'un m'explique la méthode, pas juste le contenu."</p>
+        <div class="testi-foot">
+          <img class="testi-avatar" src="https://i.pravatar.cc/150?img=23" alt="Mathilde G." loading="lazy" width="40" height="40">
+          <div><div class="testi-name">Mathilde G.</div><div class="testi-meta">D4 · Rennes</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"La répétition des tests, c'est vraiment ce qui m'a aidée à mémoriser. Je refais les mêmes QCM à quelques semaines d'écart et les réflexes se construisent tout seuls. J'ai enfin arrêté d'oublier avant les partiels."</p>
+        <div class="testi-foot">
+          <div class="testi-avatar-initials" aria-label="Julie M.">JM</div>
+          <div><div class="testi-name">Julie M.</div><div class="testi-meta">D4 · Angers</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"J'étudiais 12h par jour sans progresser. Avec Amélie, 7h suffisent et je progresse vraiment. J'ai pu reprendre le sport et mieux dormir — et mes notes n'ont jamais été aussi bonnes."</p>
+        <div class="testi-foot">
+          <img class="testi-avatar" src="https://i.pravatar.cc/150?img=44" alt="Pauline D." loading="lazy" width="40" height="40">
+          <div><div class="testi-name">Pauline D.</div><div class="testi-meta">Promo 2025 · Nantes</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Amélie avait remarqué que je faisais toujours les mêmes erreurs en pharmaco. Elle m'a fait bosser exclusivement sur ça pendant 2 semaines. Depuis, plus d'erreur stupide en QCM."</p>
+        <div class="testi-foot">
+          <img class="testi-avatar" src="https://i.pravatar.cc/150?img=68" alt="Lucas T." loading="lazy" width="40" height="40">
+          <div><div class="testi-name">Lucas T.</div><div class="testi-meta">D4 · Montpellier</div></div>
+        </div>
       </div>
     </div>
   </div>
+  <script>
+    /* Duplique les cards dans le track pour un défilement sans saccade */
+    (function(){
+      var track = document.getElementById('testiTrack');
+      if (track) track.insertAdjacentHTML('beforeend', track.innerHTML);
+    })();
+  </script>
   <div class="testi-bottom">
     <span class="stars">★★★★★</span>
     <strong>4.9/5</strong> sur 400+ avis
