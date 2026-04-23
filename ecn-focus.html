@@ -1199,6 +1199,17 @@ body{background:#F7F5F2}
   .year-card:hover{transform:none!important;box-shadow:none!important}
   .dossier-card:hover:not(.locked){background:#FAF8F3!important;border-color:#E3DFD8!important;transform:none!important}
 }
+
+/* ── Trust block "Amélie conçue pour ne pas se tromper" (partagé avec index.html) ── */
+.trust-amelie{margin:14px auto;padding:16px 18px;background:#fff;border:1px solid #DDD3C3;border-radius:14px;text-align:left}
+.trust-amelie-head{display:flex;align-items:center;gap:9px;margin-bottom:11px;font-family:'Libre Baskerville',Georgia,serif;font-size:14.5px;color:#163A3A;font-weight:700;letter-spacing:-.01em;line-height:1.3}
+.trust-amelie-head svg{flex-shrink:0;width:19px;height:19px;color:#0F6B5B}
+.trust-amelie-feats{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:7px}
+.trust-amelie-feats li{display:flex;align-items:flex-start;gap:8px;font-size:12.5px;color:#163A3A;line-height:1.5}
+.trust-amelie-feats li svg{flex-shrink:0;width:14px;height:14px;color:#0F6B5B;margin-top:2px}
+.trust-amelie-feats li strong{color:#0F6B5B;font-weight:700}
+.trust-amelie-foot{margin-top:10px;padding-top:8px;border-top:1px dashed #DDD3C3;font-size:12px;color:#527A70;font-style:italic;line-height:1.5}
+@media(max-width:500px){.trust-amelie{padding:14px 14px}.trust-amelie-head{font-size:13.5px}.trust-amelie-feats li{font-size:12px}}
 </style>
 </head>
 <body>
@@ -1314,6 +1325,18 @@ body{background:#F7F5F2}
         <li>Compte rendu Amélie mis à jour tout seul</li>
         <li>Sans pub, annulable à tout moment</li>
       </ul>
+      <div class="trust-amelie">
+        <div class="trust-amelie-head">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9c2.35 0 4.5.9 6.1 2.4"/></svg>
+          Amélie a été conçue pour ne pas se tromper.
+        </div>
+        <ul class="trust-amelie-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Équivalent de <strong>800+ médecins et professeurs spécialistes</strong>.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Correction <strong>croisée et doublement vérifiée</strong> (CUESPB, CNEMV, collèges).</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Entraînée sur <strong>10 ans d'annales EDN/ECN</strong> corrigées manuellement.</li>
+        </ul>
+        <div class="trust-amelie-foot">Fiabilité clinique que tu ne trouveras nulle part ailleurs.</div>
+      </div>
       <button type="button" class="offer-cta" onclick="showFirstQuestionGate(true)" style="border:none;cursor:pointer;font-family:inherit">Démarrer le Focus Illimité →</button>
       <p class="offer-trust">Paiement sécurisé · Sans engagement · Annulable</p>
     </div>
@@ -1413,6 +1436,19 @@ body{background:#F7F5F2}
       </div>
     </div>
 
+    <div class="trust-amelie">
+      <div class="trust-amelie-head">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9c2.35 0 4.5.9 6.1 2.4"/></svg>
+        Amélie a été conçue pour ne pas se tromper.
+      </div>
+      <ul class="trust-amelie-feats">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Équivalent de <strong>800+ médecins et professeurs spécialistes</strong>.</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Correction <strong>croisée et doublement vérifiée</strong> (CUESPB, CNEMV, collèges).</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Entraînée sur <strong>10 ans d'annales EDN/ECN</strong> corrigées manuellement.</li>
+      </ul>
+      <div class="trust-amelie-foot">Fiabilité clinique que tu ne trouveras nulle part ailleurs.</div>
+    </div>
+
     <button type="button" class="ask-gate-cta" onclick="goPremium('ask-gate')">
       Passer au plan Focus Illimité
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -1436,6 +1472,18 @@ body{background:#F7F5F2}
         <li><span><strong>Ton bilan personnalisé</strong> détaillé après chaque dossier</span></li>
         <li><span><strong>+300 places en moyenne</strong> au classement pour nos élèves</span></li>
       </ul>
+      <div class="trust-amelie">
+        <div class="trust-amelie-head">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9c2.35 0 4.5.9 6.1 2.4"/></svg>
+          Amélie a été conçue pour ne pas se tromper.
+        </div>
+        <ul class="trust-amelie-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Équivalent de <strong>800+ médecins et professeurs spécialistes</strong>.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Correction <strong>croisée et doublement vérifiée</strong> (CUESPB, CNEMV, collèges).</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Entraînée sur <strong>10 ans d'annales EDN/ECN</strong> corrigées manuellement.</li>
+        </ul>
+        <div class="trust-amelie-foot">Fiabilité clinique que tu ne trouveras nulle part ailleurs.</div>
+      </div>
       <button type="button" class="pw-cta-gold" onclick="closePaywall();showFirstQuestionGate(true)" style="border:none;cursor:pointer;font-family:inherit">Passer à Focus Illimité →</button>
       <button type="button" class="pw-learn-more" onclick="closePaywall()">Plus tard</button>
     </div>
@@ -3261,6 +3309,18 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
       h += '<div class="conv-block">' +
         '<div class="conv-headline">Tu viens de voir la qualité sur <em>1 dossier</em>.<br>Débloque les <em>9 autres années</em>.</div>' +
         '<div class="conv-sub">850+ dossiers progressifs corrigés par des médecins spécialistes. Ton suivi personnel est maintenant sauvegardé.</div>' +
+        '<div class="trust-amelie">' +
+          '<div class="trust-amelie-head">' +
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9c2.35 0 4.5.9 6.1 2.4"/></svg>' +
+            'Amélie a été conçue pour ne pas se tromper.' +
+          '</div>' +
+          '<ul class="trust-amelie-feats">' +
+            '<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Équivalent de <strong>800+ médecins et professeurs spécialistes</strong>.</li>' +
+            '<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Correction <strong>croisée et doublement vérifiée</strong> (CUESPB, CNEMV, collèges).</li>' +
+            '<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Entraînée sur <strong>10 ans d\'annales EDN/ECN</strong> corrigées manuellement.</li>' +
+          '</ul>' +
+          '<div class="trust-amelie-foot">Fiabilité clinique que tu ne trouveras nulle part ailleurs.</div>' +
+        '</div>' +
         '<button type="button" class="conv-btn-primary conv-btn-stripe" onclick="goPremium(\'score\')" style="border:none;font-family:inherit">Passer au plan Focus Illimité : 29,90 € / mois →</button>' +
         '<div class="conv-trust">Sans engagement · Remboursé 14 jours · Moins d\'1 € / jour</div>' +
         '<button class="conv-later" onclick="exGoBack()">Plus tard · Retour aux dossiers</button>' +
