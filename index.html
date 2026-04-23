@@ -335,6 +335,23 @@ body.authed .already-subscribed{display:none}
 .premium-cta .trust-amelie-foot{color:rgba(255,255,255,.78);border-top-color:rgba(255,255,255,.22)}
 @media(max-width:600px){.trust-amelie{padding:18px 20px;margin:24px 18px 0}.trust-amelie-head{font-size:15px}.trust-amelie-feats li{font-size:13.5px}}
 
+/* ── Science section : effet de test / testing effect ── */
+.science-section{max-width:1100px;margin:56px auto 0;padding:0 24px}
+.science-inner{background:#fff;border:1px solid #DDD3C3;border-radius:18px;padding:44px 48px;text-align:left;position:relative;box-shadow:var(--shadow-sm)}
+.science-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;background:var(--sage-soft);border:1px solid var(--sage);border-radius:100px;color:var(--primary-darkest);font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:22px}
+.science-badge svg{width:14px;height:14px;flex-shrink:0}
+.science-section h2{font-family:var(--font-serif);font-size:clamp(24px,3.4vw,34px);font-weight:700;color:var(--fg);letter-spacing:-.015em;line-height:1.2;margin-bottom:22px}
+.science-section h2 .underline{position:relative;display:inline-block;color:var(--primary-darkest)}
+.science-section h2 .underline::after{content:'';position:absolute;left:0;right:0;bottom:4%;height:40%;background:rgba(232,156,110,.38);z-index:-1;border-radius:2px}
+.science-body p{font-size:15.5px;color:var(--fg);line-height:1.7;margin-bottom:14px}
+.science-body p:last-child{margin-bottom:0}
+.science-body strong{color:var(--primary-darkest);font-weight:700}
+.science-body em{font-style:italic;color:var(--fg-soft)}
+.science-quote{margin-top:22px;padding:18px 22px;background:var(--sage-soft);border-left:3px solid var(--primary);border-radius:10px}
+.science-quote p{margin:0;font-size:15px;color:var(--fg);font-style:italic;line-height:1.6}
+.science-quote p strong{font-style:normal}
+@media(max-width:720px){.science-inner{padding:32px 26px}.science-body p{font-size:14.5px}.science-quote{padding:16px 18px}.science-quote p{font-size:14px}}
+
 /* ── Footer ── */
 .foot{max-width:1200px;margin:56px auto 0;padding:48px 24px 24px;border-top:1px solid var(--border)}
 .foot-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:40px;margin-bottom:36px}
@@ -616,6 +633,24 @@ body.authed .already-subscribed{display:none}
   </div>
 </section>
 
+<!-- Science section : effet de test / testing effect -->
+<section class="science-section">
+  <div class="science-inner">
+    <div class="science-badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2z"/></svg>
+      Basé sur les neurosciences
+    </div>
+    <h2>Pourquoi <span class="underline">t'entraîner</span> bat toujours relire ton cours.</h2>
+    <div class="science-body">
+      <p>Les neurosciences et la psychologie de l'apprentissage parlent de l'<strong>« effet de test »</strong> (<em>testing effect</em>) : rappeler régulièrement une information — par exemple via un quiz ou un QCM — <strong>renforce sa consolidation dans la mémoire à long terme</strong>.</p>
+      <p>Les synthèses et méta‑analyses sont unanimes : les étudiants qui s'entraînent avec des mini‑quiz / QCM obtiennent <strong>systématiquement de meilleures performances</strong> que ceux qui se contentent de relire leur cours.</p>
+      <div class="science-quote">
+        <p>C'est exactement ce que fait Amélie : elle te met face à de vrais dossiers EDN/ECN, te corrige avec le raisonnement d'un spécialiste, et garde la trace de <strong>tes</strong> faiblesses pour te re-tester au bon moment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Years grid -->
 <section class="years-section" id="annales">
   <div class="years-header">
@@ -821,7 +856,7 @@ body.authed .already-subscribed{display:none}
       <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Chaque correction est <strong>croisée et doublement vérifiée</strong> avec les référentiels officiels (CUESPB, CNEMV, collèges de spécialité).</li>
       <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Entraînée sur <strong>10 ans d'annales EDN/ECN</strong> corrigées manuellement par des spécialistes.</li>
     </ul>
-    <div class="trust-amelie-foot">Une fiabilité clinique que tu ne trouveras nulle part ailleurs.</div>
+    <div class="trust-amelie-foot">Une fiabilité clinique que tu ne trouveras nulle part ailleurs — tu peux t'appuyer dessus en toute confiance.</div>
   </div>
   <button type="button" class="premium-cta-btn" onclick="goPremium('footer')" style="border:none;cursor:pointer;font-family:inherit;margin-top:28px">
     Devenir Focus Illimité : 29,90 € / mois
