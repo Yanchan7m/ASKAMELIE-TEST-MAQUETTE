@@ -55,10 +55,10 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 /* ── Nav ── */
 .nav{position:sticky;top:0;z-index:100;background:rgba(247,245,242,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
 .nav-inner{max-width:1200px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.brand{display:flex;align-items:center;gap:10px;font-size:17px;font-weight:700;letter-spacing:-.01em;color:var(--fg)}
-.brand .mark{width:32px;height:32px;border-radius:50%;background:var(--primary);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-family:var(--font-serif);font-size:16px;font-weight:700;letter-spacing:-.02em}
-.brand .title{font-family:var(--font-serif);font-size:17px;font-weight:700}
-.brand .title em{font-style:italic;color:var(--fg-soft);font-weight:400}
+.brand{display:inline-flex;align-items:baseline;font-family:var(--font-serif);font-size:22px;font-weight:800;letter-spacing:-.02em;color:var(--fg);text-decoration:none;line-height:1}
+.brand .mark{display:none}
+.brand .title{font-family:var(--font-serif);font-size:22px;font-weight:800;letter-spacing:-.02em;color:#1B6E68}
+.brand .title em{font-style:normal;color:#E89C6E;font-weight:700}
 .nav-links{display:flex;align-items:center;gap:28px}
 .nav-link{font-size:14px;font-weight:500;color:var(--fg);transition:color .15s}
 .nav-link:hover{color:var(--primary)}
@@ -534,8 +534,8 @@ body.authed .already-subscribed{display:none}
 
 <!-- Hero -->
 <section class="hero">
-  <h1>Teste un dossier <em>gratuitement</em>.<br>Vois la différence.</h1>
-  <p>Toutes les annales EDN/ECN depuis 2016 en conditions réelles. Raisonnement clinique détaillé par des médecins spécialistes : pas juste la bonne lettre.</p>
+  <h1>Décroche la spé de <em>ton choix</em>.</h1>
+  <p>La plateforme n°1 pour préparer les EDN. 10 ans d'annales corrigées par des médecins spécialistes avec le raisonnement clinique complet.</p>
   <a href="ecn-focus.html?year=2016&auto=1" class="hero-cta">
     Commencer le dossier gratuit
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
