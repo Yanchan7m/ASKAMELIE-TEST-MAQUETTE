@@ -296,6 +296,7 @@ button{font-family:inherit}
 @keyframes fIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 .ex-loading-text{font-size:13px;color:#64748b;font-weight:600}
 .ex-section-hdr{text-align:center;margin:0 0 28px;padding:22px 24px;background:#EEE7DC;border:1px solid #DDD3C3;border-radius:14px}
+.hl-beige{background:linear-gradient(180deg,transparent 60%,#E69F70 60%);padding:0 3px;color:inherit;font-weight:inherit}
 .ex-section-hdr h2{font-size:28px;font-weight:900;color:#0f172a;margin-bottom:6px}
 .ex-section-hdr p{font-size:13px;color:#64748b}
 .ex-badge{display:inline-block;padding:5px 14px;border-radius:8px;font-size:11px;font-weight:800;margin-bottom:12px}
@@ -2432,7 +2433,7 @@ window.tryFreeYear = function() { closePaywall(); openExam(FREE_YEAR); };
     setTop(yd ? yd.label : 'Annales ' + st.year, st.exams.length + ' épreuves');
     var h = '<div class="ex-inner">' +
       buildYearSwitcherHTML(st.year) +
-      '<div class="ex-section-hdr"><div class="ex-badge '+fmt+'">'+fmt.toUpperCase()+' '+st.year+'</div><h2>Il te reste 1 exercice à tester</h2><p>On t\'a sélectionné le <strong>DCP 1</strong> : c\'est le format qui te montre le mieux ce qu\'Amélie peut t\'apporter.<br>Les autres épreuves sont réservées aux membres <strong>Focus Illimité</strong>.</p></div><div class="dossier-list">';
+      '<div class="ex-section-hdr"><div class="ex-badge '+fmt+'">'+fmt.toUpperCase()+' '+st.year+'</div><h2>Il te reste 1 exercice à <span class="hl-beige">tester</span></h2><p>On t\'a sélectionné le <strong>DCP 1</strong> : c\'est le format qui te montre le mieux ce qu\'Amélie peut t\'apporter.<br>Les autres épreuves sont réservées aux membres <strong>Focus Illimité</strong>.</p></div><div class="dossier-list">';
     st.exams.forEach(function(e, i) {
       var t = getExamTypeInfo(e.exam_type);
       var isQI = /\bQI\b/i.test(e.exam_type || '') || /\bQI\b/i.test(e.name || '');
