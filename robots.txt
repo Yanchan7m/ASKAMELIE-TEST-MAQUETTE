@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /lp3.html
+Disallow: /lp4.html

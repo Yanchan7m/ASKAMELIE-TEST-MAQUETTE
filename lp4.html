@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Ask Amélie — Voici les places que tu perds chaque seconde</title>
+<meta name="description" content="+9 000 D4 s'entraînent en ce moment sur Ask Amélie. Regarde ton rang glisser en temps réel — et reprends la main.">
+<meta name="robots" content="noindex,nofollow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --brand-50:#eff6ff;
+  --brand-100:#dbeafe;
+  --brand-200:#bfdbfe;
+  --brand-300:#93c5fd;
+  --brand-400:#60a5fa;
+  --brand-500:#3b82f6;
+  --brand-600:#2563eb;
+  --brand-700:#1d4ed8;
+  --brand-950:#172554;
+  --accent-50:#ecfdf5;
+  --accent-300:#6ee7b7;
+  --accent-400:#34d399;
+  --accent-500:#10b981;
+  --accent-600:#059669;
+  --slate-50:#f8fafc;
+  --slate-200:#e2e8f0;
+  --slate-300:#cbd5e1;
+  --slate-400:#94a3b8;
+  --slate-500:#64748b;
+  --slate-700:#334155;
+  --slate-800:#1e293b;
+  --slate-900:#0f172a;
+  --slate-950:#020617;
+  --shadow-card:0 8px 32px -12px rgba(15,23,42,.12);
+  --shadow-soft:0 4px 24px -8px rgba(15,23,42,.08);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{
+  font-family:'Inter','-apple-system',BlinkMacSystemFont,sans-serif;
+  background:#fff;
+  color:var(--slate-900);
+  -webkit-font-smoothing:antialiased;
+  line-height:1.55;
+  font-feature-settings:'cv11','ss01';
+}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+
+/* ── Header ── */
+.nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--slate-200)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{font-size:18px;font-weight:700;letter-spacing:-.02em;background:linear-gradient(135deg,var(--brand-600) 0%,var(--accent-500) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.nav-cta{padding:10px 18px;background:linear-gradient(135deg,var(--brand-600),var(--accent-600));color:#fff;border-radius:10px;font-size:13px;font-weight:600;box-shadow:var(--shadow-soft);transition:all .15s}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:var(--shadow-card)}
+
+/* ── Hero ── */
+.hero{position:relative;overflow:hidden}
+.hero-glow{position:absolute;left:50%;top:-12rem;width:40rem;height:40rem;transform:translateX(-50%);border-radius:50%;background:radial-gradient(closest-side,rgba(59,130,246,.18),rgba(16,185,129,.12),transparent 70%);filter:blur(60px);pointer-events:none;z-index:0}
+.hero-inner{max-width:72rem;margin:0 auto;padding:48px 24px 64px;position:relative;z-index:1}
+@media(min-width:640px){.hero-inner{padding-top:80px}}
+.hero-head{max-width:48rem;margin:0 auto;text-align:center}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:100px;background:var(--brand-50);color:var(--brand-700);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;border:1px solid var(--brand-200)}
+.h1{margin-top:24px;font-size:clamp(34px,5.6vw,56px);font-weight:800;letter-spacing:-.025em;line-height:1.1;color:var(--slate-900);text-wrap:balance}
+.h1 .gradient{background:linear-gradient(90deg,var(--brand-600),var(--accent-500));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{margin:24px auto 0;max-width:38rem;font-size:17px;line-height:1.6;color:var(--slate-500);text-wrap:balance}
+.lead strong{font-weight:600;color:var(--slate-800)}
+
+/* ── Rank simulator (dark) ── */
+.sim-wrap{max-width:48rem;margin:48px auto 0}
+.sim{position:relative;overflow:hidden;border-radius:24px;border:1px solid var(--slate-200);background:var(--slate-950);padding:32px;box-shadow:var(--shadow-card);color:#fff}
+@media(min-width:640px){.sim{padding:40px}}
+.sim::before,.sim::after{content:'';position:absolute;width:192px;height:192px;border-radius:50%;filter:blur(60px);pointer-events:none}
+.sim::before{right:-3rem;top:-3rem;background:rgba(37,99,235,.25)}
+.sim::after{left:-3rem;bottom:-3rem;background:rgba(5,150,105,.25)}
+.sim-inner{position:relative;z-index:1}
+.live-pill-dark{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:100px;background:rgba(255,255,255,.05);color:var(--brand-300);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;border:1px solid rgba(255,255,255,.1)}
+.live-dot-dark{position:relative;display:flex;width:8px;height:8px}
+.live-dot-dark::before{content:'';position:absolute;inset:0;background:var(--brand-400);border-radius:50%;animation:ping 1.5s cubic-bezier(0,0,.2,1) infinite;opacity:.75}
+.live-dot-dark::after{content:'';position:relative;width:8px;height:8px;background:var(--brand-500);border-radius:50%}
+@keyframes ping{75%,100%{transform:scale(2);opacity:0}}
+.pill-wrap{text-align:center}
+.sim-head{text-align:center;margin-top:28px}
+.sim-mini-label{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--slate-400)}
+.sim-big{margin-top:8px;font-family:'Inter',monospace;font-size:clamp(64px,11vw,112px);font-weight:900;line-height:.9;letter-spacing:-.04em;font-variant-numeric:tabular-nums;background:linear-gradient(135deg,var(--brand-400),var(--accent-400));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sim-sub{margin-top:8px;font-size:12px;color:var(--slate-400)}
+.sim-meta{margin-top:32px;display:grid;gap:16px;grid-template-columns:1fr}
+@media(min-width:560px){.sim-meta{grid-template-columns:1fr 1fr}}
+.meta-card-dark{border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);backdrop-filter:blur(8px);border-radius:16px;padding:16px}
+.meta-card-dark-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--slate-400)}
+.meta-card-dark-value{margin-top:4px;font-size:28px;font-weight:900;font-variant-numeric:tabular-nums}
+.meta-card-dark-value.brand{color:var(--brand-300)}
+.meta-card-dark-value.accent{color:var(--accent-300)}
+.meta-card-dark-foot{margin-top:4px;font-size:11px;color:var(--slate-500)}
+
+/* ── CTA row ── */
+.cta-row{max-width:38rem;margin:40px auto 0}
+.cta-buttons{display:flex;flex-direction:column;gap:12px;align-items:stretch;justify-content:center}
+@media(min-width:640px){.cta-buttons{flex-direction:row}}
+.btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:16px 24px;background:linear-gradient(135deg,var(--brand-600),var(--accent-600));color:#fff;border-radius:16px;font-size:15px;font-weight:700;box-shadow:var(--shadow-card);transition:all .15s}
+.btn-primary:hover{transform:translateY(-2px)}
+.btn-primary svg{width:16px;height:16px;transition:transform .15s}
+.btn-primary:hover svg{transform:translateX(2px)}
+.btn-secondary{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:16px 24px;background:#fff;color:var(--slate-800);border:1px solid var(--slate-200);border-radius:16px;font-size:15px;font-weight:600;transition:all .15s}
+.btn-secondary:hover{border-color:var(--slate-300)}
+.trust-line{margin-top:14px;text-align:center;font-size:12px;color:var(--slate-500)}
+
+/* ── Stakes ── */
+.stakes{max-width:72rem;margin:0 auto;padding:64px 24px}
+.stakes-head{max-width:36rem;margin:0 auto;text-align:center}
+.stakes-eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--brand-600)}
+.stakes-h2{margin-top:8px;font-size:clamp(28px,4.2vw,40px);font-weight:800;letter-spacing:-.02em;color:var(--slate-900);text-wrap:balance}
+.stakes-lead{margin-top:12px;font-size:15px;color:var(--slate-500)}
+.stakes-grid{margin-top:48px;display:grid;gap:24px;grid-template-columns:1fr}
+@media(min-width:768px){.stakes-grid{grid-template-columns:repeat(3,1fr)}}
+.stake-card{border:1px solid var(--slate-200);background:#fff;border-radius:24px;padding:32px;box-shadow:var(--shadow-soft)}
+.stake-big{font-size:48px;font-weight:900;letter-spacing:-.025em;background:linear-gradient(135deg,var(--brand-600),var(--accent-600));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stake-label{margin-top:12px;font-size:14px;font-weight:600;color:var(--slate-900)}
+.stake-sub{margin-top:8px;font-size:12px;color:var(--slate-500);line-height:1.5}
+
+/* ── Final CTA (dark) ── */
+.final{max-width:72rem;margin:0 auto;padding:32px 24px 64px}
+.final-box{position:relative;overflow:hidden;border-radius:32px;background:linear-gradient(135deg,var(--slate-950) 0%,var(--brand-950) 50%,var(--slate-950) 100%);padding:64px 32px;text-align:center;box-shadow:var(--shadow-card);color:#fff}
+.final-box::before,.final-box::after{content:'';position:absolute;width:384px;height:384px;border-radius:50%;top:50%;transform:translateY(-50%);filter:blur(60px);pointer-events:none}
+.final-box::before{left:-8rem;background:rgba(59,130,246,.2)}
+.final-box::after{right:-8rem;background:rgba(16,185,129,.2)}
+.final-inner{position:relative;z-index:1}
+.final h2{max-width:36rem;margin:0 auto;font-size:clamp(28px,4.5vw,40px);font-weight:800;letter-spacing:-.02em;line-height:1.15}
+.final p{max-width:32rem;margin:12px auto 0;color:var(--slate-300);font-size:16px}
+.final-btn{display:inline-flex;align-items:center;gap:8px;margin-top:32px;padding:16px 28px;background:#fff;color:var(--slate-900);border-radius:16px;font-size:15px;font-weight:700;box-shadow:var(--shadow-soft);transition:transform .15s}
+.final-btn:hover{transform:translateY(-2px)}
+.final-foot{margin-top:16px;font-size:12px;color:var(--slate-400)}
+
+/* ── Footer ── */
+.footer{max-width:1200px;margin:0 auto;padding:32px 24px;border-top:1px solid var(--slate-200);text-align:center;color:var(--slate-500);font-size:13px}
+.footer a{color:var(--slate-700);font-weight:500}
+.footer a:hover{color:var(--brand-600)}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">Ask Amélie</a>
+    <a href="#cta" class="nav-cta">Reprendre mes places</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="hero-head">
+      <span class="eyebrow">🎯 Classement EDN en mouvement</span>
+      <h1 class="h1">Voici les places au concours que <span class="gradient">tu perds chaque seconde</span>.</h1>
+      <p class="lead"><strong>+9 000 D4</strong> s'entraînent en ce moment sur Ask Amélie. Pendant que tu lis cette page, ils corrigent un dossier, gagnent un point, et te passent devant. Regarde ton rang glisser en temps réel.</p>
+    </div>
+
+    <div class="sim-wrap">
+      <div class="sim">
+        <div class="sim-inner">
+          <div class="pill-wrap">
+            <span class="live-pill-dark">
+              <span class="live-dot-dark" aria-hidden="true"></span>
+              Classement EDN — Simulation en direct
+            </span>
+          </div>
+
+          <div class="sim-head">
+            <div class="sim-mini-label">Ton rang estimé glisse à</div>
+            <div class="sim-big">#<span id="rank">4 218</span></div>
+            <div class="sim-sub">au classement national EDN</div>
+          </div>
+
+          <div class="sim-meta">
+            <div class="meta-card-dark">
+              <div class="meta-card-dark-label">D4 qui t'ont dépassé</div>
+              <div class="meta-card-dark-value brand">+<span id="overtaken">0</span></div>
+              <div class="meta-card-dark-foot">depuis le chargement de cette page</div>
+            </div>
+            <div class="meta-card-dark">
+              <div class="meta-card-dark-label">Prochain te dépasse dans</div>
+              <div class="meta-card-dark-value accent"><span id="next-seconds">06</span>s</div>
+              <div class="meta-card-dark-foot">en moyenne 1 toutes les 9s</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-row" id="cta">
+      <div class="cta-buttons">
+        <a href="index.html#login" class="btn-primary">
+          Reprendre mes places maintenant
+          <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.59l-3.3-3.3a.75.75 0 011.06-1.06l4.59 4.59a.75.75 0 010 1.06l-4.59 4.59a.75.75 0 11-1.06-1.06l3.3-3.3H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+        </a>
+        <a href="#stakes" class="btn-secondary">✨ Voir ce que ça coûte</a>
+      </div>
+      <p class="trust-line">Premier dossier offert · sans CB · 🇫🇷</p>
+    </div>
+  </div>
+</section>
+
+<section class="stakes" id="stakes">
+  <div class="stakes-head">
+    <div class="stakes-eyebrow">L'enjeu, pas l'angoisse</div>
+    <h2 class="stakes-h2">Chaque place perdue, c'est une porte qui se ferme.</h2>
+    <p class="stakes-lead">Pas de fatalité. Juste un signal qu'il est temps de reprendre la main.</p>
+  </div>
+
+  <div class="stakes-grid">
+    <div class="stake-card">
+      <div class="stake-big">−1</div>
+      <div class="stake-label">place perdue, c'est une porte qui se ferme.</div>
+      <p class="stake-sub">Pneumo CHU, ortho, dermato : les sous-listes se vident vite.</p>
+    </div>
+    <div class="stake-card">
+      <div class="stake-big">9s</div>
+      <div class="stake-label">le temps moyen entre deux D4 qui te dépassent.</div>
+      <p class="stake-sub">Mesuré sur l'activité Ask Amélie en heure de pointe.</p>
+    </div>
+    <div class="stake-card">
+      <div class="stake-big">1</div>
+      <div class="stake-label">dossier corrigé par jour suffit à enrayer la glissade.</div>
+      <p class="stake-sub">Effet de test + ancrage espacé sur 21 jours.</p>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="final-box">
+    <div class="final-inner">
+      <h2>Tu peux fermer cet onglet. Ou reprendre tes places.</h2>
+      <p>Un dossier offert. Sans CB. Corrigé par un médecin spécialiste. En 25 minutes, tu sauras où tu te situes vraiment.</p>
+      <a href="index.html#login" class="final-btn">Démarrer le dossier gratuit →</a>
+      <p class="final-foot">Premier dossier offert · sans CB · 🇫🇷</p>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  © Ask Amélie · <a href="mentions-legales.html">Mentions légales</a> · <a href="privacy.html">Confidentialité</a>
+</footer>
+
+<script>
+(function(){
+  var rankEl = document.getElementById('rank');
+  var overtakenEl = document.getElementById('overtaken');
+  var nextEl = document.getElementById('next-seconds');
+  var rank = 4218;
+  var overtaken = 0;
+  var nextSeconds = 6;
+
+  function fmtRank(n){
+    return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  }
+
+  setInterval(function(){
+    nextSeconds -= 1;
+    if (nextSeconds <= 0) {
+      rank += Math.floor(Math.random() * 2) + 1;
+      overtaken += 1;
+      nextSeconds = Math.floor(Math.random() * 6) + 6;
+      rankEl.textContent = fmtRank(rank);
+      overtakenEl.textContent = overtaken;
+    }
+    nextEl.textContent = nextSeconds.toString().padStart(2, '0');
+  }, 1000);
+})();
+</script>
+</body>
+</html>
