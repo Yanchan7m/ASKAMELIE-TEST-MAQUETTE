@@ -9,7 +9,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 :root{
@@ -139,6 +139,262 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .footer{max-width:1200px;margin:0 auto;padding:32px 24px;border-top:1px solid var(--slate-200);text-align:center;color:var(--slate-500);font-size:13px}
 .footer a{color:var(--slate-700);font-weight:500}
 .footer a:hover{color:var(--brand-600)}
+
+/* ═══════════════════════════════════════════════════════════════
+   Sections importées de index.html (palette clinical green)
+   ═══════════════════════════════════════════════════════════════ */
+:root{
+  --bg:#FAF8F3;
+  --card:#FAF8F3;
+  --muted:#EDEBE7;
+  --border:#E3DFD8;
+  --fg:#163A3A;
+  --fg-soft:#527A70;
+  --primary:#0F6B5B;
+  --primary-dark:#0A4A3E;
+  --primary-darkest:#1B4D3E;
+  --accent:#E89C6E;
+  --accent-dark:#D78050;
+  --sage:#DDD3C3;
+  --sauge:#DDD3C3;
+  --sauge-soft:#EEE7DC;
+  --sage-soft:#EEE7DC;
+  --font-serif:'Libre Baskerville',Georgia,serif;
+  --shadow-sm:0 2px 4px -1px rgba(15,107,91,.06),0 1px 2px -1px rgba(15,107,91,.04);
+  --shadow:0 4px 6px -1px rgba(15,107,91,.08),0 2px 4px -1px rgba(15,107,91,.04);
+  --shadow-md:0 6px 12px -2px rgba(15,107,91,.08),0 3px 6px -2px rgba(15,107,91,.04);
+  --shadow-lg:0 10px 20px -3px rgba(15,107,91,.1),0 4px 8px -2px rgba(15,107,91,.04);
+  --shadow-xl:0 20px 40px -4px rgba(15,107,91,.12),0 8px 16px -4px rgba(15,107,91,.04);
+}
+.amelie-band{background:var(--bg);color:var(--fg);font-family:'Work Sans',Inter,-apple-system,sans-serif;line-height:1.55;padding-top:48px}
+.amelie-band a{color:inherit;text-decoration:none}
+.amelie-band button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+.amelie-band h1,.amelie-band h2,.amelie-band h3,.amelie-band h4{margin:0}
+.amelie-band p{margin:0}
+
+.trust-band{max-width:900px;margin:0 auto;padding:0 24px 16px;text-align:center}
+.hero-stats{display:flex;justify-content:center;gap:44px;margin:0 auto;flex-wrap:wrap;background:#fff;border:1px solid #DDD3C3;border-radius:14px;padding:22px 34px;max-width:680px}
+.hero-stats .stat{display:flex;flex-direction:column;align-items:center;gap:4px}
+.hero-stats .num{font-family:var(--font-serif);font-size:32px;font-weight:700;color:var(--primary);line-height:1}
+.hero-stats .lbl{font-size:12px;color:var(--fg-soft);font-weight:500;text-transform:uppercase;letter-spacing:.06em}
+.hero-proof{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:28px;flex-wrap:wrap;color:var(--fg-soft);font-size:13px;font-weight:500}
+.proof-avatars{display:flex;align-items:center}
+.proof-avatars span{width:28px;height:28px;border-radius:50%;border:2px solid var(--bg);display:inline-block;margin-left:-8px;background-size:cover;background-position:center;background-color:#EDEBE7}
+.proof-avatars span:first-child{margin-left:0;background-image:url('https://i.pravatar.cc/80?img=5')}
+.proof-avatars span:nth-child(2){background-image:url('https://i.pravatar.cc/80?img=15')}
+.proof-avatars span:nth-child(3){background-image:url('https://i.pravatar.cc/80?img=23')}
+.proof-avatars span:nth-child(4){background-image:url('https://i.pravatar.cc/80?img=33')}
+.proof-sep{color:var(--border)}
+@media(max-width:600px){.hero-stats{gap:24px}.hero-stats .num{font-size:26px}}
+
+.steps-section{margin:40px 0 0;padding:56px 24px 40px;background:#fff;border-top:1px solid #DDD3C3;border-bottom:1px solid #DDD3C3}
+.steps-section>*{max-width:1100px;margin-left:auto;margin-right:auto}
+.steps-header{text-align:center;margin-bottom:36px}
+.steps-header h2{font-family:var(--font-serif);font-size:clamp(24px,3.5vw,32px);font-weight:700;color:var(--fg);letter-spacing:-.015em}
+.steps-header p{font-size:15px;color:var(--fg-soft);max-width:640px;margin:12px auto 0;line-height:1.55}
+.steps-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:stretch}
+.step-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:28px 22px;display:flex;flex-direction:column;height:100%;min-width:0;box-shadow:var(--shadow-sm)}
+.step-num{width:34px;height:34px;border-radius:50%;background:var(--primary);color:#fff;font-family:var(--font-serif);font-size:15px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;margin-bottom:14px;flex-shrink:0}
+.step-card h3{font-size:16px;font-weight:600;color:var(--fg);margin-bottom:8px}
+.step-card p{font-size:14px;color:var(--fg-soft);line-height:1.6;flex:1}
+.step-card .step-cta{display:inline-flex;align-items:center;gap:6px;margin-top:14px;color:var(--primary);font-size:13px;font-weight:600;transition:gap .15s;align-self:flex-start}
+.step-card .step-cta:hover{gap:10px}
+@media(max-width:720px){.steps-grid{grid-template-columns:1fr;gap:14px}.step-card{padding:22px 20px}}
+
+.science-section{max-width:1100px;margin:56px auto 0;padding:0 24px}
+.science-inner{background:#fff;border:1px solid #DDD3C3;border-radius:18px;padding:44px 48px;box-shadow:var(--shadow-sm)}
+.science-section h2{font-family:var(--font-serif);font-size:clamp(24px,3.4vw,34px);font-weight:700;color:var(--fg);letter-spacing:-.015em;line-height:1.2;margin-bottom:22px}
+.science-section h2 .underline{position:relative;display:inline-block;color:var(--primary-darkest)}
+.science-section h2 .underline::after{content:'';position:absolute;left:0;right:0;bottom:4%;height:40%;background:rgba(232,156,110,.38);z-index:-1;border-radius:2px}
+.science-body p{font-size:15.5px;color:var(--fg);line-height:1.7;margin-bottom:14px}
+.science-body p:last-child{margin-bottom:0}
+.science-body strong{color:var(--primary-darkest);font-weight:700}
+.science-body em{font-style:italic;color:var(--fg-soft)}
+.science-quote{margin-top:22px;padding:18px 22px;background:var(--sage-soft);border-left:3px solid var(--primary);border-radius:10px}
+.science-quote p{margin:0;font-size:15px;color:var(--fg);font-style:italic;line-height:1.6}
+.science-quote p strong{font-style:normal}
+@media(max-width:720px){.science-inner{padding:32px 26px}.science-body p{font-size:14.5px}}
+
+.years-section{max-width:1100px;margin:0 auto;padding:40px 24px 48px}
+.years-header{text-align:center;margin-bottom:36px}
+.years-header h2{font-family:var(--font-serif);font-size:clamp(24px,3.5vw,32px);font-weight:700;letter-spacing:-.015em;color:var(--fg);margin-bottom:10px}
+.years-header p{font-size:15px;color:var(--fg-soft);max-width:560px;margin:0 auto}
+.year-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:18px}
+@media(max-width:480px){.year-grid{grid-template-columns:repeat(2,1fr);gap:12px}}
+.year-card{position:relative;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:26px 22px;cursor:pointer;transition:all .25s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column;align-items:center;text-align:center;min-height:200px;justify-content:space-between;overflow:hidden}
+.year-icon{width:50px;height:50px;border-radius:50%;background:var(--muted);display:flex;align-items:center;justify-content:center;margin-bottom:12px;position:relative;z-index:1}
+.year-icon svg{width:24px;height:24px;color:var(--fg-soft)}
+.year-card .year-num{font-family:var(--font-serif);font-size:32px;font-weight:700;color:var(--fg);line-height:1;letter-spacing:-.01em;position:relative;z-index:1}
+.year-card .year-label{font-size:11px;color:var(--fg-soft);font-weight:500;text-transform:uppercase;letter-spacing:.08em;margin-top:6px;position:relative;z-index:1}
+.year-card .year-meta{font-size:12px;color:var(--fg-soft);margin-top:12px;font-weight:400;position:relative;z-index:1}
+.year-card .year-meta strong{color:var(--fg);font-weight:600}
+.year-card .badge{position:absolute;top:12px;right:12px;font-size:10px;font-weight:600;padding:4px 10px;border-radius:100px;letter-spacing:.04em;text-transform:uppercase;z-index:2}
+.year-card.free{border:3px solid var(--primary-darkest);background:var(--sauge-soft);min-height:220px;box-shadow:var(--shadow-md)}
+.year-card.free:hover{transform:translateY(-5px);box-shadow:var(--shadow-xl)}
+.year-card.free .year-icon{background:var(--primary-darkest)}
+.year-card.free .year-icon svg{color:#fff}
+.year-card.free .year-num{color:var(--primary-darkest);font-size:36px}
+.year-card.free .badge{background:var(--primary-darkest);color:#fff;font-weight:700;padding:5px 12px;font-size:10.5px;top:-1px;right:-1px;border-bottom-left-radius:14px;border-top-right-radius:14px;border-bottom-right-radius:0;border-top-left-radius:0}
+.year-card.free .year-meta{color:var(--primary-darkest);font-weight:500}
+.year-card.free::after{content:'';position:absolute;inset:-3px;border-radius:17px;border:3px solid var(--primary-darkest);opacity:0;animation:amePulse 2.2s ease-out infinite;pointer-events:none}
+@keyframes amePulse{0%{opacity:.5;transform:scale(1)}70%{opacity:0;transform:scale(1.06)}100%{opacity:0;transform:scale(1.06)}}
+.year-card.locked .year-num{color:var(--fg)}
+.year-card.locked .badge.badge-illimite{background:linear-gradient(135deg,#19D36B 0%,#13B05A 100%);color:#fff;border:none;padding:5px 11px;font-weight:900;font-size:10.5px;letter-spacing:.08em;box-shadow:0 2px 8px rgba(25,211,107,.35)}
+.year-card.locked .tip{position:absolute;inset:0;background:rgba(15,107,91,.92);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;border-radius:14px;padding:20px;font-size:12px;font-weight:500;line-height:1.5;z-index:3;pointer-events:none}
+.year-card.locked:hover .tip{opacity:1}
+.year-card.locked .tip strong{display:block;font-family:var(--font-serif);font-size:16px;margin-bottom:6px;font-weight:700}
+.free-hint{max-width:560px;margin:24px auto 0;padding:16px 22px;text-align:center;background:var(--sage-soft);border:1px solid var(--sage);border-radius:12px;color:var(--primary-darkest);font-size:14px;font-weight:500;line-height:1.55}
+.already-subscribed{max-width:560px;margin:16px auto 0;padding:14px 20px;text-align:center;background:#FAF8F3;border:1px dashed var(--border);border-radius:12px;color:var(--fg-soft);font-size:13px;line-height:1.5}
+.already-subscribed span{display:block;margin-bottom:4px}
+.asub-link{background:none;border:none;color:var(--primary);font-weight:600;font-size:13px;cursor:pointer;padding:4px 8px;font-family:inherit;text-decoration:underline;text-decoration-color:rgba(15,107,91,.4);text-underline-offset:3px}
+.asub-link:hover{color:var(--primary-dark);text-decoration-color:var(--primary)}
+
+.dash-preview-section{padding:80px 24px;max-width:1200px;margin:0 auto}
+.dash-preview-header{text-align:center;margin-bottom:40px}
+.dash-preview-header h2{font-family:var(--font-serif);font-size:clamp(28px,4vw,40px);font-weight:700;color:var(--fg);letter-spacing:-.02em;margin-bottom:14px}
+.dash-preview-header h2 .underline{position:relative;display:inline-block;color:var(--primary-darkest)}
+.dash-preview-header h2 .underline::after{content:'';position:absolute;left:0;right:0;bottom:4%;height:40%;background:rgba(232,156,110,.38);z-index:-1;border-radius:2px}
+.dash-preview-header p{font-size:16px;color:var(--fg-soft);line-height:1.65;max-width:540px;margin:0 auto}
+.dash-preview-card{max-width:520px;margin:0 auto;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:32px 28px;box-shadow:var(--shadow-lg)}
+.dash-preview-top{display:flex;align-items:center;gap:14px;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.dash-preview-avatar{width:44px;height:44px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);font-weight:700;font-size:18px;flex-shrink:0}
+.dash-preview-name{font-size:15px;font-weight:700;color:var(--fg)}
+.dash-preview-badge{display:flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;color:var(--primary);margin-top:3px}
+.dash-preview-dot{width:7px;height:7px;border-radius:50%;background:#22C55E;box-shadow:0 0 8px #22C55E;flex-shrink:0}
+.dash-preview-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:24px}
+.dash-preview-stat{background:var(--muted);border-radius:12px;padding:16px 10px;text-align:center}
+.dash-preview-stat-num{font-family:var(--font-serif);font-size:26px;font-weight:700;color:var(--primary);letter-spacing:-.02em}
+.dash-preview-pct{font-size:16px;font-weight:600}
+.dash-preview-stat-lbl{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--fg-soft);margin-top:4px}
+.dash-preview-sect{margin-bottom:20px}
+.dash-preview-sect-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--fg-soft);margin-bottom:10px}
+.dash-preview-row{display:flex;align-items:center;gap:12px;padding:8px 0}
+.dash-preview-row-lbl{font-size:13.5px;font-weight:600;color:var(--fg);width:120px;flex-shrink:0}
+.dash-preview-bar{flex:1;height:8px;background:var(--muted);border-radius:100px;overflow:hidden}
+.dash-preview-fill{height:100%;border-radius:100px;transition:width .6s ease}
+.dash-preview-row-val{font-size:13px;font-weight:700;width:40px;text-align:right;flex-shrink:0}
+.dash-preview-row-val.weak{color:#B94A3F}
+.dash-preview-row-val.mid{color:#D97706}
+.dash-preview-row-val.strong{color:var(--primary)}
+.dash-preview-insight{display:flex;align-items:flex-start;gap:12px;margin-top:20px;padding:16px;background:var(--sage-soft);border:1px solid var(--sage);border-radius:14px}
+.dash-preview-insight-avatar img{width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0}
+.dash-preview-insight-text{font-size:13.5px;color:var(--fg);line-height:1.55}
+.dash-preview-insight-text strong{color:var(--primary);font-weight:700}
+.dash-preview-cta-wrap{text-align:center;margin-top:32px}
+.dash-preview-cta{display:inline-flex;align-items:center;gap:8px;padding:15px 28px;background:var(--primary);color:#fff;border-radius:12px;font-size:15px;font-weight:600;text-decoration:none;transition:all .2s;box-shadow:0 2px 10px rgba(15,107,91,.2);letter-spacing:-.005em}
+.dash-preview-cta:hover{background:var(--primary-dark);transform:translateY(-1px);box-shadow:0 4px 16px rgba(15,107,91,.3)}
+@media(max-width:500px){.dash-preview-section{padding:48px 16px}.dash-preview-card{padding:24px 18px}.dash-preview-row-lbl{width:95px;font-size:12.5px}.dash-preview-stat-num{font-size:22px}}
+
+.pricing-section{max-width:780px;margin:20px auto 0;padding:48px 24px}
+.pricing-header{text-align:center;margin-bottom:32px}
+.pricing-header h2{font-family:var(--font-serif);font-size:clamp(28px,4.2vw,42px);font-weight:700;letter-spacing:-.02em;color:var(--fg);margin-bottom:14px;line-height:1.15}
+.pricing-header h2 .underline{position:relative;display:inline-block}
+.pricing-header h2 .underline::after{content:'';position:absolute;left:-2%;right:-2%;bottom:-4px;height:8px;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 12'><path d='M2,8 Q30,2 60,7 T118,5' fill='none' stroke='%23E89C6E' stroke-width='3' stroke-linecap='round'/></svg>") center/100% 100% no-repeat}
+.pricing-header p{font-size:15px;color:var(--fg-soft);max-width:520px;margin:0 auto;line-height:1.65}
+.pricing-card{background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:hidden;box-shadow:var(--shadow-lg)}
+.pricing-head{background:var(--sage-soft);padding:38px 32px 32px;text-align:center;position:relative;border-bottom:1px solid var(--sage)}
+.pricing-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:var(--accent);color:var(--fg);border-radius:100px;font-size:11px;font-weight:700;letter-spacing:.02em;margin-bottom:18px}
+.pricing-badge svg{width:12px;height:12px}
+.pricing-price{font-family:var(--font-serif);font-size:clamp(42px,7vw,58px);font-weight:700;color:var(--fg);line-height:1;letter-spacing:-.02em}
+.pricing-price .unit{font-size:.42em;color:var(--fg-soft);font-weight:500;margin-left:4px;font-family:'Work Sans',sans-serif}
+.pricing-sub{margin-top:12px;font-size:13px;color:var(--fg-soft);font-weight:500;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
+.pricing-sub .dot{color:var(--border)}
+.pricing-feats{padding:28px 40px;display:grid;grid-template-columns:1fr 1fr;gap:14px 32px}
+.pricing-feats .feat{display:flex;align-items:flex-start;gap:12px;font-size:14px;color:var(--fg);line-height:1.5}
+.pricing-feats .feat .check{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:var(--sage-soft);color:var(--primary);display:flex;align-items:center;justify-content:center;margin-top:1px}
+.pricing-feats .feat .check svg{width:12px;height:12px}
+.pricing-actions{padding:20px 32px 28px;display:flex;gap:12px;flex-wrap:wrap}
+.pricing-actions a,.pricing-actions button{flex:1;min-width:200px;padding:15px 22px;border-radius:12px;font-size:14px;font-weight:600;text-align:center;transition:all .2s;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.pricing-actions .primary{background:var(--primary-darkest);color:#fff;box-shadow:var(--shadow-md)}
+.pricing-actions .primary:hover{background:var(--primary);transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+.pricing-actions .primary svg{width:14px;height:14px}
+.pricing-actions .secondary{background:#fff;color:var(--fg);border:1px solid var(--border)}
+.pricing-actions .secondary:hover{border-color:var(--primary);color:var(--primary)}
+.pricing-trust{padding:0 32px 28px;text-align:center;font-size:12px;color:var(--fg-soft);font-weight:500}
+@media(max-width:720px){.pricing-section{padding:40px 20px}.pricing-feats{grid-template-columns:1fr;gap:12px;padding:24px 26px}.pricing-actions{padding:16px 24px 20px;flex-direction:column}.pricing-actions a,.pricing-actions button{min-width:0;width:100%}.pricing-trust{padding:0 24px 24px}.pricing-head{padding:32px 24px 26px}}
+
+.testimonials{max-width:1200px;margin:48px auto 0;padding:0 24px}
+.testimonials-header{text-align:center;margin-bottom:36px}
+.testimonials-header h2{font-family:var(--font-serif);font-size:clamp(28px,4vw,40px);font-weight:700;letter-spacing:-.02em;color:var(--fg);margin-bottom:14px;line-height:1.15}
+.testimonials-header h2 .underline{position:relative;display:inline-block}
+.testimonials-header h2 .underline::after{content:'';position:absolute;left:-2%;right:-2%;bottom:-4px;height:8px;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 12'><path d='M2,8 Q30,2 60,7 T118,5' fill='none' stroke='%23E89C6E' stroke-width='3' stroke-linecap='round'/></svg>") center/100% 100% no-repeat}
+.testi-marquee{overflow:hidden;position:relative;margin:0 -24px;padding:4px 0;-webkit-mask-image:linear-gradient(to right,transparent 0,#000 6%,#000 94%,transparent 100%);mask-image:linear-gradient(to right,transparent 0,#000 6%,#000 94%,transparent 100%)}
+.testi-track{display:flex;gap:18px;padding:4px 24px;width:max-content;animation:testiScroll 90s linear infinite}
+.testi-marquee:hover .testi-track,.testi-marquee:focus-within .testi-track{animation-play-state:paused}
+.testi-track .testi-card{flex:0 0 340px;width:340px}
+@keyframes testiScroll{from{transform:translateX(0)}to{transform:translateX(calc(-50% - 9px))}}
+@media(prefers-reduced-motion:reduce){.testi-track{animation:none}}
+.testi-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 20px 18px;display:flex;flex-direction:column;gap:12px;box-shadow:var(--shadow-sm);transition:all .2s;min-height:280px}
+.testi-card:hover{border-color:var(--sage);box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.testi-avatar-initials{width:40px;height:40px;border-radius:50%;background:var(--sage-soft);color:var(--primary-darkest);display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);font-size:14px;font-weight:700;letter-spacing:-.01em;border:1px solid var(--sage);flex-shrink:0}
+.testi-stars{display:flex;gap:2px;color:var(--accent);font-size:13px;letter-spacing:.5px}
+.testi-quote{font-size:13px;color:var(--fg);line-height:1.6;flex:1}
+.testi-foot{display:flex;align-items:center;gap:10px;padding-top:12px;border-top:1px solid var(--border)}
+.testi-avatar{width:40px;height:40px;border-radius:50%;flex-shrink:0;object-fit:cover;border:2px solid var(--bg);box-shadow:0 0 0 1px var(--border)}
+.testi-name{font-size:12px;font-weight:600;color:var(--fg);line-height:1.25}
+.testi-meta{font-size:10.5px;color:var(--fg-soft);font-weight:500;margin-top:2px;line-height:1.35}
+.testi-bottom{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:28px;flex-wrap:wrap;font-size:13px;color:var(--fg-soft);font-weight:500}
+.testi-bottom .stars{color:var(--accent);font-size:15px;letter-spacing:1px}
+.testi-bottom strong{color:var(--fg);font-weight:700}
+.testi-bottom .sep{color:var(--border)}
+
+.premium-cta{max-width:860px;margin:48px 24px 0;padding:56px 36px;background:var(--primary);border-radius:18px;text-align:center;color:#fff;position:relative;overflow:hidden}
+@media(min-width:908px){.premium-cta{margin:48px auto 0}}
+.premium-cta::before{content:'';position:absolute;top:-40%;right:-10%;width:500px;height:500px;background:radial-gradient(circle,rgba(232,156,110,.16) 0%,transparent 60%);pointer-events:none}
+.premium-cta h3{font-family:var(--font-serif);font-size:clamp(24px,3.2vw,34px);font-weight:700;letter-spacing:-.015em;margin-bottom:14px;position:relative;line-height:1.2}
+.premium-cta h3 em{font-style:italic;opacity:.82}
+.premium-cta p{font-size:15px;opacity:.88;max-width:540px;margin:0 auto 30px;line-height:1.65;position:relative}
+.premium-cta-btn{display:inline-flex;align-items:center;gap:10px;padding:16px 30px;background:var(--accent);color:var(--fg);border-radius:12px;font-size:15px;font-weight:600;box-shadow:var(--shadow-md);transition:all .2s;position:relative;letter-spacing:-.005em;text-decoration:none}
+.premium-cta-btn:hover{background:#f0b08a;transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+.premium-cta-btn svg{width:17px;height:17px}
+.premium-cta .trust-line{margin-top:18px;font-size:12px;opacity:.72;font-weight:500;position:relative;color:#fff}
+@media(max-width:600px){.premium-cta{padding:40px 24px;border-radius:14px;margin:40px 18px 0}}
+
+.trust-amelie{max-width:640px;margin:32px auto 0;padding:28px 32px;background:#fff;border:1px solid #DDD3C3;border-radius:16px;text-align:left;box-shadow:var(--shadow-sm)}
+.trust-amelie-head{display:flex;align-items:center;gap:14px;padding-bottom:20px;margin-bottom:20px;border-bottom:1px solid #EEE7DC}
+.trust-amelie-badge{flex-shrink:0;width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#0F6B5B 0%,#1B4D3E 100%);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(15,107,91,.28)}
+.trust-amelie-badge svg{width:22px;height:22px}
+.trust-amelie-title{font-family:var(--font-serif);font-size:17px;font-weight:700;color:var(--fg);line-height:1.35;letter-spacing:-.01em}
+.trust-amelie-title strong{color:var(--primary-darkest);font-weight:700}
+.trust-amelie-grid{display:flex;flex-direction:column;gap:18px}
+.trust-amelie-item{display:flex;gap:14px;align-items:flex-start}
+.trust-amelie-item-icon{flex-shrink:0;width:36px;height:36px;border-radius:10px;background:var(--sage-soft);color:var(--primary-darkest);display:flex;align-items:center;justify-content:center}
+.trust-amelie-item-icon svg{width:18px;height:18px}
+.trust-amelie-item-body{flex:1;min-width:0}
+.trust-amelie-item-stat{font-size:14.5px;font-weight:700;color:var(--primary-darkest);margin-bottom:3px;letter-spacing:-.005em;line-height:1.35}
+.trust-amelie-item-desc{font-size:13.5px;color:var(--fg-soft);line-height:1.5}
+.trust-amelie-foot{margin-top:22px;padding-top:18px;border-top:1px solid #EEE7DC;display:flex;align-items:flex-start;gap:10px;font-size:13.5px;color:var(--fg);line-height:1.55;font-weight:500}
+.trust-amelie-foot svg{flex-shrink:0;width:18px;height:18px;color:var(--primary);margin-top:1px}
+.premium-cta .trust-amelie{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.15);margin:24px auto 0;backdrop-filter:blur(6px);position:relative;box-shadow:none}
+.premium-cta .trust-amelie-head{border-bottom-color:rgba(255,255,255,.15)}
+.premium-cta .trust-amelie-badge{background:linear-gradient(135deg,var(--accent) 0%,var(--accent-dark) 100%);box-shadow:0 4px 12px rgba(232,156,110,.4)}
+.premium-cta .trust-amelie-title{color:#fff}
+.premium-cta .trust-amelie-title strong{color:var(--accent)}
+.premium-cta .trust-amelie-item-icon{background:rgba(255,255,255,.08);color:var(--accent)}
+.premium-cta .trust-amelie-item-stat{color:#fff}
+.premium-cta .trust-amelie-item-desc{color:rgba(255,255,255,.75)}
+.premium-cta .trust-amelie-foot{border-top-color:rgba(255,255,255,.15);color:rgba(255,255,255,.9)}
+.premium-cta .trust-amelie-foot svg{color:var(--accent)}
+@media(max-width:600px){.trust-amelie{padding:22px 22px;margin:24px 18px 0}.trust-amelie-badge{width:38px;height:38px}.trust-amelie-badge svg{width:19px;height:19px}.trust-amelie-title{font-size:15px}.trust-amelie-item-stat{font-size:13.5px}.trust-amelie-item-desc{font-size:12.5px}.trust-amelie-foot{font-size:12.5px}}
+
+.foot{max-width:1200px;margin:56px auto 0;padding:48px 24px 24px;border-top:1px solid var(--border)}
+.foot-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:40px;margin-bottom:36px}
+@media(max-width:900px){.foot-top{grid-template-columns:1fr 1fr;gap:28px}}
+@media(max-width:540px){.foot-top{grid-template-columns:1fr;gap:24px}}
+.foot-brand-col{max-width:280px}
+.foot-brand-col .brand-foot{font-family:var(--font-serif);font-size:18px;color:var(--fg);font-weight:700;letter-spacing:-.01em;margin-bottom:10px;display:flex;align-items:center;gap:7px}
+.foot-brand-col .brand-foot .dot{width:8px;height:8px;border-radius:50%;background:#0F6B5B;display:inline-block}
+.foot-brand-col p{font-size:13.5px;color:var(--fg-soft);line-height:1.55;margin:0}
+.foot-col h4{font-size:11.5px;font-weight:700;color:var(--fg);text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px}
+.foot-col ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px}
+.foot-col ul a{font-size:13.5px;color:var(--fg-soft);text-decoration:none;transition:color .15s}
+.foot-col ul a:hover{color:var(--primary)}
+.foot-trust{padding-top:24px;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:6px;font-size:12px;color:var(--fg-soft);line-height:1.6}
+.foot-trust-row{display:flex;align-items:center;gap:8px}
+.foot-trust-row svg{width:14px;height:14px;color:#0F6B5B;flex-shrink:0}
+.foot-bottom{margin-top:14px;padding-top:14px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:12px;color:var(--fg-soft)}
+.foot-bottom a{color:var(--primary);text-decoration:underline;text-underline-offset:2px}
+.foot-bottom a:hover{color:var(--primary-darkest)}
 </style>
 </head>
 <body>
@@ -204,6 +460,267 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   </div>
 </section>
 
+<div class="amelie-band">
+
+  <!-- Trust band : stats + proof + trust-amelie -->
+  <section class="trust-band">
+    <div class="hero-stats">
+      <div class="stat"><span class="num">10</span><span class="lbl">années</span></div>
+      <div class="stat"><span class="num">850+</span><span class="lbl">dossiers</span></div>
+      <div class="stat"><span class="num">13</span><span class="lbl">spécialités</span></div>
+      <div class="stat"><span class="num">100%</span><span class="lbl">corrigé médecins</span></div>
+    </div>
+    <div class="hero-proof">
+      <div class="proof-avatars"><span></span><span></span><span></span><span></span></div>
+      Rejoint par <strong>+2034 D4</strong> cette année
+      <span class="proof-sep">·</span>
+      ⭐ <strong>4.9/5</strong> sur 400+ avis
+    </div>
+    <div class="trust-amelie">
+      <div class="trust-amelie-head">
+        <div class="trust-amelie-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        </div>
+        <div class="trust-amelie-title">Amélie a été conçue pour <strong>ne pas se tromper</strong>.</div>
+      </div>
+      <div class="trust-amelie-grid">
+        <div class="trust-amelie-item">
+          <div class="trust-amelie-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <div class="trust-amelie-item-body">
+            <div class="trust-amelie-item-stat">800+ médecins et professeurs spécialistes</div>
+            <div class="trust-amelie-item-desc">Tous ont validé le raisonnement clinique d'Amélie.</div>
+          </div>
+        </div>
+        <div class="trust-amelie-item">
+          <div class="trust-amelie-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/><polyline points="14 17 18 21 22 17"/></svg></div>
+          <div class="trust-amelie-item-body">
+            <div class="trust-amelie-item-stat">Double vérification systématique</div>
+            <div class="trust-amelie-item-desc">Chaque correction est croisée avec les référentiels officiels : CUESPB, CNEMV, collèges de spécialité.</div>
+          </div>
+        </div>
+        <div class="trust-amelie-item">
+          <div class="trust-amelie-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+          <div class="trust-amelie-item-body">
+            <div class="trust-amelie-item-stat">10 ans d'annales EDN/ECN</div>
+            <div class="trust-amelie-item-desc">Toutes corrigées manuellement par des spécialistes avant d'entraîner Amélie.</div>
+          </div>
+        </div>
+      </div>
+      <div class="trust-amelie-foot">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg>
+        <span>Une fiabilité clinique que tu ne trouveras nulle part ailleurs. Tu peux t'appuyer dessus en toute confiance.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3-step parcours -->
+  <section class="steps-section">
+    <div class="steps-header">
+      <h2>Comment ça marche</h2>
+      <p>En 3 étapes, découvre ton niveau réel, comprends ce qui te fait gagner des places, et vois l'avantage que ça peut t'apporter pour l'internat.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Teste un vrai dossier.</h3>
+        <p>Découvre ton niveau sur un cas concret, dans des conditions proches du concours.</p>
+        <a href="ecn-focus.html?year=2016&auto=1" class="step-cta">Commencer →</a>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3>Vois ce que ça t'apporte.</h3>
+        <p>Compare ta copie avec la correction d'un spécialiste pour comprendre où tu peux gagner des points et des places.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h3>Transforme ça en choix.</h3>
+        <p>Plus tu progresses, plus tu augmentes tes chances de garder de l'option au moment de choisir ton internat et ta spécialité.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Science section -->
+  <section class="science-section">
+    <div class="science-inner">
+      <h2>Pourquoi <span class="underline">t'entraîner</span> bat toujours le fait de relire ton cours.</h2>
+      <div class="science-body">
+        <p>Les neurosciences et la psychologie de l'apprentissage parlent de l'<strong>« effet de test »</strong> (<em>testing effect</em>) : rappeler régulièrement une information (par exemple via un quiz ou un QCM) <strong>renforce sa consolidation dans la mémoire à long terme</strong>.</p>
+        <p>Les synthèses et méta‑analyses sont unanimes : les étudiants qui s'entraînent avec des mini‑quiz / QCM obtiennent <strong>systématiquement de meilleures performances</strong> que ceux qui se contentent de relire leur cours.</p>
+        <div class="science-quote">
+          <p>C'est exactement ce que fait Amélie : elle te met face à de vrais dossiers EDN/ECN, te corrige avec le raisonnement d'un spécialiste, et garde la trace de <strong>tes</strong> faiblesses pour te re-tester au bon moment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Years grid -->
+  <section class="years-section" id="annales">
+    <div class="years-header">
+      <h2>Choisis ton année</h2>
+      <p>Ton dossier gratuit t'attend sur 2016. Les autres années se débloquent en Focus Illimité.</p>
+    </div>
+    <div class="year-grid" id="yearGrid"></div>
+    <div class="free-hint">
+      ✨ Ton premier dossier, <strong>100% gratuit</strong>. Avec la correction complète d'un médecin spécialiste.
+    </div>
+    <div class="already-subscribed">
+      <span>Tu as déjà souscrit Focus Illimité sur un autre appareil&nbsp;?</span>
+      <a class="asub-link" href="index.html#login">Connecte-toi pour retrouver ton accès →</a>
+    </div>
+  </section>
+
+  <!-- Dashboard preview -->
+  <section class="dash-preview-section" id="suivi">
+    <div class="dash-preview-header">
+      <h2>Amélie te <span class="underline">connaît</span></h2>
+      <p>À chaque dossier, elle met à jour ton profil. Tu vois où tu progresses, où ça coince, et quoi bosser en priorité.</p>
+    </div>
+    <div class="dash-preview-card">
+      <div class="dash-preview-top">
+        <div class="dash-preview-avatar">A</div>
+        <div>
+          <div class="dash-preview-name">Camille · D4 Lyon</div>
+          <div class="dash-preview-badge"><span class="dash-preview-dot"></span> Focus Illimité actif · 143 questions traitées</div>
+        </div>
+      </div>
+      <div class="dash-preview-stats">
+        <div class="dash-preview-stat"><div class="dash-preview-stat-num">143</div><div class="dash-preview-stat-lbl">questions</div></div>
+        <div class="dash-preview-stat"><div class="dash-preview-stat-num">68<span class="dash-preview-pct">%</span></div><div class="dash-preview-stat-lbl">réussite</div></div>
+        <div class="dash-preview-stat"><div class="dash-preview-stat-num">12</div><div class="dash-preview-stat-lbl">jours actifs</div></div>
+      </div>
+      <div class="dash-preview-sect">
+        <div class="dash-preview-sect-title">À travailler en priorité</div>
+        <div class="dash-preview-row weak"><span class="dash-preview-row-lbl">Cardiologie</span><div class="dash-preview-bar"><div class="dash-preview-fill" style="width:38%;background:#B94A3F"></div></div><span class="dash-preview-row-val weak">38%</span></div>
+        <div class="dash-preview-row weak"><span class="dash-preview-row-lbl">Neurologie</span><div class="dash-preview-bar"><div class="dash-preview-fill" style="width:45%;background:#D97706"></div></div><span class="dash-preview-row-val mid">45%</span></div>
+        <div class="dash-preview-row weak"><span class="dash-preview-row-lbl">Néphrologie</span><div class="dash-preview-bar"><div class="dash-preview-fill" style="width:52%;background:#D97706"></div></div><span class="dash-preview-row-val mid">52%</span></div>
+      </div>
+      <div class="dash-preview-sect">
+        <div class="dash-preview-sect-title">Tes points forts</div>
+        <div class="dash-preview-row strong"><span class="dash-preview-row-lbl">Pneumologie</span><div class="dash-preview-bar"><div class="dash-preview-fill" style="width:89%;background:var(--primary)"></div></div><span class="dash-preview-row-val strong">89%</span></div>
+        <div class="dash-preview-row strong"><span class="dash-preview-row-lbl">Hépato-gastro</span><div class="dash-preview-bar"><div class="dash-preview-fill" style="width:82%;background:var(--primary)"></div></div><span class="dash-preview-row-val strong">82%</span></div>
+        <div class="dash-preview-row strong"><span class="dash-preview-row-lbl">Endocrinologie</span><div class="dash-preview-bar"><div class="dash-preview-fill" style="width:76%;background:var(--primary)"></div></div><span class="dash-preview-row-val strong">76%</span></div>
+      </div>
+      <div class="dash-preview-insight">
+        <div class="dash-preview-insight-avatar"><img src="amelie-256.jpg" alt="Amélie" width="32" height="32"></div>
+        <div class="dash-preview-insight-text"><strong>Amélie :</strong> « Tu maîtrises la pneumo mais la cardio te coûte cher. Je te recommande de refaire les dossiers 2022 et 2023 en cardio : c'est là que les QI tombent le plus. »</div>
+      </div>
+    </div>
+    <div class="dash-preview-cta-wrap"><a href="ecn-focus.html?year=2016&auto=1" class="dash-preview-cta">Commencer le dossier gratuit → voir ton profil</a></div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="pricing-section" id="compare">
+    <div class="pricing-header">
+      <h2>Un prix <span class="underline">simple</span>, tout inclus</h2>
+      <p>Pas de paliers, pas de surprises. Un abonnement transparent qui déverrouille 10 ans d'annales corrigées par des médecins spécialistes.</p>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-head">
+        <div class="pricing-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Tout inclus</div>
+        <div class="pricing-price">29,90 €<span class="unit">/mois</span></div>
+        <div class="pricing-sub"><span>par étudiant</span><span class="dot">·</span><span>🇫🇷 Sans engagement</span></div>
+      </div>
+      <div class="pricing-feats">
+        <div class="feat"><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>10 ans d'annales EDN/ECN</div>
+        <div class="feat"><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>850+ dossiers progressifs</div>
+        <div class="feat"><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Corrections médecins spécialistes</div>
+        <div class="feat"><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Raisonnement clinique détaillé</div>
+        <div class="feat"><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>DCP, QI et LCA en conditions réelles</div>
+        <div class="feat"><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Satisfait ou remboursé 14 jours</div>
+      </div>
+      <div class="trust-amelie" style="margin:0 26px 24px">
+        <div class="trust-amelie-head">
+          <div class="trust-amelie-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
+          <div class="trust-amelie-title">Amélie a été conçue pour <strong>ne pas se tromper</strong>.</div>
+        </div>
+        <div class="trust-amelie-grid">
+          <div class="trust-amelie-item">
+            <div class="trust-amelie-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            <div class="trust-amelie-item-body"><div class="trust-amelie-item-stat">800+ médecins et professeurs spécialistes</div><div class="trust-amelie-item-desc">Tous ont validé le raisonnement clinique d'Amélie.</div></div>
+          </div>
+          <div class="trust-amelie-item">
+            <div class="trust-amelie-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/><polyline points="14 17 18 21 22 17"/></svg></div>
+            <div class="trust-amelie-item-body"><div class="trust-amelie-item-stat">Double vérification systématique</div><div class="trust-amelie-item-desc">Chaque correction est croisée avec les référentiels officiels : CUESPB, CNEMV, collèges de spécialité.</div></div>
+          </div>
+          <div class="trust-amelie-item">
+            <div class="trust-amelie-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+            <div class="trust-amelie-item-body"><div class="trust-amelie-item-stat">10 ans d'annales EDN/ECN</div><div class="trust-amelie-item-desc">Toutes corrigées manuellement par des spécialistes avant d'entraîner Amélie.</div></div>
+          </div>
+        </div>
+        <div class="trust-amelie-foot">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg>
+          <span>Une fiabilité clinique que tu ne trouveras nulle part ailleurs. Tu peux t'appuyer dessus en toute confiance.</span>
+        </div>
+      </div>
+      <div class="pricing-actions">
+        <a href="index.html#pricing" class="primary">Démarrer Focus Illimité<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="ecn-focus.html?year=2016&auto=1" class="secondary">Tester le dossier gratuit</a>
+      </div>
+      <div class="pricing-trust">Sans carte bancaire pour le test gratuit · Annulable à tout moment</div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <div class="testimonials-header">
+      <h2>Ils ont décroché la spé de leur <span class="underline">choix</span>.</h2>
+    </div>
+    <div class="testi-marquee">
+      <div class="testi-track" id="testiTrack">
+        <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-quote">"Je bossais sur des PDF illisibles depuis des mois. Avec Amélie, j'ai enfin compris le raisonnement derrière les corrections. J'ai gagné 300 places en 3 mois."</p><div class="testi-foot"><img class="testi-avatar" src="img/students/student_lea.png" alt="Léa D." loading="lazy" width="40" height="40"><div><div class="testi-name">Léa D.</div><div class="testi-meta">D4 · Top 500 · Paris Descartes</div></div></div></div>
+        <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-quote">"J'ai longtemps pensé que faire plus de dossiers suffisait. Avec Amélie, j'ai compris que ce qui compte c'est la qualité du corrigé. Mes scores ont décollé en 2 mois."</p><div class="testi-foot"><img class="testi-avatar" src="https://i.pravatar.cc/150?img=12" alt="Antoine M." loading="lazy" width="40" height="40"><div><div class="testi-name">Antoine M.</div><div class="testi-meta">Promo 2025 · Top 800 · Bordeaux</div></div></div></div>
+        <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-quote">"Les bilans personnalisés m'ont permis d'identifier mes vraies faiblesses. J'ai arrêté de perdre mon temps sur ce que je maîtrisais déjà. Game changer."</p><div class="testi-foot"><img class="testi-avatar" src="https://i.pravatar.cc/150?img=47" alt="Sofia R." loading="lazy" width="40" height="40"><div><div class="testi-name">Sofia R.</div><div class="testi-meta">Promo 2025 · Dermatologie · Toulouse</div></div></div></div>
+        <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-quote">"L'onglet « Demander à Amélie » après chaque QCM, c'est ce qui m'a fait décoller. Avant je passais une heure à googler pourquoi telle réponse était fausse, maintenant j'ai un raisonnement clair en 10 secondes. Top 400 aux blancs."</p><div class="testi-foot"><img class="testi-avatar" src="https://i.pravatar.cc/150?img=33" alt="Thomas L." loading="lazy" width="40" height="40"><div><div class="testi-name">Thomas L.</div><div class="testi-meta">D4 · Top 400 · Lyon Est</div></div></div></div>
+        <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-quote">"Les IRM et les ECG sont analysés directement par Amélie. Je n'ai plus besoin de 3 bouquins ouverts à côté pour comprendre un tracé. C'est devenu mon réflexe de révision."</p><div class="testi-foot"><img class="testi-avatar" src="https://i.pravatar.cc/150?img=45" alt="Clara B." loading="lazy" width="40" height="40"><div><div class="testi-name">Clara B.</div><div class="testi-meta">Promo 2025 · Radiologie · Strasbourg</div></div></div></div>
+        <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-quote">"La LCA me terrorisait. Amélie décortique chaque article étape par étape, et je comprends enfin la méthodologie. De 7/20 à 16/20 en 3 mois aux blancs."</p><div class="testi-foot"><img class="testi-avatar" src="https://i.pravatar.cc/150?img=14" alt="Hugo V." loading="lazy" width="40" height="40"><div><div class="testi-name">Hugo V.</div><div class="testi-meta">D4 · Lille</div></div></div></div>
+        <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-quote">"J'ai redoublé ma D3. Au lieu de me dire « travaille plus », Amélie m'a dit « travaille comme ça ». Première fois que quelqu'un m'explique la méthode, pas juste le contenu."</p><div class="testi-foot"><img class="testi-avatar" src="https://i.pravatar.cc/150?img=23" alt="Mathilde G." loading="lazy" width="40" height="40"><div><div class="testi-name">Mathilde G.</div><div class="testi-meta">D4 · Rennes</div></div></div></div>
+        <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-quote">"La répétition des tests, c'est vraiment ce qui m'a aidée à mémoriser. Je refais les mêmes QCM à quelques semaines d'écart et les réflexes se construisent tout seuls. J'ai enfin arrêté d'oublier avant les partiels."</p><div class="testi-foot"><div class="testi-avatar-initials" aria-label="Julie M.">JM</div><div><div class="testi-name">Julie M.</div><div class="testi-meta">D4 · Angers</div></div></div></div>
+        <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-quote">"J'étudiais 12h par jour sans progresser. Avec Amélie, 7h suffisent et je progresse vraiment. J'ai pu reprendre le sport et mieux dormir, et mes notes n'ont jamais été aussi bonnes."</p><div class="testi-foot"><img class="testi-avatar" src="https://i.pravatar.cc/150?img=44" alt="Pauline D." loading="lazy" width="40" height="40"><div><div class="testi-name">Pauline D.</div><div class="testi-meta">Promo 2025 · Nantes</div></div></div></div>
+        <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-quote">"Amélie avait remarqué que je faisais toujours les mêmes erreurs en pharmaco. Elle m'a fait bosser exclusivement sur ça pendant 2 semaines. Depuis, plus d'erreur stupide en QCM."</p><div class="testi-foot"><img class="testi-avatar" src="https://i.pravatar.cc/150?img=68" alt="Lucas T." loading="lazy" width="40" height="40"><div><div class="testi-name">Lucas T.</div><div class="testi-meta">D4 · Montpellier</div></div></div></div>
+      </div>
+    </div>
+    <div class="testi-bottom">
+      <span class="stars">★★★★★</span>
+      <strong>4.9/5</strong> sur 400+ avis
+      <span class="sep">·</span>
+      <strong>+2034 D4</strong> nous font confiance
+    </div>
+  </section>
+
+  <!-- Premium CTA -->
+  <section class="premium-cta">
+    <h3>Tu viens de voir la qualité sur <em>1 année</em>.<br>Imagine sur <em>10</em>.</h3>
+    <p>850 dossiers corrigés par des médecins spécialistes. Raisonnement clinique complet. Tout ce qu'il te faut pour décrocher ta spé.</p>
+    <div class="trust-amelie">
+      <div class="trust-amelie-head">
+        <div class="trust-amelie-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <div class="trust-amelie-title">Amélie a été conçue pour <strong>ne pas se tromper</strong>.</div>
+      </div>
+      <div class="trust-amelie-grid">
+        <div class="trust-amelie-item">
+          <div class="trust-amelie-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <div class="trust-amelie-item-body"><div class="trust-amelie-item-stat">800+ médecins et professeurs spécialistes</div><div class="trust-amelie-item-desc">Tous ont validé le raisonnement clinique d'Amélie.</div></div>
+        </div>
+        <div class="trust-amelie-item">
+          <div class="trust-amelie-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/><polyline points="14 17 18 21 22 17"/></svg></div>
+          <div class="trust-amelie-item-body"><div class="trust-amelie-item-stat">Double vérification systématique</div><div class="trust-amelie-item-desc">Chaque correction est croisée avec les référentiels officiels : CUESPB, CNEMV, collèges de spécialité.</div></div>
+        </div>
+        <div class="trust-amelie-item">
+          <div class="trust-amelie-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+          <div class="trust-amelie-item-body"><div class="trust-amelie-item-stat">10 ans d'annales EDN/ECN</div><div class="trust-amelie-item-desc">Toutes corrigées manuellement par des spécialistes avant d'entraîner Amélie.</div></div>
+        </div>
+      </div>
+      <div class="trust-amelie-foot">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg>
+        <span>Une fiabilité clinique que tu ne trouveras nulle part ailleurs. Tu peux t'appuyer dessus en toute confiance.</span>
+      </div>
+    </div>
+    <a href="index.html#pricing" class="premium-cta-btn" style="margin-top:28px">Devenir Focus Illimité : 29,90 € / mois<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <div class="trust-line">Satisfait ou remboursé 14 jours · Sans engagement · Moins d'1 € / jour</div>
+  </section>
+
+</div>
+
 <section class="stakes" id="stakes">
   <div class="stakes-head">
     <div class="stakes-eyebrow">L'enjeu, pas l'angoisse</div>
@@ -241,9 +758,58 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   </div>
 </section>
 
-<footer class="footer">
-  © Ask Amélie · <a href="mentions-legales.html">Mentions légales</a> · <a href="privacy.html">Confidentialité</a>
-</footer>
+<div class="amelie-band">
+  <footer class="foot">
+    <div class="foot-top">
+      <div class="foot-brand-col">
+        <div class="brand-foot"><span class="dot"></span>Ask Amélie</div>
+        <p>Ask Amélie EDN : l'entraînement aux EDN corrigé par des médecins spécialistes.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Produit</h4>
+        <ul>
+          <li><a href="ecn-focus.html?year=2016&auto=1">Démo</a></li>
+          <li><a href="index.html#pricing">Tarifs</a></li>
+          <li><a href="index.html#testimonials">Témoignages</a></li>
+          <li><a href="index.html#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="#">Centre d'aide</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Guides pratiques</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Entreprise</h4>
+        <ul>
+          <li><a href="#">À propos</a></li>
+          <li><a href="mailto:contact@askamelie.com">Contact</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Légal</h4>
+        <ul>
+          <li><a href="mentions-legales.html">Mentions légales</a></li>
+          <li><a href="privacy.html">Confidentialité</a></li>
+          <li><a href="terms.html">CGV</a></li>
+          <li><a href="#">Cookies</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-trust">
+      <div class="foot-trust-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Corrections médicales · Contenu corrigé par des médecins spécialistes en exercice</div>
+      <div class="foot-trust-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Hébergement conforme RGPD : données en France</div>
+      <div class="foot-trust-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Édité par Askamelie · Paris, France</div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Ask Amélie</span>
+      <span>Signaler une erreur : <a href="mailto:contact@askamelie.com">contact@askamelie.com</a></span>
+    </div>
+  </footer>
+</div>
 
 <script>
 (function(){
@@ -269,6 +835,43 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
     }
     nextEl.textContent = nextSeconds.toString().padStart(2, '0');
   }, 1000);
+})();
+
+/* Year grid */
+(function(){
+  var grid = document.getElementById('yearGrid');
+  if (!grid) return;
+  var YEARS = [
+    {y:2016,label:'ECN'},{y:2017,label:'ECN'},{y:2018,label:'ECN'},{y:2019,label:'ECN'},
+    {y:2020,label:'ECN'},{y:2021,label:'ECN'},{y:2022,label:'ECN'},
+    {y:2023,label:'EDN'},{y:2024,label:'EDN'},{y:2025,label:'EDN'}
+  ];
+  var FREE_YEAR = 2016;
+  var iconOpen = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>';
+  var iconLock = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>';
+  YEARS.forEach(function(y){
+    var isFree = (y.y === FREE_YEAR);
+    var card = document.createElement('div');
+    card.className = 'year-card ' + (isFree ? 'free' : 'locked');
+    var inner = '<span class="badge' + (isFree ? '' : ' badge-illimite') + '">' + (isFree ? '✅ Gratuit : Commence ici' : 'ILLIMITÉ') + '</span>' +
+      '<div class="year-icon">' + (isFree ? iconOpen : iconLock) + '</div>' +
+      '<div class="year-num">' + y.y + '</div>' +
+      '<div class="year-label">' + y.label + ' ' + y.y + '</div>' +
+      '<div class="year-meta"><strong>DCP · QI · LCA</strong></div>';
+    if (!isFree) inner += '<div class="tip"><strong>Disponible en Focus Illimité</strong>29,90 € / mois · Tout débloqué</div>';
+    card.innerHTML = inner;
+    card.onclick = function(){
+      if (isFree) window.location.assign('ecn-focus.html?year=' + y.y + '&auto=1');
+      else window.location.assign('index.html#pricing');
+    };
+    grid.appendChild(card);
+  });
+})();
+
+/* Testimonials marquee : duplique les cards pour défilement sans saccade */
+(function(){
+  var track = document.getElementById('testiTrack');
+  if (track) track.insertAdjacentHTML('beforeend', track.innerHTML);
 })();
 </script>
 </body>
