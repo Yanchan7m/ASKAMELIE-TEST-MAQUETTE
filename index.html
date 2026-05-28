@@ -19,10 +19,10 @@
 
 <style>
 :root{
-  --bg:#FAF8F3;
-  --card:#FAF8F3;
-  --muted:#EDEBE7;
-  --border:#E3DFD8;
+  --bg:#f8fafc;
+  --card:#ffffff;
+  --muted:#f1f5f9;
+  --border:#e2e8f0;
   --fg:#163A3A;
   --fg-soft:#527A70;
   --primary:#10b981;
@@ -30,10 +30,10 @@
   --primary-darkest:#047857;
   --accent:#E89C6E;
   --accent-dark:#D78050;
-  --sage:#DDD3C3;
-  --sauge:#DDD3C3;
-  --sauge-soft:#EEE7DC;
-  --sage-soft:#EEE7DC;
+  --sage:#cbd5e1;
+  --sauge:#cbd5e1;
+  --sauge-soft:#f1f5f9;
+  --sage-soft:#f1f5f9;
   --radius:10px;
   --font-sans:'Work Sans','Inter',-apple-system,BlinkMacSystemFont,sans-serif;
   --font-serif:'Libre Baskerville',Georgia,serif;
@@ -122,7 +122,7 @@ body.authed .nav-login{display:none!important}
 body.authed .nav-user{display:inline-flex}
 
 /* Welcome banner that shows AFTER landing from a magic link callback */
-.auth-banner{max-width:1100px;margin:14px auto 0;padding:14px 24px;background:linear-gradient(90deg,#EEE7DC 0%,#fff 100%);border:1.5px solid var(--sage);border-radius:14px;display:none;align-items:center;gap:14px;animation:authBannerIn .4s cubic-bezier(.16,1,.3,1)}
+.auth-banner{max-width:1100px;margin:14px auto 0;padding:14px 24px;background:linear-gradient(90deg,#f1f5f9 0%,#fff 100%);border:1.5px solid var(--sage);border-radius:14px;display:none;align-items:center;gap:14px;animation:authBannerIn .4s cubic-bezier(.16,1,.3,1)}
 .auth-banner.visible{display:flex}
 @keyframes authBannerIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
 .auth-banner .ab-check{width:36px;height:36px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0}
@@ -145,14 +145,14 @@ body.authed .nav-user{display:inline-flex}
 .hero-cta:hover{background:var(--primary);transform:translateY(-2px);box-shadow:var(--shadow-lg)}
 .hero-cta svg{width:17px;height:17px}
 
-.hero-stats{display:flex;justify-content:center;gap:44px;margin:44px auto 0;flex-wrap:wrap;background:#fff;border:1px solid #DDD3C3;border-radius:14px;padding:22px 34px;max-width:680px}
+.hero-stats{display:flex;justify-content:center;gap:44px;margin:44px auto 0;flex-wrap:wrap;background:#fff;border:1px solid #cbd5e1;border-radius:14px;padding:22px 34px;max-width:680px}
 .hero-stats .stat{display:flex;flex-direction:column;align-items:center;gap:4px}
 .hero-stats .num{font-family:var(--font-serif);font-size:32px;font-weight:700;color:var(--primary);line-height:1}
 .hero-stats .lbl{font-size:12px;color:var(--fg-soft);font-weight:500;text-transform:uppercase;letter-spacing:.06em}
 
 .hero-proof{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:28px;flex-wrap:wrap;color:var(--fg-soft);font-size:13px;font-weight:500}
 .proof-avatars{display:flex;align-items:center}
-.proof-avatars span{width:28px;height:28px;border-radius:50%;border:2px solid var(--bg);display:inline-block;margin-left:-8px;background-size:cover;background-position:center;background-color:#EDEBE7}
+.proof-avatars span{width:28px;height:28px;border-radius:50%;border:2px solid var(--bg);display:inline-block;margin-left:-8px;background-size:cover;background-position:center;background-color:#f1f5f9}
 .proof-avatars span:first-child{margin-left:0;background-image:url('https://i.pravatar.cc/80?img=5')}
 .proof-avatars span:nth-child(2){background-image:url('https://i.pravatar.cc/80?img=15')}
 .proof-avatars span:nth-child(3){background-image:url('https://i.pravatar.cc/80?img=23')}
@@ -167,7 +167,7 @@ body.authed .nav-user{display:inline-flex}
 }
 
 /* ── 3-step parcours ── */
-.steps-section{margin:40px 0 0;padding:56px 24px 40px;background:#fff;border-top:1px solid #DDD3C3;border-bottom:1px solid #DDD3C3}
+.steps-section{margin:40px 0 0;padding:56px 24px 40px;background:#fff;border-top:1px solid #cbd5e1;border-bottom:1px solid #cbd5e1}
 .steps-section>*{max-width:1100px;margin-left:auto;margin-right:auto}
 .steps-header{text-align:center;margin-bottom:36px}
 .steps-header h2{font-family:var(--font-serif);font-size:clamp(24px,3.5vw,32px);font-weight:700;color:var(--fg);letter-spacing:-.015em}
@@ -228,7 +228,7 @@ body.authed .nav-user{display:inline-flex}
 
 /* Already-subscribed recovery hint : always visible for anonymous visitors
    so a returning premium user on a new device knows exactly where to click. */
-.already-subscribed{max-width:560px;margin:16px auto 0;padding:14px 20px;text-align:center;background:#FAF8F3;border:1px dashed var(--border);border-radius:12px;color:var(--fg-soft);font-size:13px;line-height:1.5}
+.already-subscribed{max-width:560px;margin:16px auto 0;padding:14px 20px;text-align:center;background:#f8fafc;border:1px dashed var(--border);border-radius:12px;color:var(--fg-soft);font-size:13px;line-height:1.5}
 body.authed .already-subscribed{display:none}
 .already-subscribed span{display:block;margin-bottom:4px}
 .asub-link{background:none;border:none;color:var(--primary);font-weight:600;font-size:13px;cursor:pointer;padding:4px 8px;font-family:inherit;text-decoration:underline;text-decoration-color:rgba(16,185,129,.4);text-underline-offset:3px}
@@ -323,8 +323,8 @@ body.authed .already-subscribed{display:none}
 @media(max-width:600px){.premium-cta{padding:40px 24px;border-radius:14px;margin:40px 18px 0}}
 
 /* ── Trust block "Amélie conçue pour ne pas se tromper" ── */
-.trust-amelie{max-width:640px;margin:32px auto 0;padding:28px 32px;background:#fff;border:1px solid #DDD3C3;border-radius:16px;text-align:left;box-shadow:var(--shadow-sm)}
-.trust-amelie-head{display:flex;align-items:center;gap:14px;padding-bottom:20px;margin-bottom:20px;border-bottom:1px solid #EEE7DC}
+.trust-amelie{max-width:640px;margin:32px auto 0;padding:28px 32px;background:#fff;border:1px solid #cbd5e1;border-radius:16px;text-align:left;box-shadow:var(--shadow-sm)}
+.trust-amelie-head{display:flex;align-items:center;gap:14px;padding-bottom:20px;margin-bottom:20px;border-bottom:1px solid #f1f5f9}
 .trust-amelie-badge{flex-shrink:0;width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#10b981 0%,#047857 100%);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(16,185,129,.28)}
 .trust-amelie-badge svg{width:22px;height:22px}
 .trust-amelie-title{font-family:var(--font-serif);font-size:17px;font-weight:700;color:var(--fg);line-height:1.35;letter-spacing:-.01em}
@@ -336,7 +336,7 @@ body.authed .already-subscribed{display:none}
 .trust-amelie-item-body{flex:1;min-width:0}
 .trust-amelie-item-stat{font-size:14.5px;font-weight:700;color:var(--primary-darkest);margin-bottom:3px;letter-spacing:-.005em;line-height:1.35}
 .trust-amelie-item-desc{font-size:13.5px;color:var(--fg-soft);line-height:1.5}
-.trust-amelie-foot{margin-top:22px;padding-top:18px;border-top:1px solid #EEE7DC;display:flex;align-items:flex-start;gap:10px;font-size:13.5px;color:var(--fg);line-height:1.55;font-weight:500}
+.trust-amelie-foot{margin-top:22px;padding-top:18px;border-top:1px solid #f1f5f9;display:flex;align-items:flex-start;gap:10px;font-size:13.5px;color:var(--fg);line-height:1.55;font-weight:500}
 .trust-amelie-foot svg{flex-shrink:0;width:18px;height:18px;color:var(--primary);margin-top:1px}
 /* Variant dark pour .premium-cta */
 .premium-cta .trust-amelie{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.15);margin:24px auto 0;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);position:relative;box-shadow:none}
@@ -353,7 +353,7 @@ body.authed .already-subscribed{display:none}
 
 /* ── Science section : effet de test / testing effect ── */
 .science-section{max-width:1100px;margin:56px auto 0;padding:0 24px}
-.science-inner{background:#fff;border:1px solid #DDD3C3;border-radius:18px;padding:44px 48px;text-align:left;position:relative;box-shadow:var(--shadow-sm)}
+.science-inner{background:#fff;border:1px solid #cbd5e1;border-radius:18px;padding:44px 48px;text-align:left;position:relative;box-shadow:var(--shadow-sm)}
 .science-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;background:var(--sage-soft);border:1px solid var(--sage);border-radius:100px;color:var(--primary-darkest);font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:22px}
 .science-badge svg{width:14px;height:14px;flex-shrink:0}
 .science-section h2{font-family:var(--font-serif);font-size:clamp(24px,3.4vw,34px);font-weight:700;color:var(--fg);letter-spacing:-.015em;line-height:1.2;margin-bottom:22px}
@@ -448,21 +448,21 @@ body.authed .already-subscribed{display:none}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 .paywall{background:#fff;border-radius:22px;max-width:460px;width:100%;padding:32px 26px 22px;box-shadow:0 30px 80px rgba(16,185,129,.3);position:relative;max-height:94vh;overflow-y:auto;text-align:center;animation:pwRise .35s cubic-bezier(.16,1,.3,1)}
 @keyframes pwRise{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
-.paywall-close{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;background:#EDEBE7;color:#527A70;font-size:20px;font-weight:500;display:flex;align-items:center;justify-content:center;transition:all .15s;border:none;z-index:20;cursor:pointer;line-height:1}
-.paywall-close:hover{background:#E3DFD8;color:#163A3A}
-.pw-lock-wrap{position:relative;width:56px;height:56px;margin:4px auto 14px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#EEE7DC;border:1px solid #DDD3C3}
+.paywall-close{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;background:#f1f5f9;color:#527A70;font-size:20px;font-weight:500;display:flex;align-items:center;justify-content:center;transition:all .15s;border:none;z-index:20;cursor:pointer;line-height:1}
+.paywall-close:hover{background:#e2e8f0;color:#163A3A}
+.pw-lock-wrap{position:relative;width:56px;height:56px;margin:4px auto 14px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#f1f5f9;border:1px solid #cbd5e1}
 .pw-lock-wrap svg{width:28px;height:28px;color:#10b981}
 .pw-card{position:relative;margin:0;padding:0;background:transparent;box-shadow:none;width:100%;text-align:center}
 .pw-card h3{font-family:var(--font-serif);font-size:19px;font-weight:700;color:#163A3A;line-height:1.3;margin-bottom:8px;letter-spacing:-.01em;text-align:center}
 .pw-card .sub{font-size:13.5px;color:#527A70;margin:0 auto 18px;line-height:1.5;font-weight:500;max-width:380px;text-align:center}
 .pw-feats{list-style:none;padding:0;margin:0 0 18px;display:grid;gap:7px;text-align:left}
-.pw-feats li{list-style:none;display:flex;align-items:flex-start;gap:10px;padding:10px 13px;background:#EEE7DC;border:1px solid #DDD3C3;border-radius:11px;font-size:13px;color:#163A3A;font-weight:500;line-height:1.45}
+.pw-feats li{list-style:none;display:flex;align-items:flex-start;gap:10px;padding:10px 13px;background:#f1f5f9;border:1px solid #cbd5e1;border-radius:11px;font-size:13px;color:#163A3A;font-weight:500;line-height:1.45}
 .pw-feats li::before{content:'✓';flex-shrink:0;width:20px;height:20px;border-radius:50%;background:#10b981;color:#fff;font-weight:900;font-size:11px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(16,185,129,.25);margin-top:1px}
 .pw-feats li strong{color:#10b981;font-weight:700}
 .pw-cta-gold{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 22px;border-radius:14px;background:linear-gradient(135deg,#19D36B 0%,#13B05A 100%);color:#fff;font-size:14.5px;font-weight:800;text-decoration:none;text-align:center;box-shadow:0 10px 28px rgba(25,211,107,.42);border:none;cursor:pointer;font-family:inherit;transition:all .18s;margin-bottom:6px;width:100%;text-transform:none;letter-spacing:.005em}
 .pw-cta-gold:hover{transform:translateY(-1px);box-shadow:0 14px 34px rgba(25,211,107,.55);text-decoration:none}
 .pw-trust{margin-top:8px;font-size:12px;color:#94A29C;text-align:center;font-weight:500}
-.pw-already{margin-top:12px;padding-top:12px;border-top:1px solid #EDEBE7;font-size:13px;color:#527A70;text-align:center}
+.pw-already{margin-top:12px;padding-top:12px;border-top:1px solid #f1f5f9;font-size:13px;color:#527A70;text-align:center}
 .pw-already .asub-link{background:none;border:none;color:#10b981;font-weight:700;cursor:pointer;text-decoration:underline;text-underline-offset:3px;font-family:inherit;font-size:13px;padding:0}
 .pw-already .asub-link:hover{color:#059669}
 
