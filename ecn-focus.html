@@ -1228,6 +1228,17 @@ body{background:#f8fafc}
 .trust-amelie-compact-feats li strong{color:#10b981;font-weight:700}
 .trust-amelie-compact-foot{margin-top:10px;padding-top:8px;border-top:1px dashed #cbd5e1;font-size:12px;color:#527A70;font-style:italic;line-height:1.5}
 @media(max-width:500px){.trust-amelie-compact{padding:14px 14px}.trust-amelie-compact-head{font-size:13.5px}.trust-amelie-compact-feats li{font-size:12px}}
+
+/* ── Rendre le bleu visible dans la section "Explore les annales" ── */
+/* Carte d'exercice gratuite (l'action principale) en bleu franc */
+.dossier-card:not(.locked){border-color:#2563eb;background:#eff6ff}
+.dossier-card:not(.locked):hover{border-color:#1d4ed8;background:#dbeafe;transform:translateX(4px)}
+.dossier-card:not(.locked) .dossier-arrow{color:#2563eb;font-weight:900}
+.dossier-card:not(.locked) .dossier-icon{background:#2563eb;color:#fff}
+/* Année 2016 gratuite : badge + bordure + numéro en bleu */
+.year-card.free{border-color:#2563eb}
+.year-card.free::after{background:#2563eb}
+.year-card.free .yr{color:#1d4ed8}
 </style>
 </head>
 <body>
