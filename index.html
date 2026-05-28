@@ -541,6 +541,15 @@ body.authed .already-subscribed{display:none}
 .pw-already .asub-link{color:var(--brand-600)}
 .pw-already .asub-link:hover{color:var(--brand-700)}
 
+/* Premium CTA : retirer orange terracotta → bleu/vert flash */
+.premium-cta::before{background:radial-gradient(circle,rgba(16,185,129,.18) 0%,transparent 60%)}
+.premium-cta-btn{background:#fff;color:var(--brand-700)}
+.premium-cta-btn:hover{background:#eff6ff}
+.premium-cta .trust-amelie-badge{background:linear-gradient(135deg,#3b82f6 0%,#6ee7b7 100%)}
+.premium-cta .trust-amelie-title strong{color:#6ee7b7}
+.premium-cta .trust-amelie-item-icon{color:#93c5fd}
+.premium-cta .trust-amelie-foot svg{color:#6ee7b7}
+
 /* Pricing : retirer orange (terracotta) + beige → bleu/vert flash + blanc */
 .pricing-card{background:#fff}
 .pricing-head{background:linear-gradient(135deg,rgba(37,99,235,.06) 0%,rgba(16,185,129,.06) 100%);border-bottom-color:rgba(16,185,129,.18)}
