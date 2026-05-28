@@ -14,7 +14,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 
 <style>
@@ -475,9 +475,9 @@ body.authed .already-subscribed{display:none}
   --brand-600:#2563eb;
   --brand-700:#1d4ed8;
 }
-/* Logo wordmark : gradient bleu → emerald */
-.brand .title{background:linear-gradient(135deg,var(--brand-600) 0%,var(--primary) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
-.brand .title em{color:var(--accent);background:none;-webkit-text-fill-color:var(--accent)}
+/* Logo wordmark : gradient bleu → emerald continu sur tout "Askamelie" */
+.brand .title{background:linear-gradient(135deg,var(--brand-600) 0%,var(--primary) 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.brand .title em{font-style:normal;background:none;color:transparent;-webkit-text-fill-color:transparent}
 /* Hero H1 italic "gratuitement" : gradient bleu → emerald */
 .hero h1 em{background:linear-gradient(90deg,var(--brand-600) 0%,var(--primary) 100%);-webkit-background-clip:text;background-clip:text;color:transparent;font-style:italic}
 /* Nav CTA : gradient */
@@ -514,6 +514,45 @@ body.authed .already-subscribed{display:none}
 .login-tab.active{background:linear-gradient(135deg,var(--brand-600) 0%,var(--primary-dark) 100%)}
 /* Auth banner check icon */
 .auth-banner .ab-check{background:linear-gradient(135deg,var(--brand-600) 0%,var(--primary) 100%)}
+
+/* ═════════════════════════════════════════════════════════════════
+   Construction LP3 sur la homepage : nav épurée + hero typo flash
+   ═════════════════════════════════════════════════════════════════ */
+/* Nav minimale comme LP3 : logo gradient à gauche + bouton Connexion à droite */
+.nav-links{display:none}
+/* Hero : typo Inter flash + glow radial bleu/vert (signature LP3) */
+.hero{position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;left:50%;top:-12rem;width:40rem;height:40rem;max-width:120%;transform:translateX(-50%);border-radius:50%;background:radial-gradient(closest-side,rgba(59,130,246,.18),rgba(16,185,129,.12),transparent 70%);filter:blur(60px);pointer-events:none;z-index:0}
+.hero>*{position:relative;z-index:1}
+.hero h1{font-family:'Inter',var(--font-sans);font-weight:800;letter-spacing:-.025em;line-height:1.1;text-wrap:balance}
+.hero p{font-family:'Inter',var(--font-sans)}
+
+/* Rappel de bleu dans le trust block "Amélie conçue pour ne pas se tromper" */
+.trust-amelie-badge{background:linear-gradient(135deg,var(--brand-600) 0%,var(--primary) 100%);box-shadow:0 4px 12px rgba(37,99,235,.28)}
+.trust-amelie-item-icon{background:linear-gradient(135deg,rgba(37,99,235,.12) 0%,rgba(16,185,129,.12) 100%);color:var(--brand-600)}
+.trust-amelie-foot svg{color:var(--brand-600)}
+
+/* Rappel de bleu dans le paywall modal (pop-up année verrouillée) */
+.pw-lock-wrap svg{color:var(--brand-600)}
+.pw-feats li::before{background:linear-gradient(135deg,var(--brand-600) 0%,var(--primary) 100%);box-shadow:0 2px 6px rgba(37,99,235,.3)}
+.pw-feats li strong{color:var(--brand-700)}
+.pw-cta-gold{background:linear-gradient(135deg,var(--brand-600) 0%,var(--primary) 100%);box-shadow:0 10px 28px rgba(37,99,235,.42)}
+.pw-cta-gold:hover{background:linear-gradient(135deg,var(--brand-700) 0%,var(--primary-dark) 100%)}
+.pw-already .asub-link{color:var(--brand-600)}
+.pw-already .asub-link:hover{color:var(--brand-700)}
+
+/* Bandeau bas d'écran : promo ECOS Ask Amélie */
+.sticky-cta.dismissed{display:none!important}
+.sticky-eco-text{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1}
+.sticky-eco-title{font-size:14px;font-weight:700;color:var(--fg);letter-spacing:-.01em;line-height:1.2}
+.sticky-eco-sub{font-size:12px;color:var(--fg-soft);font-weight:500;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sticky-cta .sticky-btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none}
+.sticky-close{flex-shrink:0;width:32px;height:32px;border-radius:8px;background:none;border:none;color:var(--fg-soft);font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;font-family:inherit}
+.sticky-close:hover{background:var(--muted);color:var(--fg)}
+@media(max-width:600px){
+  .sticky-eco-sub{display:none}
+  .sticky-cta .sticky-btn{width:auto;padding:10px 16px;font-size:13px}
+}
 @media(max-width:480px){
   .paywall-bg{padding:14px}
   .paywall{padding:28px 20px 18px}
@@ -640,7 +679,7 @@ body.authed .already-subscribed{display:none}
 
 <!-- Hero -->
 <section class="hero">
-  <h1>Teste un dossier <em>gratuitement</em>.<br>Vois la différence.</h1>
+  <h1>Plus que <em>6 mois</em>.<br>Ça passe ou ça casse.</h1>
   <p>Toutes les annales EDN/ECN depuis 2016 en conditions réelles. Raisonnement clinique détaillé par des médecins spécialistes : pas juste la bonne lettre.</p>
   <a href="ecn-focus.html?year=2016&auto=1" class="hero-cta">
     Commencer le dossier gratuit
@@ -1132,8 +1171,12 @@ body.authed .already-subscribed{display:none}
 
 <!-- Sticky CTA -->
 <div class="sticky-cta" id="stickyCta">
-  <span class="sticky-label">🎓 Version gratuite</span>
-  <button type="button" class="sticky-btn" onclick="goPremium('sticky')" style="border:none;cursor:pointer;font-family:inherit">Passer Focus Illimité : 29,90 € / mois →</button>
+  <div class="sticky-eco-text">
+    <span class="sticky-eco-title">ECOS Ask Amélie</span>
+    <span class="sticky-eco-sub">Simulateur patient pour vos épreuves cliniques structurées</span>
+  </div>
+  <a href="https://ecos.askamelie.com" target="_blank" rel="noopener" class="sticky-btn">Découvrir →</a>
+  <button type="button" class="sticky-close" onclick="document.getElementById('stickyCta').classList.add('dismissed')" aria-label="Fermer le bandeau">×</button>
 </div>
 
 <!-- Paywall modal (kept for back-compat, used when clicking a locked year) -->
